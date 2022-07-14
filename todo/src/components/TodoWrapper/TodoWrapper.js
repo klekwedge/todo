@@ -1,19 +1,31 @@
+import { useState } from "react";
 import "./TodoWrapper.scss";
+
 import TodoList from "../TodoList/TodoList";
-import Newitem from "../Newitem/Newitem";
+import Newitem from "../NewTask/NewTask";
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
+import ToggleTheme from "../ToggleTheme/ToggleTheme";
 
 function TodoWrapper() {
+  // const [currentTheme, setCurrentTheme] = useState("white");
+
+  const [task, setTack] = useState("");
+
+  function changeTheme(){
+    document.body.classList.toggle('dark')
+  }
+  const updateList = (taskName) => {
+    setTack(taskName);
+  };
+
   return (
     <main id="todolist">
-      <h1 class="todo__title">Todo List </h1>
+      <h1 className="todo__title">Todo List </h1>
       <h2>Get things done, one item at a time.</h2>
-
-      <TodoList />
-
+      <ToggleTheme setCurrentTheme={changeTheme} />
+      <TodoList newTask={task} />
       <MoveDoneItems />
-
-      <Newitem />
+      <Newitem updateList={updateList} />
     </main>
   );
 }
