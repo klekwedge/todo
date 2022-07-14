@@ -2,7 +2,7 @@ import "./MoveDoneItems.scss";
 
 function MoveDoneItems() {
   return (
-    <div>
+    <div className='move__wrapper'>
       <input id="move" type="checkbox" name="todosort" />
       <label htmlFor="move">Move done items at the end?</label>
     </div>

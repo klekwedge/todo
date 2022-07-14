@@ -5,6 +5,7 @@ import TodoList from "../TodoList/TodoList";
 import Newitem from "../NewTask/NewTask";
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
+import DoneButton from "../DoneButton/DoneButton";
 
 function TodoWrapper() {
   // const [currentTheme, setCurrentTheme] = useState("white");
@@ -20,14 +21,20 @@ function TodoWrapper() {
   };
 
   return (
-    <main id="todolist">
-      <h1 className="todo__title">Todo List </h1>
-      <h2>Get things done, one item at a time.</h2>
-      <ToggleTheme />
-      <TodoList newTask={task} />
-      <MoveDoneItems />
-      <Newitem updateList={updateList} />
-    </main>
+    <>
+  
+      <main id="todolist">
+        <h1 className="todo__title">Todo List </h1>
+        <h2>Get things done, one item at a time.</h2>
+        <ToggleTheme />
+    
+        <TodoList newTask={task} />
+
+        <MoveDoneItems />
+        <DoneButton />
+        <Newitem updateList={updateList} />
+      </main>
+    </>
   );
 }
 
