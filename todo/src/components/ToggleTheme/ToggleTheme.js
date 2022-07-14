@@ -1,24 +1,29 @@
 import "./ToggleTheme.scss";
+import { useRef, useState } from 'react';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+function ToggleTheme() {
+  const [isThemeDark, setIsThemeDark] = useState('false')
+  const shapeEl = useRef();
 
-function ToggleTheme(props) {
+  function toggleTheme() {
+    setIsThemeDark(!isThemeDark)
+    const replacedClass = isThemeDark ? "moon" : "sun";
+    const replacedWithClass = isThemeDark ? "sun" : "moon";
+    shapeEl.current.classList.replace(replacedClass, replacedWithClass);
+    document.body.classList.toggle('dark')
+  }
+
   return (
     <>
-      <div className="toggle">
-        <input
-          type="checkbox"
-          id="checkbox"
-          className="checkbox"
-          onClick={() => props.setCurrentTheme("dark")}
-        />
-        <label htmlFor="checkbox" className="label">
-        <FontAwesomeIcon icon={faMoon} />
-          <FontAwesomeIcon icon={faSun} />
-          <div className="ball"></div>
-        </label>
-      </div>
+      <button className="theme-toggle--button theme__button" onClick={toggleTheme}>
+        <span className="shape moon" ref={shapeEl}></span>
+        <span className="rays--container">
+          <span className="ray"></span>
+          <span className="ray"></span>
+          <span className="ray"></span>
+          <span className="ray"></span>
+        </span>
+      </button>
     </>
   );
 }

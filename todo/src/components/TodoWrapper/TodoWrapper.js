@@ -11,9 +11,10 @@ function TodoWrapper() {
 
   const [task, setTack] = useState("");
 
-  function changeTheme(){
-    document.body.classList.toggle('dark')
-  }
+  // function changeTheme(){
+  //   document.body.classList.toggle('dark')
+  // }
+
   const updateList = (taskName) => {
     setTack(taskName);
   };
@@ -22,7 +23,7 @@ function TodoWrapper() {
     <main id="todolist">
       <h1 className="todo__title">Todo List </h1>
       <h2>Get things done, one item at a time.</h2>
-      <ToggleTheme setCurrentTheme={changeTheme} />
+      <ToggleTheme />
       <TodoList newTask={task} />
       <MoveDoneItems />
       <Newitem updateList={updateList} />
