@@ -2,39 +2,60 @@ import { useState } from "react";
 import "./TodoWrapper.scss";
 
 import { Flex } from "@chakra-ui/react";
-import TodoList from "../TodoList/TodoList";
-import Newitem from "../NewTask/NewTask";
+// import TodoList from "../TodoList/TodoList";
+import NewTaskForm from "../NewTaskForm/NewTaskForm";
+
+import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
+
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import DoneButton from "../DoneButton/DoneButton";
 
 function TodoWrapper() {
-  // const [currentTheme, setCurrentTheme] = useState("white");
+  const [tasks, setTasks] = useState([]);
 
-  const [task, setTack] = useState("");
+  const addTask = (userInput) => {
+    if (userInput) {
+      const newTask = {
+        id: Math.random().toString(36).substring(2, 9),
+        nameTask: userInput,
+        complete: false,
+      };
 
-  // function changeTheme(){
-  //   document.body.classList.toggle('dark')
-  // }
-
-  const updateList = (taskName) => {
-    setTack(taskName);
+      setTasks([...tasks, newTask]);
+    }
   };
+
+  console.log(tasks);
 
   return (
     <>
       <main id="todolist">
-        <h1 className="todo__title">Todo List </h1>
+        <h1 className="todo__title">Todo app </h1>
         <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
         <ToggleTheme />
+        <h3 className="todo__tasks">Your tasks: {tasks.length}</h3>
 
-        <TodoList newTask={task} />
+        {tasks.map((task) => {
+          return (
+            <>
+              <TodoTaskItem
+                task={task}
+                key={task.id}
+                // toggleTask={handleToggle}
+                // removeTask={removeTask}
+              />
+            </>
+          );
+        })}
+
+        {/* <TodoList /> */}
 
         {/* <Flex gap='30px'>
           <DoneButton />
         </Flex> */}
 
-        <Newitem updateList={updateList} />
+        <NewTaskForm addTask={addTask} />
         <MoveDoneItems />
       </main>
     </>
