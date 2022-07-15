@@ -25,18 +25,17 @@ function TodoWrapper() {
     <>
       <main id="todolist">
         <h1 className="todo__title">Todo List </h1>
-        <h2>Get things done, one item at a time.</h2>
+        <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
         <ToggleTheme />
 
         <TodoList newTask={task} />
 
-        <MoveDoneItems />
-        <Flex gap='30px'>
+        {/* <Flex gap='30px'>
           <DoneButton />
-          {/* <input type='radio'/> */}
-        </Flex>
+        </Flex> */}
 
         <Newitem updateList={updateList} />
+        <MoveDoneItems />
       </main>
     </>
   );
