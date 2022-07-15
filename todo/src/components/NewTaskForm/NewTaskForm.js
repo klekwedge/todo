@@ -1,27 +1,37 @@
 import { useState } from "react";
 import "./NewTaskForm.scss";
 
-function NewTaskForm({addTask}) {
+function NewTaskForm({ addTask }) {
   const [input, setInput] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addTask(input);
+    setInput("");
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
 
   return (
     <>
-      <div className="new-task">
+      <form className="new-task" onSubmit={handleSubmit}>
         <input
           type="text"
           className="new-task__input"
+          value={input}
           required
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
         <label className="new-task__label">New task</label>
-        <button
-          type="button"
-          className="new-task__button"
-          onClick={() => addTask(input)}
-        >
+        <button type="submit" className="new-task__button">
           Add item
         </button>
-      </div>
+      </form>
     </>
   );
 }
