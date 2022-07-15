@@ -1,10 +1,13 @@
 import "./DoneButton.scss";
+// taskId
+function DoneButton({onToggleTask, taskId}) {
 
-function DoneButton() {
+  // const test = () =>
+  
   return (
-    <div title={"Done"} className="label__wrapper">
-      <input type="checkbox" id="_checkbox" />
-      <label htmlFor="_checkbox" className="label__check">
+    <div title={"Done"} className="label__wrapper" >
+      <input className="done__checkbox" type="checkbox" id={taskId} />
+      <label htmlFor={taskId} className="label__check" onClick={onToggleTask}>
         <div id="tick_mark"></div>
       </label>
     </div>

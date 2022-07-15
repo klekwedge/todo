@@ -6,13 +6,13 @@ import doneIcon from "./../../resources/img/done.png";
 import editIcon from "./../../resources/img/edit.png";
 import DoneButton from "../DoneButton/DoneButton";
 
-function newTaskItem({ task, removeTask }) {
+function newTaskItem({ task, removeTask, toggleTask}) {
   return (
     // key={task.id}}
-    <li className="todo__item task">
+    <li className={task.complete ? "todo__item task green" : "todo__item task"}>
       <Flex gap="20px">
         {/* onClick={() => toggleTask(task.id)} */}
-        <DoneButton />
+        <DoneButton taskId={task.id} onToggleTask={() => toggleTask(task.id)}/>
         <h3 className="task__name">{task.nameTask}</h3>
       </Flex>
 

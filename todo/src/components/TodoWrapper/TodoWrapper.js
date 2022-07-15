@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./TodoWrapper.scss";
 
-import { Flex } from "@chakra-ui/react";
+import { Flex, TabList } from "@chakra-ui/react";
 // import TodoList from "../TodoList/TodoList";
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
 
@@ -25,12 +25,19 @@ function TodoWrapper() {
     }
   };
 
-
   const removeTask = (taskId) => {
     // setTasks(tasks.filter((task) => task.id !== taskId))
-    setTasks([...tasks.filter((task) => task.id !== taskId)])
-  }
+    setTasks([...tasks.filter((task) => task.id !== taskId)]);
+  };
 
+  const toggleTask = (taskId) => {
+    // setTasks(tasks.filter((task) => task.id !== taskId))
+    setTasks([
+      ...tasks.map((task) =>
+        task.id === taskId ? { ...task, complete: !task.complete } : { ...task }
+      ),
+    ]);
+  };
 
   return (
     <>
@@ -39,14 +46,16 @@ function TodoWrapper() {
         <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
         <ToggleTheme />
         <h3 className="todo__tasks">Your tasks: {tasks.length}</h3>
-
+        <h3 className="todo__tasks">
+          Your active tasks: {(tasks.filter((task) => task.complete !== true).length)}
+        </h3>
         <ul className="todo__task-list">
           {tasks.map((task) => {
             return (
               <TodoTaskItem
                 task={task}
                 key={task.id}
-                // toggleTask={handleToggle}
+                toggleTask={toggleTask}
                 removeTask={removeTask}
               />
             );
