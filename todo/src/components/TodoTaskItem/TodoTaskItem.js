@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { Image, Flex } from "@chakra-ui/react";
 import "./TodoTaskItem.scss";
 
@@ -6,17 +7,41 @@ import editIcon from "./../../resources/img/edit.png";
 import DoneButton from "../DoneButton/DoneButton";
 import ReturnButton from "../ReturnButton/ReturnButton";
 
-function newTaskItem({
+function TodoTaskItem({
   task,
   removeTask,
   toggleTask,
   doneButton = true,
   returnButton = false,
 }) {
+
+  const [taskName, setTaskName] = useState(task.nameTask)
+  const refFirst = useRef();
+
+  let edit = true;
+
+  const editSaveFunc = function () {
+    if (edit) {
+      refFirst.current.contentEditable = true;
+      refFirst.current.focus();
+    } else {
+      setTaskName(refFirst.current.textContent)
+      refFirst.current.contentEditable = false;
+    }
+
+    edit = !edit;
+  };
+
+  const keyFunc = (e) => {
+    if (e.key === "Enter") {
+      refFirst.current.blur();
+    }
+  };
+
   return (
     // key={task.id}}
     <li className={task.complete ? "todo__item task green" : "todo__item task"}>
-      <Flex gap="20px">
+      <Flex gap="20px" alignItems="center">
         {doneButton ? (
           <DoneButton
             taskId={task.id}
@@ -32,11 +57,23 @@ function newTaskItem({
         ) : null}
 
         {/*  onClick={() => toggleTask(task.id)} */}
-        <h3 className="task__name">{task.nameTask}</h3>
+        <h3
+          className="task__name"
+          ref={refFirst}
+          onBlur={editSaveFunc}
+          onKeyDown={keyFunc}
+        >
+          {taskName}
+        </h3>
       </Flex>
 
       <Flex alignItems="center">
-        <button className="btn-picto" type="button" title="Edit">
+        <button
+          className="btn-picto"
+          type="button"
+          title="Edit"
+          onClick={editSaveFunc}
+        >
           <Image
             w="30px"
             src={editIcon}
@@ -60,4 +97,4 @@ function newTaskItem({
   );
 }
 
-export default newTaskItem;
+export default TodoTaskItem;

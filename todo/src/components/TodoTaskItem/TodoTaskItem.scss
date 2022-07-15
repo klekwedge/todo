@@ -8,7 +8,12 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
+.task__name:focus {
+  padding: 5px 5px;
+  border: 1px solid red;
+}
+
 .green {
-  color: green; 
+  color: green;
   text-decoration: line-through;
 }

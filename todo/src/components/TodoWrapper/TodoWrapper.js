@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./TodoWrapper.scss";
 
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
@@ -35,6 +35,8 @@ function TodoWrapper() {
     ]);
   };
 
+
+
   return (
     <>
       <main id="todo">
@@ -43,7 +45,8 @@ function TodoWrapper() {
         <ToggleTheme />
         {/* <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3> */}
         <h3 className="todo__tasks">
-          Active tasks — {tasks.filter((task) => task.complete !== true).length}  / {tasks.length}
+          Active tasks — {tasks.filter((task) => task.complete !== true).length}{" "}
+          / {tasks.length}
         </h3>
 
         <ul className="todo__task-list">
@@ -63,7 +66,9 @@ function TodoWrapper() {
         </ul>
 
         <h3 className="todo__tasks">
-          Completed tasks — {tasks.filter((task) => task.complete === true).length} / {tasks.length}
+          Completed tasks —{" "}
+          {tasks.filter((task) => task.complete === true).length} /{" "}
+          {tasks.length}
         </h3>
 
         <ul className="todo__task-list">
@@ -84,6 +89,7 @@ function TodoWrapper() {
           })}
         </ul>
 
+       
         <MoveDoneItems />
         <NewTaskForm addTask={addTask} />
       </main>
