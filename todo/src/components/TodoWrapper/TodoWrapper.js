@@ -1,12 +1,8 @@
 import { useState } from "react";
 import "./TodoWrapper.scss";
 
-import { Flex, TabList } from "@chakra-ui/react";
-// import TodoList from "../TodoList/TodoList";
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
-
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
-
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 
@@ -45,30 +41,52 @@ function TodoWrapper() {
         <h1 className="todo__title">Todo app </h1>
         <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
         <ToggleTheme />
-        <h3 className="todo__tasks">Your tasks: {tasks.length}</h3>
+        {/* <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3> */}
         <h3 className="todo__tasks">
-          Your active tasks: {(tasks.filter((task) => task.complete !== true).length)}
+          Active tasks: {tasks.filter((task) => task.complete !== true).length}
         </h3>
+
         <ul className="todo__task-list">
           {tasks.map((task) => {
-            return (
-              <TodoTaskItem
-                task={task}
-                key={task.id}
-                toggleTask={toggleTask}
-                removeTask={removeTask}
-              />
-            );
+            if (task.complete === false) {
+              return (
+                <TodoTaskItem
+                  task={task}
+                  key={task.id}
+                  toggleTask={toggleTask}
+                  removeTask={removeTask}
+                />
+              );
+            }
+            return;
           })}
         </ul>
-        {/* <TodoList /> */}
 
-        {/* <Flex gap='30px'>
-          <DoneButton />
-        </Flex> */}
+        <h3 className="todo__tasks">
+          Completed tasks:{" "}
+          {tasks.filter((task) => task.complete === true).length}
+        </h3>
 
-        <NewTaskForm addTask={addTask} />
+        <ul className="todo__task-list">
+          {tasks.map((task) => {
+            if (task.complete === true) {
+              return (
+                <TodoTaskItem
+                  task={task}
+                  key={task.id}
+                  toggleTask={toggleTask}
+                  removeTask={removeTask}
+                  doneButton={false}
+                  returnButton={true}
+                />
+              );
+            }
+            return;
+          })}
+        </ul>
+
         <MoveDoneItems />
+        <NewTaskForm addTask={addTask} />
       </main>
     </>
   );
