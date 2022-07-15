@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./TodoWrapper.scss";
 
+import { Flex } from "@chakra-ui/react";
 import TodoList from "../TodoList/TodoList";
 import Newitem from "../NewTask/NewTask";
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
@@ -22,16 +23,19 @@ function TodoWrapper() {
 
   return (
     <>
-  
       <main id="todolist">
         <h1 className="todo__title">Todo List </h1>
         <h2>Get things done, one item at a time.</h2>
         <ToggleTheme />
-    
+
         <TodoList newTask={task} />
 
         <MoveDoneItems />
-        <DoneButton />
+        <Flex gap='30px'>
+          <DoneButton />
+          {/* <input type='radio'/> */}
+        </Flex>
+
         <Newitem updateList={updateList} />
       </main>
     </>

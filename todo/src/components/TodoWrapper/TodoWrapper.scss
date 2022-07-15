@@ -6,7 +6,7 @@
 
 
 html, body {
-	background:#f7f1f1;
+	background: whitesmoke;
 	font-size:1.1rem;
 	font-family:'Quicksand', sans-serif;
 	height:100%;
@@ -30,13 +30,18 @@ h2 {
 }
 
 #todolist {
+  border-radius: 5px;
   margin: 4rem auto;
   padding: 2rem 3rem 3rem;
   max-width: 500px;
-  background: #81d2ad;
-  color: #fff;
-  box-shadow: -20px -20px 0px 0px rgba(100, 100, 100, 0.1);
+  background: #F8F9FA;
+  color: black;
+  // background: #81d2ad;
+  // color: #fff;
+  box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.35) ;
+  // box-shadow: -20px -20px 0px 0px rgba(100, 100, 100, 0.1);
 }
+
 #todolist h1 {
   /*text-align:center;*/
   font-weight: normal;
@@ -105,44 +110,7 @@ h2 {
   color: #fff;
 }
 
-/* .form */
-.form {
-  margin-top: 3rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-.form label {
-  min-width: 100%;
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
-}
-.form input {
-  flex-grow: 1;
-  border: none;
-  background: #f7f1f1;
-  padding: 0 1.5em;
-  font-size: initial;
-}
-.form button {
-  padding: 0 1.3rem;
-  border: none;
-  background: #81d2ad;
-  color: white;
-  text-transform: uppercase;
-  font-weight: bold;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  margin-left: 5px;
-  cursor: pointer;
-  transition: all 0.2s ease-out;
-}
-.form button:hover {
-  background: #06dc7c;
-}
-.form input,
-.form button {
-  font-family: "Quicksand", sans-serif;
-  height: 3rem;
-}
+
 
 #todolist{
   position: relative;

@@ -1,5 +1,7 @@
 .label__wrapper{
   position: relative;
+  // width: 25px;
+  // height: 25px;
 }
 
 #_checkbox {
@@ -8,8 +10,8 @@
 
 .label__check {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 25px;
   height: 25px;
   margin: 0 auto;
@@ -35,14 +37,12 @@
   background-color: #fff;
   transform: translateY(-50%);
   border-radius: 50%;
-  // box-shadow: inset 0 7px 10px #ffbeb8;
   transition: 0.2s ease width, 0.2s ease height;
 }
 
 .label__check:hover:before {
   width: 16px;
   height: 16px;
-  // box-shadow: inset 0 7px 10px #ff9d96;
 }
 
 .label__check:active {
@@ -93,7 +93,6 @@
 
 #_checkbox:checked + .label__check {
   background-color: #07d410;
-  // box-shadow: 0 7px 10px #92ff97;
 }
 
 #_checkbox:checked + .label__check:before {
