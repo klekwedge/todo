@@ -9,7 +9,6 @@ import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
 
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
-import DoneButton from "../DoneButton/DoneButton";
 
 function TodoWrapper() {
   const [tasks, setTasks] = useState([]);
@@ -26,7 +25,12 @@ function TodoWrapper() {
     }
   };
 
-  console.log(tasks);
+
+  const removeTask = (taskId) => {
+    // setTasks(tasks.filter((task) => task.id !== taskId))
+    setTasks([...tasks.filter((task) => task.id !== taskId)])
+  }
+
 
   return (
     <>
@@ -36,19 +40,18 @@ function TodoWrapper() {
         <ToggleTheme />
         <h3 className="todo__tasks">Your tasks: {tasks.length}</h3>
 
-        {tasks.map((task) => {
-          return (
-            <>
+        <ul className="todo__task-list">
+          {tasks.map((task) => {
+            return (
               <TodoTaskItem
                 task={task}
                 key={task.id}
                 // toggleTask={handleToggle}
-                // removeTask={removeTask}
+                removeTask={removeTask}
               />
-            </>
-          );
-        })}
-
+            );
+          })}
+        </ul>
         {/* <TodoList /> */}
 
         {/* <Flex gap='30px'>
