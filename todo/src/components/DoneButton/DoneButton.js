@@ -1,8 +1,6 @@
 import "./DoneButton.scss";
 // taskId
 function DoneButton({onToggleTask, taskId}) {
-
-  // const test = () =>
   
   return (
     <div title={"Done"} className="label__wrapper" >

@@ -37,13 +37,13 @@ function TodoWrapper() {
 
   return (
     <>
-      <main id="todolist">
+      <main id="todo">
         <h1 className="todo__title">Todo app </h1>
         <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
         <ToggleTheme />
         {/* <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3> */}
         <h3 className="todo__tasks">
-          Active tasks: {tasks.filter((task) => task.complete !== true).length}
+          Active tasks — {tasks.filter((task) => task.complete !== true).length}  / {tasks.length}
         </h3>
 
         <ul className="todo__task-list">
@@ -63,8 +63,7 @@ function TodoWrapper() {
         </ul>
 
         <h3 className="todo__tasks">
-          Completed tasks:{" "}
-          {tasks.filter((task) => task.complete === true).length}
+          Completed tasks — {tasks.filter((task) => task.complete === true).length} / {tasks.length}
         </h3>
 
         <ul className="todo__task-list">
