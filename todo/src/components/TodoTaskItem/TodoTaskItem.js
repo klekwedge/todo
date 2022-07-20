@@ -13,26 +13,43 @@ function TodoTaskItem({
   toggleTask,
   doneButton = true,
   returnButton = false,
+  tasks,
+  setTasks,
 }) {
-
-  const [taskName, setTaskName] = useState(task.nameTask)
+  const [taskName, setTaskName] = useState(task.nameTask);
   const refFirst = useRef();
 
   let edit = true;
 
-  const editSaveFunc = function () {
+  const saveTaskEdit = function () {
     if (edit) {
       refFirst.current.contentEditable = true;
       refFirst.current.focus();
     } else {
-      setTaskName(refFirst.current.textContent)
+      // console.log(refFirst.current.textContent);
+
+      setTaskName(refFirst.current.textContent);
       refFirst.current.contentEditable = false;
+
+      console.log(task);
+      console.log(tasks);
+      // console.log('test');
+
+      setTasks([
+        ...tasks.map((taskItem) =>
+          taskItem.id === task.id
+            ? { ...task, nameTask: refFirst.current.textContent }
+            : { ...taskItem }
+        ),
+      ]);
     }
+
+    // console.log("test");
 
     edit = !edit;
   };
 
-  const keyFunc = (e) => {
+  const keySaveTaskEdit = (e) => {
     if (e.key === "Enter") {
       refFirst.current.blur();
     }
@@ -60,8 +77,8 @@ function TodoTaskItem({
         <h3
           className="task__name"
           ref={refFirst}
-          onBlur={editSaveFunc}
-          onKeyDown={keyFunc}
+          onBlur={saveTaskEdit}
+          onKeyDown={keySaveTaskEdit}
         >
           {taskName}
         </h3>
@@ -72,7 +89,7 @@ function TodoTaskItem({
           className="btn-picto"
           type="button"
           title="Edit"
-          onClick={editSaveFunc}
+          onClick={saveTaskEdit}
         >
           <Image
             w="30px"

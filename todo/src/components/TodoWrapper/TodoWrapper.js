@@ -35,8 +35,6 @@ function TodoWrapper() {
     ]);
   };
 
-
-
   return (
     <>
       <main id="todo">
@@ -58,6 +56,8 @@ function TodoWrapper() {
                   key={task.id}
                   toggleTask={toggleTask}
                   removeTask={removeTask}
+                  tasks={tasks}
+                  setTasks={setTasks}
                 />
               );
             }
@@ -67,7 +67,7 @@ function TodoWrapper() {
 
         <h3 className="todo__tasks">
           Completed tasks —{" "}
-          {tasks.filter((task) => task.complete === true).length} /{" "}
+          {tasks.filter((task) => task.complete === true).length} /
           {tasks.length}
         </h3>
 
@@ -82,6 +82,8 @@ function TodoWrapper() {
                   removeTask={removeTask}
                   doneButton={false}
                   returnButton={true}
+                  tasks={tasks}
+                  setTasks={setTasks}
                 />
               );
             }
@@ -89,7 +91,6 @@ function TodoWrapper() {
           })}
         </ul>
 
-       
         <MoveDoneItems />
         <NewTaskForm addTask={addTask} />
       </main>
