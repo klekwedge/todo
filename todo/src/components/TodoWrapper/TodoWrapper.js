@@ -11,13 +11,14 @@ import ToggleTheme from "../ToggleTheme/ToggleTheme";
 function TodoWrapper() {
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (userInput, category) => {
-    if (userInput) {
+  const addTask = (name, category, description) => {
+    if (name) {
       const newTask = {
         id: Math.random().toString(36).substring(2, 9),
-        nameTask: userInput,
+        nameTask: name,
         complete: false,
-        category: category
+        category: category,
+        description: description
       };
 
       setTasks([...tasks, newTask]);

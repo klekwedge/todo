@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Select, Stack } from "@chakra-ui/react";
+import { Select, Input } from "@chakra-ui/react";
 
 import "./NewTaskForm.scss";
 
 function NewTaskForm({ addTask }) {
-  const [input, setInput] = useState("");
+  const [taskNameInput, setTaskNameInput] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
   const [optionCategory, setOptionCategory] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTask(input, optionCategory);
-    setInput("");
+    addTask(taskNameInput, optionCategory, taskDescription);
+    setTaskNameInput("");
     setOptionCategory("");
   };
 
@@ -19,10 +20,38 @@ function NewTaskForm({ addTask }) {
       handleSubmit(e);
     }
   };
+  const test = (e) => {
+    console.log(e);
+  };
 
   return (
     <>
       <form className="new-task" onSubmit={handleSubmit}>
+        <div className="wrapper">
+          <input
+            type="text"
+            className="new-task__input"
+            value={taskNameInput}
+            required
+            onChange={(e) => setTaskNameInput(e.target.value)}
+            onKeyDown={handleKeyPress}
+          />
+          <label className="new-task__label">New task</label>
+          <button type="submit" className="new-task__button">
+            Add
+          </button>
+        </div>
+
+        <div className="wrapper">
+          <Input
+            placeholder="What do you need to do?"
+            value={taskDescription}
+            onChange={(e) => setTaskDescription(e.target.value)}
+            // onKeyDown={handleKeyPress}
+          />
+          <label className="new-task__descr">Description</label>
+        </div>
+
         <div className="wrapper">
           <Select
             placeholder="Select category"
@@ -34,21 +63,6 @@ function NewTaskForm({ addTask }) {
             <option value="study">Study</option>
             <option value="other">Other</option>
           </Select>
-        </div>
-
-        <div className="wrapper">
-          <input
-            type="text"
-            className="new-task__input"
-            value={input}
-            required
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyPress}
-          />
-          <label className="new-task__label">New task</label>
-          <button type="submit" className="new-task__button">
-            Add
-          </button>
         </div>
       </form>
     </>

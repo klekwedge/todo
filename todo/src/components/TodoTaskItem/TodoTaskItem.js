@@ -59,13 +59,29 @@ function TodoTaskItem({
   const categoryTask = () => {
     switch (task.category) {
       case "personal":
-        return <Badge colorScheme="green" color='black'>Personal</Badge>;
+        return (
+          <Badge colorScheme="green" color="black">
+            Personal
+          </Badge>
+        );
       case "work":
-        return <Badge colorScheme="red" color='black'>Work</Badge>;
+        return (
+          <Badge colorScheme="red" color="black">
+            Work
+          </Badge>
+        );
       case "study":
-        return <Badge colorScheme="purple" color='black'>Study</Badge>;
+        return (
+          <Badge colorScheme="purple" color="black">
+            Study
+          </Badge>
+        );
       case "other":
-        return <Badge colorScheme="blue" color='black'>Other</Badge>;
+        return (
+          <Badge colorScheme="blue" color="black">
+            Other
+          </Badge>
+        );
       default:
         return null;
     }
@@ -74,58 +90,64 @@ function TodoTaskItem({
   return (
     // key={task.id}}
     <li className={task.complete ? "todo__item task green" : "todo__item task"}>
+      <Flex gap="20px" justifyContent="space-between">
+        <Flex gap="20px" alignItems="center">
+          {doneButton ? (
+            <DoneButton
+              taskId={task.id}
+              onToggleTask={() => toggleTask(task.id)}
+            />
+          ) : null}
 
-      <Flex gap="20px" alignItems="center">
-        {doneButton ? (
-          <DoneButton
-            taskId={task.id}
-            onToggleTask={() => toggleTask(task.id)}
-          />
-        ) : null}
+          {returnButton ? (
+            <ReturnButton
+              taskId={task.id}
+              onToggleTask={() => toggleTask(task.id)}
+            />
+          ) : null}
 
-        {returnButton ? (
-          <ReturnButton
-            taskId={task.id}
-            onToggleTask={() => toggleTask(task.id)}
-          />
-        ) : null}
+          {/*  onClick={() => toggleTask(task.id)} */}
+          <h3
+            className="task__name"
+            ref={refFirst}
+            onBlur={saveTaskEdit}
+            onKeyDown={keySaveTaskEdit}
+          >
+            {taskName}
+          </h3>
+        </Flex>
 
-        {/*  onClick={() => toggleTask(task.id)} */}
-        <h3
-          className="task__name"
-          ref={refFirst}
-          onBlur={saveTaskEdit}
-          onKeyDown={keySaveTaskEdit}
-        >
-          {taskName}
-        </h3>
+        <Flex alignItems="center">
+          <button
+            className="btn-picto"
+            type="button"
+            title="Edit"
+            onClick={saveTaskEdit}
+          >
+            <Image
+              w="30px"
+              src={editIcon}
+              alt="Edit icon"
+              transition={"all 0.4s ease"}
+              _hover={{ transform: "scale(1.2)" }}
+            />
+          </button>
+          <button className="btn-picto" type="button" title="Delete">
+            <Image
+              w="30px"
+              src={deleteIcon}
+              alt="Delete icon"
+              transition={"all 0.4s ease"}
+              _hover={{ transform: "scale(1.2)" }}
+              onClick={() => removeTask(task.id)}
+            />
+          </button>
+          {categoryTask()}
+        </Flex>
       </Flex>
-      <Flex alignItems="center">
-        <button
-          className="btn-picto"
-          type="button"
-          title="Edit"
-          onClick={saveTaskEdit}
-        >
-          <Image
-            w="30px"
-            src={editIcon}
-            alt="Edit icon"
-            transition={"all 0.4s ease"}
-            _hover={{ transform: "scale(1.2)" }}
-          />
-        </button>
-        <button className="btn-picto" type="button" title="Delete">
-          <Image
-            w="30px"
-            src={deleteIcon}
-            alt="Delete icon"
-            transition={"all 0.4s ease"}
-            _hover={{ transform: "scale(1.2)" }}
-            onClick={() => removeTask(task.id)}
-          />
-        </button>
-        {categoryTask()}
+
+      <Flex gap="20px" alignItems="center" className='task__description'>
+        <h4>{task.description}</h4>
       </Flex>
     </li>
   );
