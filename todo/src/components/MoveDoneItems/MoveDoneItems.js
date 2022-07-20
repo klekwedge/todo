@@ -1,13 +1,19 @@
 import "./MoveDoneItems.scss";
 
-function MoveDoneItems() {
+function MoveDoneItems({ completedTasksAtTheEnd, setCompletedTasksAtTheEnd }) {
   return (
-    <>
-      <div className="move-task">
-        <input  className="move-task__input" id="move" type="checkbox" name="todosort" />
-        <label htmlFor="move">Move done items at the end?</label>
-      </div>
-    </>
+    <div
+      className="move-task"
+      onClick={() => setCompletedTasksAtTheEnd(!completedTasksAtTheEnd)}
+    >
+      <input
+        className="move-task__input"
+        id="move"
+        type="checkbox"
+        name="todosort"
+      />
+      <label htmlFor="move">Move done items at the end?</label>
+    </div>
   );
 }
 

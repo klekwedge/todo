@@ -125,7 +125,7 @@ function TodoTaskItem({
             onClick={saveTaskEdit}
             colorScheme="teal"
             aria-label="Call Segun"
-            size="md"
+            size="sm"
             icon={<EditIcon />}
           />
 
@@ -133,8 +133,8 @@ function TodoTaskItem({
             title="Delete task"
             colorScheme="blue"
             onClick={() => removeTask(task.id)}
-            size="md"
-            icon={<DeleteIcon />}
+            size="sm"
+            icon={<DeleteIcon/>}
           />
         </Flex>
       </Flex>
