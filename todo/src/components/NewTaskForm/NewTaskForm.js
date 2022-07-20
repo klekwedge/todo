@@ -37,23 +37,24 @@ function NewTaskForm({ addTask }) {
   const [taskDescription, setTaskDescription] = useState("");
   const [optionCategory, setOptionCategory] = useState("");
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [isOpen, setIsOpen] = useState(false);
+  // const [startDate, setStartDate] = useState(new Date());
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const handleChange = (e) => {
-    setIsOpen(!isOpen);
-    setStartDate(e);
-  };
-  const handleClick = (e) => {
-    e.preventDefault();
-    setIsOpen(!isOpen);
-  };
+  // const handleChange = (e) => {
+  //   setIsOpen(!isOpen);
+  //   setStartDate(e);
+  // };
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   setIsOpen(!isOpen);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addTask(taskNameInput, optionCategory, taskDescription);
     setTaskNameInput("");
     setOptionCategory("");
+    setTaskDescription("");
   };
 
   const handleKeyPress = (e) => {

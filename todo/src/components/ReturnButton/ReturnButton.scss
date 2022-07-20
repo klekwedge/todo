@@ -1,26 +1,11 @@
-.replay__wrapper {
-  position: relative;
-  margin-right: 5px;
-  transform: translate(-1px, -2px);
+.replay__icon {
+  cursor: pointer;
+  transform-origin: center center;
   transition: 0.4s ease-in-out;
+  z-index: 1;
 
   &:hover {
-    transform: translateY(0px);
-    cursor: pointer;
-
-    .replay__icon {
-      fill: #007BFF;
-      transform: translate(-49%, -47%) rotate(-180deg);
-    }
-  }
-
-  .replay__icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(0deg);
-    transform-origin: center center;
-    transition: 0.4s ease-in-out;
-    z-index: 1;
+    fill: #007bff;
+    transform: rotate(-180deg);
   }
 }
