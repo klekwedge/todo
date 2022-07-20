@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Select, Input, Flex } from "@chakra-ui/react";
-import DatePicker from "react-datepicker";
-import format from "date-fns/format";
-
-// import{ format}
+// import DatePicker from "react-datepicker";
+// import format from "date-fns/format";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./NewTaskForm.scss";
@@ -61,9 +59,6 @@ function NewTaskForm({ addTask }) {
     if (e.key === "Enter") {
       handleSubmit(e);
     }
-  };
-  const test = (e) => {
-    console.log(e);
   };
 
   return (

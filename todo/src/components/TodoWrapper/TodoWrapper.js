@@ -12,6 +12,7 @@ function TodoWrapper() {
   const [tasks, setTasks] = useState([]);
 
   const [completedTasksAtTheEnd, setCompletedTasksAtTheEnd] = useState(false);
+  const [filterTasks, setFilterTasks] = useState("default");
 
   const addTask = (name, category, description) => {
     if (name) {
@@ -41,29 +42,32 @@ function TodoWrapper() {
     ]);
   };
 
-  const renderTasks = () => {
-    if (completedTasksAtTheEnd) {
-      return (
-        <ul className="todo__task-list">
-          {tasks
-            .map((task) => (
-              <TodoTaskItem
-                task={task}
-                key={task.id}
-                toggleTask={toggleTask}
-                removeTask={removeTask}
-                tasks={tasks}
-                setTasks={setTasks}
-              />
-            ))
-            .sort((a) => (a.complete ? 1 : -1))}
-        </ul>
-      );
-    }
+  // const renderTasks = () => {
+  //   const taskArr = filterTasksFunc();
 
-    return (
-      <ul className="todo__task-list">
-        {tasks.map((task) => (
+  //   console.log(taskArr);
+
+  //   switch (filterTasks) {
+  //     case "default":
+  //       return taskArr.map((task) => (
+  //         <TodoTaskItem
+  //           task={task}
+  //           key={task.id}
+  //           toggleTask={toggleTask}
+  //           removeTask={removeTask}
+  //           tasks={tasks}
+  //           setTasks={setTasks}
+  //         />
+  //       ));
+  //     default:
+  //       return null;
+  //   }
+  // };
+
+  const filterTasksFunc = () => {
+    if (completedTasksAtTheEnd) {
+      return tasks
+        .map((task) => (
           <TodoTaskItem
             task={task}
             key={task.id}
@@ -72,9 +76,20 @@ function TodoWrapper() {
             tasks={tasks}
             setTasks={setTasks}
           />
-        ))}
-      </ul>
-    );
+        ))
+        .sort((task) => (task.complete ? 1 : -1));
+    }
+
+    return tasks.map((task) => (
+      <TodoTaskItem
+        task={task}
+        key={task.id}
+        toggleTask={toggleTask}
+        removeTask={removeTask}
+        tasks={tasks}
+        setTasks={setTasks}
+      />
+    ));
   };
 
   return (
@@ -84,19 +99,34 @@ function TodoWrapper() {
         <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
         <ToggleTheme />
         <Flex gap="5px">
-          <FilterButton label={"Active"} buttonColorScheme={"red"} />
-          <FilterButton label={"Done"} buttonColorScheme={"green"} />
+          <FilterButton
+            label={"All"}
+            buttonColorScheme={"blue"}
+            filterRule={"default"}
+            setFilterTasks={setFilterTasks}
+          />
+          <FilterButton
+            label={"Active"}
+            buttonColorScheme={"red"}
+            filterRule={"active"}
+            setFilterTasks={setFilterTasks}
+          />
+          <FilterButton
+            label={"Done"}
+            buttonColorScheme={"green"}
+            filterRule={"done"}
+            setFilterTasks={setFilterTasks}
+          />
         </Flex>
         <NewTaskForm addTask={addTask} />
 
         <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3>
 
-        <h3 className="todo__tasks">
+        {/* <h3 className="todo__tasks">
           Active tasks — {tasks.filter((task) => task.complete !== true).length}{" "}
           / {tasks.length}
-        </h3>
-
-        {renderTasks()}
+        </h3> */}
+        <ul className="todo__task-list">{filterTasksFunc()}</ul>
         {/* <ul className="todo__task-list">
           {tasks.map((task) => {
             if (task.complete === false) {

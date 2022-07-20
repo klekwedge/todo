@@ -143,7 +143,7 @@ function TodoTaskItem({
         gap="20px"
         justifyContent="space-between"
         alignItems="center"
-        padding="0px 10px"
+        padding="0px 0px 0px 15px"
       >
         <h4>{task.description}</h4>
         {categoryTask()}
