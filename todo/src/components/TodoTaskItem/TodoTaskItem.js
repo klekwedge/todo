@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import { Image, Flex, Badge } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
 import "./TodoTaskItem.scss";
 
@@ -117,35 +119,32 @@ function TodoTaskItem({
           </h3>
         </Flex>
 
-        <Flex alignItems="center">
-          <button
-            className="btn-picto"
-            type="button"
+        <Flex alignItems="center" gap='5px'>
+          <IconButton
             title="Edit"
             onClick={saveTaskEdit}
-          >
-            <Image
-              w="30px"
-              src={editIcon}
-              alt="Edit icon"
-              transition={"all 0.4s ease"}
-              _hover={{ transform: "scale(1.2)" }}
-            />
-          </button>
-          <button className="btn-picto" type="button" title="Delete">
-            <Image
-              w="30px"
-              src={deleteIcon}
-              alt="Delete icon"
-              transition={"all 0.4s ease"}
-              _hover={{ transform: "scale(1.2)" }}
-              onClick={() => removeTask(task.id)}
-            />
-          </button>
+            colorScheme="teal"
+            aria-label="Call Segun"
+            size="md"
+            icon={<EditIcon />}
+          />
+
+          <IconButton
+            title="Delete task"
+            colorScheme="blue"
+            onClick={() => removeTask(task.id)}
+            size="md"
+            icon={<DeleteIcon />}
+          />
         </Flex>
       </Flex>
 
-      <Flex gap="20px" justifyContent="space-between" alignItems="center" padding="0px 10px">
+      <Flex
+        gap="20px"
+        justifyContent="space-between"
+        alignItems="center"
+        padding="0px 10px"
+      >
         <h4>{task.description}</h4>
         {categoryTask()}
       </Flex>
