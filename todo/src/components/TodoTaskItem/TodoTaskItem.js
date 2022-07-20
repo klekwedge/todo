@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import { Image, Flex } from "@chakra-ui/react";
+import { Image, Flex, Badge } from "@chakra-ui/react";
+
 import "./TodoTaskItem.scss";
 
 import deleteIcon from "./../../resources/img/delete.png";
@@ -55,9 +56,25 @@ function TodoTaskItem({
     }
   };
 
+  const categoryTask = () => {
+    switch (task.category) {
+      case "personal":
+        return <Badge colorScheme="green" color='black'>Personal</Badge>;
+      case "work":
+        return <Badge colorScheme="red" color='black'>Work</Badge>;
+      case "study":
+        return <Badge colorScheme="purple" color='black'>Study</Badge>;
+      case "other":
+        return <Badge colorScheme="blue" color='black'>Other</Badge>;
+      default:
+        return null;
+    }
+  };
+
   return (
     // key={task.id}}
     <li className={task.complete ? "todo__item task green" : "todo__item task"}>
+
       <Flex gap="20px" alignItems="center">
         {doneButton ? (
           <DoneButton
@@ -83,7 +100,6 @@ function TodoTaskItem({
           {taskName}
         </h3>
       </Flex>
-
       <Flex alignItems="center">
         <button
           className="btn-picto"
@@ -109,6 +125,7 @@ function TodoTaskItem({
             onClick={() => removeTask(task.id)}
           />
         </button>
+        {categoryTask()}
       </Flex>
     </li>
   );

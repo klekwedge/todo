@@ -1,20 +1,23 @@
 import { useRef, useState } from "react";
 import "./TodoWrapper.scss";
+import { Flex } from "@chakra-ui/react";
 
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
+// import FilterButton from "../FilterButton/FilterButton";
 
 function TodoWrapper() {
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (userInput) => {
+  const addTask = (userInput, category) => {
     if (userInput) {
       const newTask = {
         id: Math.random().toString(36).substring(2, 9),
         nameTask: userInput,
         complete: false,
+        category: category
       };
 
       setTasks([...tasks, newTask]);
@@ -41,12 +44,19 @@ function TodoWrapper() {
         <h1 className="todo__title">Todo app </h1>
         <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
         <ToggleTheme />
+        {/* <Flex gap='5px'>
+          <FilterButton label={"Active"} buttonColorScheme={'red'}/>
+          <FilterButton label={"Done"} buttonColorScheme={'green'}/>
+        </Flex> */}
         {/* <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3> */}
+        <NewTaskForm addTask={addTask} />
+
         <h3 className="todo__tasks">
           Active tasks — {tasks.filter((task) => task.complete !== true).length}{" "}
           / {tasks.length}
         </h3>
 
+        
         <ul className="todo__task-list">
           {tasks.map((task) => {
             if (task.complete === false) {
@@ -92,7 +102,7 @@ function TodoWrapper() {
         </ul>
 
         <MoveDoneItems />
-        <NewTaskForm addTask={addTask} />
+
       </main>
     </>
   );
