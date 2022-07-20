@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 import { Image, Flex, Badge } from "@chakra-ui/react";
 
+
 import "./TodoTaskItem.scss";
 
 import deleteIcon from "./../../resources/img/delete.png";
 import editIcon from "./../../resources/img/edit.png";
 import DoneButton from "../DoneButton/DoneButton";
 import ReturnButton from "../ReturnButton/ReturnButton";
+
 
 function TodoTaskItem({
   task,
@@ -146,7 +148,7 @@ function TodoTaskItem({
         </Flex>
       </Flex>
 
-      <Flex gap="20px" alignItems="center" className='task__description'>
+      <Flex gap="20px" alignItems="center" className="task__description">
         <h4>{task.description}</h4>
       </Flex>
     </li>

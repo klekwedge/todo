@@ -1,12 +1,53 @@
 import { useState } from "react";
-import { Select, Input } from "@chakra-ui/react";
+import { Select, Input, Flex } from "@chakra-ui/react";
+import DatePicker from "react-datepicker";
+import format from "date-fns/format";
 
+// import{ format}
+
+import "react-datepicker/dist/react-datepicker.css";
 import "./NewTaskForm.scss";
+
+// const datePicker = () => {
+//   const [startDate, setStartDate] = useState(new Date());
+//   const [isOpen, setIsOpen] = useState(false);
+//   const handleChange = (e) => {
+//     setIsOpen(!isOpen);
+//     setStartDate(e);
+//   };
+//   const handleClick = (e) => {
+//     e.preventDefault();
+//     setIsOpen(!isOpen);
+//   };
+
+//   return (
+//     <>
+//       <button className="example-custom-input" onClick={handleClick}>
+//         {format(startDate, "dd-MM-yyyy")}
+//       </button>
+//       {isOpen && (
+//         <DatePicker selected={startDate} onChange={handleChange} inline />
+//       )}
+//     </>
+//   );
+// };
 
 function NewTaskForm({ addTask }) {
   const [taskNameInput, setTaskNameInput] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [optionCategory, setOptionCategory] = useState("");
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleChange = (e) => {
+    setIsOpen(!isOpen);
+    setStartDate(e);
+  };
+  const handleClick = (e) => {
+    e.preventDefault();
+    setIsOpen(!isOpen);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +93,7 @@ function NewTaskForm({ addTask }) {
           <label className="new-task__descr">Description</label>
         </div>
 
-        <div className="wrapper">
+        <Flex gap='10px'>
           <Select
             placeholder="Select category"
             onChange={(e) => setOptionCategory(e.target.value)}
@@ -63,7 +104,16 @@ function NewTaskForm({ addTask }) {
             <option value="study">Study</option>
             <option value="other">Other</option>
           </Select>
-        </div>
+
+          {/* <div>
+            <button className="example-custom-input" onClick={handleClick}>
+              {format(startDate, "dd-MM-yyyy")}
+            </button>
+            {isOpen && (
+              <DatePicker selected={startDate} onChange={handleChange} inline />
+            )}
+          </div> */}
+        </Flex>
       </form>
     </>
   );
