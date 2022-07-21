@@ -99,7 +99,7 @@ function TodoTaskItem({
       className={task.complete ? "todo__item task green" : "todo__item task"}
       onClick={() => setCurrentTask(task)}
     >
-      <Flex gap="20px" justifyContent="space-between" mb="15px">
+      <Flex gap="20px" justifyContent="space-between" mb="5px">
         <Flex gap="20px" alignItems="center">
           {doneButton ? (
             <DoneButton
@@ -148,34 +148,10 @@ function TodoTaskItem({
 
       <Flex
         gap="20px"
-        justifyContent="space-between"
+        justifyContent="flex-end"
         alignItems="center"
-        padding="0px 0px 0px 15px"
+        padding="0px 0px 0px 0px"
       >
-        {/* <h4>{task.description}</h4> */}
-
-        <Accordion
-          allowMultiple
-          width="100%"
-          maxWidth="270px"
-          borderRadius="5px"
-          border="1px solid #E4EAF1"
-          // background="red"
-        >
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  Description
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel>
-              <h4>{task.description}</h4>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
         {categoryTask()}
       </Flex>
     </li>

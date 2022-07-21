@@ -48,6 +48,7 @@ function TaskDetail({ currentTask }) {
           {currentTask.category ? categoryTask() : "Not category"}
         </h3>
         <h3 className="task-detail__name">
+          Description:{" "}
           {currentTask.description
             ? currentTask.description
             : "Not description"}

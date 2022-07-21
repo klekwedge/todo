@@ -38,12 +38,11 @@
 //   height: 2rem;
 // }
 
-
 .new-task {
   display: flex;
   flex-direction: column;
   gap: 30px 5px;
-  margin: 30px 0px 30px 0px;
+  margin: 30px 0px 20px 0px;
 }
 
 .wrapper {
@@ -54,29 +53,21 @@
 
 .new-task__input {
   width: 100%;
-  padding: 10px 10px;
+  padding: 17px 10px 15px 10px;
   font-size: 16px;
   color: black;
   outline: none;
   background: transparent;
+  border-radius: 5px;
   border: 2px solid gray;
-}
-.new-task__descr{
-  position: absolute;
-  top: -10px;
-  transform: translateY(-50%);
-  left: 5px;
-  font-size: 14px;
-  color: black;
-  pointer-events: none;
-  transition: 0.5s;
 }
 
 .new-task__label {
+  padding: 5px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 10px;
+  left: 15px;
   font-size: 14px;
   color: black;
   pointer-events: none;
@@ -85,10 +76,11 @@
 
 .new-task__input:valid ~ .new-task__label,
 .new-task__input:focus ~ .new-task__label {
-  top: -10px;
-  left: 0;
+  top: -2px;
+  left: 10px;
   color: #007bff;
   font-size: 12px;
+  background-color: #f8f9fa;
 }
 
 .new-task__input:focus,
@@ -104,6 +96,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease-out;
+  font-size: 16px;
 }
 
 .new-task__button:hover {
@@ -112,18 +105,31 @@
   color: #007bff;
 }
 
-.new-task__button,
+.new-task__descr {
+  position: absolute;
+  top: -10px;
+  transform: translateY(-50%);
+  left: 5px;
+  font-size: 14px;
+  color: black;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
 .new-task__input {
   height: 2rem;
 }
 
-
-.example-custom-input{
-  min-width: 120px;
-  cursor: pointer;
-  padding: 5px 10px;
-  border: 0;
-  border-radius: 4px;
-  background-color: #216ba5;
-  color: #fff;
+.new-task__button {
+  height: 2.2rem;
 }
+
+// .example-custom-input{
+//   min-width: 120px;
+//   cursor: pointer;
+//   padding: 5px 10px;
+//   border: 0;
+//   border-radius: 4px;
+//   background-color: #216ba5;
+//   color: #fff;
+// }
