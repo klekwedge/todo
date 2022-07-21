@@ -7,6 +7,7 @@ import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import FilterButton from "../FilterButton/FilterButton";
+import CalendarAndClock from "../CalendarAndClock/CalendarAndClock";
 
 function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
   const [tasks, setTasks] = useState([]);
@@ -126,6 +127,7 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
       <NewTaskForm addTask={addTask} />
 
       <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3>
+      <CalendarAndClock />
       {/* <h3 className="todo__tasks">
           Active tasks — {tasks.filter((task) => task.complete !== true).length}{" "}
           / {tasks.length}

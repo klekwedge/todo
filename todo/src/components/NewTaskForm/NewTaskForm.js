@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Select, Input, Flex } from "@chakra-ui/react";
+import { Select, Flex } from "@chakra-ui/react";
 // import DatePicker from "react-datepicker";
 // import format from "date-fns/format";
 
@@ -80,13 +80,13 @@ function NewTaskForm({ addTask }) {
         </div>
 
         <div className="wrapper">
-          <Input
-            placeholder="What do you need to do?"
+        <input
+            type="text"
+            className="new-task__input"
             value={taskDescription}
             onChange={(e) => setTaskDescription(e.target.value)}
-            // onKeyDown={handleKeyPress}
           />
-          <label className="new-task__descr">Description</label>
+          <label className="new-task__label">What do you need to do?</label>
         </div>
 
         <Flex gap='10px'>
