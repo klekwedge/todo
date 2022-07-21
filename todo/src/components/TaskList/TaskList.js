@@ -99,16 +99,9 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
   };
 
   return (
-    <section id="todo">
+    <section className="task-list">
       <h1 className="todo__title">Todo app </h1>
       <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
-      {/* <IconButton
-          colorScheme="blue"
-          aria-label="Search database"
-          icon={<SearchIcon />}
-          mb="20px"
-        /> */}
-
       <ToggleTheme />
       <Flex gap="5px">
         <FilterButton

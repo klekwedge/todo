@@ -12,7 +12,7 @@ function MoveDoneItems({ completedTasksAtTheEnd, setCompletedTasksAtTheEnd }) {
         type="checkbox"
         name="todosort"
       />
-      <label htmlFor="move">Move done items at the end?</label>
+      <label htmlFor="move">Move completed tasks to the end?</label>
     </div>
   );
 }
