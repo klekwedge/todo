@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
-import "./TodoWrapper.scss";
+import { useState } from "react";
 import { Flex } from "@chakra-ui/react";
+import "./TaskList.scss";
 
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
@@ -8,7 +8,7 @@ import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import FilterButton from "../FilterButton/FilterButton";
 
-function TodoWrapper() {
+function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
   const [tasks, setTasks] = useState([]);
 
   const [completedTasksAtTheEnd, setCompletedTasksAtTheEnd] = useState(false);
@@ -75,6 +75,9 @@ function TodoWrapper() {
             removeTask={removeTask}
             tasks={tasks}
             setTasks={setTasks}
+            setDetailOpen={setTaskDetailIsOpen}
+            taskDetailIsOpen={taskDetailIsOpen}
+            setCurrentTask={setCurrentTask}
           />
         ))
         .sort((task) => (task.complete ? 1 : -1));
@@ -88,46 +91,55 @@ function TodoWrapper() {
         removeTask={removeTask}
         tasks={tasks}
         setTasks={setTasks}
+        setDetailOpen={setTaskDetailIsOpen}
+        taskDetailIsOpen={taskDetailIsOpen}
+        setCurrentTask={setCurrentTask}
       />
     ));
   };
 
   return (
-    <>
-      <main id="todo">
-        <h1 className="todo__title">Todo app </h1>
-        <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
-        <ToggleTheme />
-        <Flex gap="5px">
-          <FilterButton
-            label={"All"}
-            buttonColorScheme={"blue"}
-            filterRule={"default"}
-            setFilterTasks={setFilterTasks}
-          />
-          <FilterButton
-            label={"Active"}
-            buttonColorScheme={"red"}
-            filterRule={"active"}
-            setFilterTasks={setFilterTasks}
-          />
-          <FilterButton
-            label={"Done"}
-            buttonColorScheme={"green"}
-            filterRule={"done"}
-            setFilterTasks={setFilterTasks}
-          />
-        </Flex>
-        <NewTaskForm addTask={addTask} />
+    <section id="todo">
+      <h1 className="todo__title">Todo app </h1>
+      <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
+      {/* <IconButton
+          colorScheme="blue"
+          aria-label="Search database"
+          icon={<SearchIcon />}
+          mb="20px"
+        /> */}
 
-        <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3>
+      <ToggleTheme />
+      <Flex gap="5px">
+        <FilterButton
+          label={"All"}
+          buttonColorScheme={"blue"}
+          filterRule={"default"}
+          setFilterTasks={setFilterTasks}
+        />
+        <FilterButton
+          label={"Active"}
+          buttonColorScheme={"red"}
+          filterRule={"active"}
+          setFilterTasks={setFilterTasks}
+        />
+        <FilterButton
+          label={"Done"}
+          buttonColorScheme={"green"}
+          filterRule={"done"}
+          setFilterTasks={setFilterTasks}
+        />
+      </Flex>
+      <NewTaskForm addTask={addTask} />
 
-        {/* <h3 className="todo__tasks">
+      <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3>
+      {/* <h3 className="todo__tasks">
           Active tasks — {tasks.filter((task) => task.complete !== true).length}{" "}
           / {tasks.length}
         </h3> */}
-        <ul className="todo__task-list">{filterTasksFunc()}</ul>
-        {/* <ul className="todo__task-list">
+
+      <ul className="todo__task-list">{filterTasksFunc()}</ul>
+      {/* <ul className="todo__task-list">
           {tasks.map((task) => {
             if (task.complete === false) {
               return (
@@ -145,13 +157,13 @@ function TodoWrapper() {
           })}
         </ul> */}
 
-        {/* <h3 className="todo__tasks">
+      {/* <h3 className="todo__tasks">
           Completed tasks —{" "}
           {tasks.filter((task) => task.complete === true).length} /
           {tasks.length}
         </h3> */}
 
-        {/* <ul className="todo__task-list">
+      {/* <ul className="todo__task-list">
           {tasks.map((task) => {
             if (task.complete === true) {
               return (
@@ -171,13 +183,12 @@ function TodoWrapper() {
           })}
         </ul> */}
 
-        <MoveDoneItems
-          completedTasksAtTheEnd={completedTasksAtTheEnd}
-          setCompletedTasksAtTheEnd={setCompletedTasksAtTheEnd}
-        />
-      </main>
-    </>
+      <MoveDoneItems
+        completedTasksAtTheEnd={completedTasksAtTheEnd}
+        setCompletedTasksAtTheEnd={setCompletedTasksAtTheEnd}
+      />
+    </section>
   );
 }
 
-export default TodoWrapper;
+export default TodoMain;

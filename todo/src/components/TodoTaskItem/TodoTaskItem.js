@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Image, Flex, Badge } from "@chakra-ui/react";
+import { Flex, Badge } from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
@@ -14,8 +14,6 @@ import {
 
 import "./TodoTaskItem.scss";
 
-import deleteIcon from "./../../resources/img/delete.png";
-import editIcon from "./../../resources/img/edit.png";
 import DoneButton from "../DoneButton/DoneButton";
 import ReturnButton from "../ReturnButton/ReturnButton";
 
@@ -27,6 +25,9 @@ function TodoTaskItem({
   returnButton = false,
   tasks,
   setTasks,
+  setDetailOpen,
+  taskDetailIsOpen,
+  setCurrentTask
 }) {
   const [taskName, setTaskName] = useState(task.nameTask);
   const refFirst = useRef();
@@ -38,14 +39,8 @@ function TodoTaskItem({
       refFirst.current.contentEditable = true;
       refFirst.current.focus();
     } else {
-      // console.log(refFirst.current.textContent);
-
       setTaskName(refFirst.current.textContent);
       refFirst.current.contentEditable = false;
-
-      console.log(task);
-      console.log(tasks);
-      // console.log('test');
 
       setTasks([
         ...tasks.map((taskItem) =>
@@ -55,8 +50,6 @@ function TodoTaskItem({
         ),
       ]);
     }
-
-    // console.log("test");
 
     edit = !edit;
   };
@@ -98,9 +91,16 @@ function TodoTaskItem({
     }
   };
 
+  // const test = () => {
+  //   console.log("Hello!");
+  // };
+
   return (
     // key={task.id}}
-    <li className={task.complete ? "todo__item task green" : "todo__item task"}>
+    <li
+      className={task.complete ? "todo__item task green" : "todo__item task"}
+      onClick={() => setCurrentTask(task)}
+    >
       <Flex gap="20px" justifyContent="space-between" mb="15px">
         <Flex gap="20px" alignItems="center">
           {doneButton ? (

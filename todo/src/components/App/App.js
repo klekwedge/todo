@@ -1,9 +1,9 @@
 
-import TodoWrapper from "../TodoWrapper/TodoWrapper";
+import TodoMain from "../TodoMain/TodoMain";
 
 function App() {
   return (
-      <TodoWrapper />
+      <TodoMain />
   );
 }
 
