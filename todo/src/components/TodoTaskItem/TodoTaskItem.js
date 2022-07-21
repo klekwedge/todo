@@ -20,6 +20,8 @@ function TodoTaskItem({
   setTasks,
   setCurrentTask,
 }) {
+
+
   const [taskName, setTaskName] = useState(task.nameTask);
   const refFirst = useRef();
 
@@ -52,10 +54,6 @@ function TodoTaskItem({
   };
 
   const categoryTask = useCategoryTask(task.category);
-
-  // const test = () => {
-  //   console.log("Hello!");
-  // };
 
   return (
     // key={task.id}}

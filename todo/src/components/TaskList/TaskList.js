@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Skeleton, Stack } from "@chakra-ui/react";
 import "./TaskList.scss";
 
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
@@ -22,6 +22,7 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
         complete: false,
         category: category,
         description: description,
+        creationDate: new Date().toLocaleString().split(', ')
       };
 
       setTasks([...tasks, newTask]);
@@ -98,6 +99,7 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
     ));
   };
 
+
   return (
     <section className="task-list">
       <h1 className="todo__title">Todo app </h1>
@@ -126,13 +128,20 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
       <NewTaskForm addTask={addTask} />
 
       <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3>
-    
+
       {/* <h3 className="todo__tasks">
           Active tasks — {tasks.filter((task) => task.complete !== true).length}{" "}
           / {tasks.length}
         </h3> */}
 
-      <ul className="todo__task-list">{filterTasksFunc()}</ul>
+      <ul className="todo__task-list">
+        {tasks.length > 0 ? (
+          filterTasksFunc()
+        ) : (
+          <Skeleton height="50px" width="100%" />
+        )}
+      </ul>
+
       {/* <ul className="todo__task-list">
           {tasks.map((task) => {
             if (task.complete === false) {

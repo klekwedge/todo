@@ -6,7 +6,6 @@ import TaskDetail from "../TaskDetail/TaskDetail";
 
 function TodoMain() {
   const [currentTask, setCurrentTask] = useState({});
-
   return (
     <main className="todo">
       <TaskList setCurrentTask={setCurrentTask} />

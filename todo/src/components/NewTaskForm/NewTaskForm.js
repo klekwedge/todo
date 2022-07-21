@@ -84,6 +84,7 @@ function NewTaskForm({ addTask }) {
             type="text"
             className="new-task__input"
             value={taskDescription}
+            // required
             onChange={(e) => setTaskDescription(e.target.value)}
           />
           <label className="new-task__label">What do you need to do?</label>

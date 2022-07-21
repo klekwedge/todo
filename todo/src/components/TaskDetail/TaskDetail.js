@@ -7,8 +7,9 @@ import { useCategoryTask } from "../../hooks/useCategoryTask";
 import "./TaskDetail.scss";
 
 function TaskDetail({ currentTask }) {
-
   const categoryTask = useCategoryTask(currentTask.category);
+
+  console.log(currentTask.creationDate);
 
   const showDetails = () => {
     return (
@@ -21,6 +22,11 @@ function TaskDetail({ currentTask }) {
 
         <h3 className="task-detail__status">
           {currentTask.complete === "true" ? "Done" : "Active"}
+        </h3>
+
+        <h3 className="task-detail__date">
+          Task creation date: {currentTask.creationDate[0].slice(0, -5)}.
+          {currentTask.creationDate[0].slice(8)} ({currentTask.creationDate[1]})
         </h3>
 
         <h3 className="task-detail__descr">
