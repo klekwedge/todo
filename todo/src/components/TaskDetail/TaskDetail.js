@@ -1,42 +1,14 @@
-import { Flex, Badge, Stack } from "@chakra-ui/react";
+import { Flex, Stack } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import { Skeleton } from "@chakra-ui/react";
+
+import { useCategoryTask } from "../../hooks/useCategoryTask";
 
 import "./TaskDetail.scss";
 
 function TaskDetail({ currentTask }) {
-  // console.log(currentTask);
 
-  const categoryTask = () => {
-    switch (currentTask.category) {
-      case "personal":
-        return (
-          <Badge colorScheme="green" padding="5px" color="black">
-            Personal
-          </Badge>
-        );
-      case "work":
-        return (
-          <Badge colorScheme="red" padding="5px" color="black">
-            Work
-          </Badge>
-        );
-      case "study":
-        return (
-          <Badge colorScheme="purple" padding="5px" color="black">
-            Study
-          </Badge>
-        );
-      case "other":
-        return (
-          <Badge colorScheme="blue" padding="5px" color="black">
-            Other
-          </Badge>
-        );
-      default:
-        return null;
-    }
-  };
+  const categoryTask = useCategoryTask(currentTask.category);
 
   const showDetails = () => {
     return (
@@ -44,7 +16,7 @@ function TaskDetail({ currentTask }) {
         <h3 className="task-detail__name">{currentTask.nameTask}</h3>
 
         <h3 className="task-detail__category">
-          {currentTask.category ? categoryTask() : "Not category"}
+          {currentTask.category ? categoryTask : "Not category"}
         </h3>
 
         <h3 className="task-detail__status">

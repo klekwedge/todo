@@ -3,14 +3,7 @@ import { Flex, Badge } from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box,
-} from "@chakra-ui/react";
+import { useCategoryTask } from '../../hooks/useCategoryTask';
 
 import "./TodoTaskItem.scss";
 
@@ -58,36 +51,7 @@ function TodoTaskItem({
     }
   };
 
-  const categoryTask = () => {
-    switch (task.category) {
-      case "personal":
-        return (
-          <Badge colorScheme="green" padding="5px" color="black">
-            Personal
-          </Badge>
-        );
-      case "work":
-        return (
-          <Badge colorScheme="red" padding="5px" color="black">
-            Work
-          </Badge>
-        );
-      case "study":
-        return (
-          <Badge colorScheme="purple" padding="5px" color="black">
-            Study
-          </Badge>
-        );
-      case "other":
-        return (
-          <Badge colorScheme="blue" padding="5px" color="black">
-            Other
-          </Badge>
-        );
-      default:
-        return null;
-    }
-  };
+  const categoryTask = useCategoryTask(task.category);
 
   // const test = () => {
   //   console.log("Hello!");
@@ -152,7 +116,7 @@ function TodoTaskItem({
         alignItems="center"
         padding="0px 0px 0px 0px"
       >
-        {categoryTask()}
+        {categoryTask}
       </Flex>
     </li>
   );
