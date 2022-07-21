@@ -25,9 +25,7 @@ function TodoTaskItem({
   returnButton = false,
   tasks,
   setTasks,
-  setDetailOpen,
-  taskDetailIsOpen,
-  setCurrentTask
+  setCurrentTask,
 }) {
   const [taskName, setTaskName] = useState(task.nameTask);
   const refFirst = useRef();

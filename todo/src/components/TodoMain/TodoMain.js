@@ -5,16 +5,12 @@ import TaskList from "../TaskList/TaskList";
 import TaskDetail from "../TaskDetail/TaskDetail";
 
 function TodoMain() {
-  const [taskDetailIsOpen, setTaskDetailIsOpen] = useState(true);
-  const [currentTask, setCurrentTask] = useState('');
+  const [currentTask, setCurrentTask] = useState({});
+
   return (
     <main className="todo">
-      <TaskList
-        taskDetailIsOpen={taskDetailIsOpen}
-        setTaskDetailIsOpen={setTaskDetailIsOpen}
-        setCurrentTask={setCurrentTask}
-      />
-      {taskDetailIsOpen ? <TaskDetail currentTask={currentTask} /> : null}
+      <TaskList setCurrentTask={setCurrentTask} />
+      <TaskDetail currentTask={currentTask} />
     </main>
   );
 }

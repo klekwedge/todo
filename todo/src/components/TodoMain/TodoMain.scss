@@ -5,6 +5,10 @@
 }
 
 body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: whitesmoke;
   font-size: 1.1rem;
   font-family: "Quicksand", sans-serif;
@@ -12,6 +16,33 @@ body {
 
 .todo {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 50px;
+  width: 70vw;
+  // width: 100vw;
+  // height: 100vh;
 }
+
+/*-------------------------------------------------------------*/
+/*-----Dark Theme----------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+body.dark {
+  background: #161616;
+}
+
+// body.dark #todo{
+//   box-shadow: 0px 0px 5px 5px gray;
+// }
+
+// .background {
+//   opacity: 0;
+//   width: 100%;
+//   height: 100%;
+//   position: fixed;
+//   transition: opacity 500ms;
+//   background-image: radial-gradient(circle at top, #353175 20%, #111);
+// }
+// .background.dark {
+//   opacity: 1;
+// }
