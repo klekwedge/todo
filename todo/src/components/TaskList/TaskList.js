@@ -19,11 +19,7 @@ function TodoMain({
   const [completedTasksAtTheEnd, setCompletedTasksAtTheEnd] = useState(false);
   const [filterTasks, setFilterTasks] = useState("default");
 
-  // console.log(taskBuff);
-
   useEffect(() => {
-    console.log(taskBuff);
-
     if (taskBuff.name) {
       const newTask = {
         id: Math.random().toString(36).substring(2, 9),
@@ -112,9 +108,30 @@ function TodoMain({
 
   return (
     <section className="task-list">
-      <h1 className="todo__title">Todo app </h1>
+      <Flex
+        borderBottom="1px solid rgba(0, 0, 0, 0.3)"
+        pb="10px"
+        justifyContent="space-between"
+      >
+        <Heading as="h1" fontWeight="400">
+          Your tasks
+        </Heading>
+
+        <Flex alignItems="flex-end" gap="10px" fontWeight="400">
+          <Heading as="h2" size="sm" fontWeight="400">
+            All: {tasks.length}
+          </Heading>
+          <Heading as="h2" size="sm" fontWeight="400">
+            Done: {tasks.filter((task) => task.complete === true).length}
+          </Heading>
+          <Heading as="h2" size="sm" fontWeight="400">
+            Active: {tasks.filter((task) => task.complete !== true).length}
+          </Heading>
+        </Flex>
+      </Flex>
+
       <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
-      <Flex gap="5px">
+      <Flex gap="5px" mb='20px'>
         <FilterButton
           label={"All"}
           buttonColorScheme={"blue"}
@@ -134,14 +151,6 @@ function TodoMain({
           setFilterTasks={setFilterTasks}
         />
       </Flex>
-      {/* <NewTaskForm addTask={addTask} /> */}
-
-      <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3>
-
-      {/* <h3 className="todo__tasks">
-          Active tasks — {tasks.filter((task) => task.complete !== true).length}{" "}
-          / {tasks.length}
-        </h3> */}
 
       <ul className="todo__task-list">
         {tasks.length > 0 ? (
@@ -168,12 +177,6 @@ function TodoMain({
             return;
           })}
         </ul> */}
-
-      {/* <h3 className="todo__tasks">
-          Completed tasks —{" "}
-          {tasks.filter((task) => task.complete === true).length} /
-          {tasks.length}
-        </h3> */}
 
       {/* <ul className="todo__task-list">
           {tasks.map((task) => {
