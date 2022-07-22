@@ -9,6 +9,8 @@ import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import FilterButton from "../FilterButton/FilterButton";
 
 function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
+  // const localTasks = localStorage.getItem('tasks')
+
   const [tasks, setTasks] = useState([]);
 
   const [completedTasksAtTheEnd, setCompletedTasksAtTheEnd] = useState(false);
@@ -22,7 +24,7 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
         complete: false,
         category: category,
         description: description,
-        creationDate: new Date().toLocaleString().split(', ')
+        creationDate: new Date().toLocaleString().split(", "),
       };
 
       setTasks([...tasks, newTask]);
@@ -98,7 +100,6 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
       />
     ));
   };
-
 
   return (
     <section className="task-list">

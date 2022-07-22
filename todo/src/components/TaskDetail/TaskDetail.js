@@ -21,12 +21,7 @@ function TaskDetail({ currentTask }) {
         </h3>
 
         <h3 className="task-detail__status">
-          {currentTask.complete === "true" ? "Done" : "Active"}
-        </h3>
-
-        <h3 className="task-detail__date">
-          Task creation date: {currentTask.creationDate[0].slice(0, -5)}.
-          {currentTask.creationDate[0].slice(8)} ({currentTask.creationDate[1]})
+          Status: {currentTask.complete === "true" ? "Done" : "Active"}
         </h3>
 
         <h3 className="task-detail__descr">
@@ -34,6 +29,11 @@ function TaskDetail({ currentTask }) {
           {currentTask.description
             ? currentTask.description
             : "Not description"}
+        </h3>
+
+        <h3 className="task-detail__date">
+          Task creation date: {currentTask.creationDate[0].slice(0, -5)}.
+          {currentTask.creationDate[0].slice(8)} ({currentTask.creationDate[1]})
         </h3>
       </Flex>
     );

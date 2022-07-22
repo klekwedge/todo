@@ -9,11 +9,12 @@
   background: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   border: 1px solid #E4EAF1;
-  transition: all 0.4s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .todo__item:hover {
-  // background-color: #f5f8fc;
+  cursor: pointer;
+  background-color: #F5F5F5;
 }
 
 .task__name:focus {

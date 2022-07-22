@@ -3,7 +3,7 @@ import { Flex, Badge } from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
-import { useCategoryTask } from '../../hooks/useCategoryTask';
+import { useCategoryTask } from "../../hooks/useCategoryTask";
 
 import "./TodoTaskItem.scss";
 
@@ -20,8 +20,6 @@ function TodoTaskItem({
   setTasks,
   setCurrentTask,
 }) {
-
-
   const [taskName, setTaskName] = useState(task.nameTask);
   const refFirst = useRef();
 
@@ -89,6 +87,7 @@ function TodoTaskItem({
         </Flex>
 
         <Flex alignItems="center" gap="5px">
+          {categoryTask}
           <IconButton
             title="Edit"
             onClick={saveTaskEdit}
@@ -108,14 +107,14 @@ function TodoTaskItem({
         </Flex>
       </Flex>
 
-      <Flex
+      {/* <Flex
         gap="20px"
         justifyContent="flex-end"
         alignItems="center"
         padding="0px 0px 0px 0px"
       >
         {categoryTask}
-      </Flex>
+      </Flex> */}
     </li>
   );
 }
