@@ -14,8 +14,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-// import DatePicker from "react-datepicker";
-// import format from "date-fns/format";
+import DatePicker from "react-datepicker";
+import format from "date-fns/format";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./NewTaskForm.scss";
@@ -44,24 +44,44 @@ import "./NewTaskForm.scss";
 //   );
 // };
 
+// <Button onClick={onOpen}>Open Modal</Button>
+
+// <Modal isOpen={isOpen} onClose={onClose}>
+//   <ModalOverlay />
+//   <ModalContent>
+//     <ModalHeader>Modal Title</ModalHeader>
+//     <ModalCloseButton />
+//     <ModalBody>
+//       <Lorem count={2} />
+//     </ModalBody>
+
+//     <ModalFooter>
+//       <Button colorScheme='blue' mr={3} onClick={onClose}>
+//         Close
+//       </Button>
+//       <Button variant='ghost'>Secondary Action</Button>
+//     </ModalFooter>
+//   </ModalContent>
+// </Modal>
+
 function NewTaskForm({ updateTaskBuff }) {
   const [taskNameInput, setTaskNameInput] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [optionCategory, setOptionCategory] = useState("");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenDatePicker,
+    onOpen: onOpenDatePicker,
+    onClose: onCloseDatePicker,
+  } = useDisclosure();
 
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [isOpen, setIsOpen] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
 
-  // const handleChange = (e) => {
-  //   setIsOpen(!isOpen);
-  //   setStartDate(e);
-  // };
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   setIsOpen(!isOpen);
-  // };
+  const handleChangeDatePicker = (e) => {
+    onCloseDatePicker();
+    setStartDate(e);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,8 +103,8 @@ function NewTaskForm({ updateTaskBuff }) {
       <Button
         borderRadius="50%"
         position="absolute"
-        width='40px'
-        height='40px'
+        width="40px"
+        height="40px"
         top="160px"
         right="30px"
         onClick={onOpen}
@@ -138,14 +158,34 @@ function NewTaskForm({ updateTaskBuff }) {
                   <option value="other">Other</option>
                 </Select>
 
-                {/* <div>
-            <button className="example-custom-input" onClick={handleClick}>
-              {format(startDate, "dd-MM-yyyy")}
-            </button>
-            {isOpen && (
-              <DatePicker selected={startDate} onChange={handleChange} inline />
-            )}
-          </div> */}
+                <Button
+                  className="example-custom-input"
+                  onClick={onOpenDatePicker}
+                >
+                  {format(startDate, "dd-MM-yyyy")}
+                </Button>
+
+                <Modal isOpen={isOpenDatePicker} onClose={onCloseDatePicker}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Choose deadline:</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <Flex justifyContent="center" minHeight="280px">
+                        <DatePicker
+                          selected={startDate}
+                          onChange={handleChangeDatePicker}
+                          inline
+                        />
+                      </Flex>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button colorScheme="blue" mr={3} onClick={onClose}>
+                        Close
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
               </Flex>
             </form>
           </ModalBody>
