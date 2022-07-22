@@ -1,5 +1,4 @@
-import "./BackgroundSelection.scss";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   IconButton,
   Button,
@@ -10,9 +9,6 @@ import {
   Heading,
   Image,
   Box,
-} from "@chakra-ui/react";
-import { RepeatIcon } from "@chakra-ui/icons";
-import {
   Modal,
   ModalOverlay,
   ModalContent,
@@ -22,6 +18,10 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 
+import { RepeatIcon } from "@chakra-ui/icons";
+
+import "./BackgroundSelection.scss";
+
 import BackgroundCubes from "../BackgroundOptions/BackgroundCubes/BackgroundCubes";
 import BackgroundDiagonals from "../BackgroundOptions/BackgroundDiagonals/BackgroundDiagonals";
 import BackgroundSquareCircles from "../BackgroundOptions/BackgroundSquareCircles/BackgroundSquareCircles";
@@ -30,6 +30,20 @@ import BackgroundSquareCircles from "../BackgroundOptions/BackgroundSquareCircle
 function BackgroundSelection() {
   const [currentBackground, setCurrentBackground] = useState("white");
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const itemRefs = useRef([]);
+
+  const backgroundNames = ["Cubes", "Diagonals", "Square and circles"];
+  const backgroundValue = ["cubes", "diagonals", "squareCircles"];
+  const pathBackgrounds = [
+    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
+    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
+    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
+  ];
+
+  const backgroundList = Array.from(Array(backgroundNames.length)).map(
+    (item, i) => i
+  );
 
   const chooseBackground = () => {
     switch (currentBackground) {
@@ -44,6 +58,11 @@ function BackgroundSelection() {
       default:
         return null;
     }
+  };
+
+  const focusOnItem = (id) => {
+    itemRefs.current.forEach((myRef) => myRef.classList.remove("active"));
+    itemRefs.current[id].classList.add("active");
   };
 
   return (
@@ -92,73 +111,29 @@ function BackgroundSelection() {
                 styleType="none"
                 margin="10px 0px 0px 0px"
               >
-                <ListItem
-                  display="flex"
-                  flexDirection="column"
-                  alignItems="center"
-                  cursor="pointer"
-                  textAlign="center"
-                  gap="10px"
-                  onClick={() => setCurrentBackground("cubes")}
-                >
-                  <Image
-                    borderRadius="10px"
-                    width="200px"
-                    src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
-                  ></Image>
-                  <h3>Cubes</h3>
-                </ListItem>
-
-                <ListItem
-                  display="flex"
-                  alignItems="center"
-                  cursor="pointer"
-                  flexDirection="column"
-                  gap="10px"
-                  textAlign="center"
-                  onClick={() => setCurrentBackground("diagonals")}
-                >
-                  <Image
-                    borderRadius="10px"
-                    width="200px"
-                    src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
-                  ></Image>
-                  <h3>Diagonals</h3>
-                </ListItem>
-
-                <ListItem
-                  display="flex"
-                  alignItems="center"
-                  cursor="pointer"
-                  flexDirection="column"
-                  gap="10px"
-                  textAlign="center"
-                  onClick={() => setCurrentBackground("squareCircles")}
-                >
-                  <Image
-                    borderRadius="10px"
-                    width="200px"
-                    src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
-                  ></Image>
-                  <h3>Square and circles </h3>
-                </ListItem>
-
-                {/* <ListItem
-                  display="flex"
-                  alignItems="center"
-                  cursor="pointer"
-                  flexDirection="column"
-                  gap="10px"
-                  textAlign="center"
-                  onClick={() => setCurrentBackground("lines")}
-                >
-                  <Image
-                    borderRadius="10px"
-                    width="200px"
-                    src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
-                  ></Image>
-                  <h3>Lines </h3>
-                </ListItem> */}
+                {backgroundList.map((item, i) => (
+                  <ListItem
+                    ref={(el) => (itemRefs.current[i] = el)}
+                    key={Math.random().toString(36).substring(2, 9)}
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                    cursor="pointer"
+                    textAlign="center"
+                    gap="10px"
+                    onClick={() => {
+                      setCurrentBackground(backgroundValue[i]);
+                      focusOnItem(i);
+                    }}
+                  >
+                    <Image
+                      borderRadius="10px"
+                      width="200px"
+                      src={pathBackgrounds[i]}
+                    ></Image>
+                    <h3>{backgroundNames[i]}</h3>
+                  </ListItem>
+                ))}
               </UnorderedList>
             </Flex>
           </ModalBody>
@@ -166,9 +141,6 @@ function BackgroundSelection() {
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Save
-            </Button>
-            <Button variant="ghost" onClick={onClose}>
-              Cancel
             </Button>
           </ModalFooter>
         </ModalContent>

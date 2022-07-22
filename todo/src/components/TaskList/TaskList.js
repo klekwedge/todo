@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Flex, Skeleton, Stack } from "@chakra-ui/react";
+import { Flex, Skeleton, Heading } from "@chakra-ui/react";
 import "./TaskList.scss";
 
-import NewTaskForm from "../NewTaskForm/NewTaskForm";
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import FilterButton from "../FilterButton/FilterButton";
@@ -46,8 +45,6 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
 
   // const renderTasks = () => {
   //   const taskArr = filterTasksFunc();
-
-  //   console.log(taskArr);
 
   //   switch (filterTasks) {
   //     case "default":
@@ -124,7 +121,7 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
           setFilterTasks={setFilterTasks}
         />
       </Flex>
-      <NewTaskForm addTask={addTask} />
+      {/* <NewTaskForm addTask={addTask} /> */}
 
       <h3 className="todo__total-tasks">Your tasks: {tasks.length}</h3>
 

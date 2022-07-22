@@ -9,8 +9,6 @@ import "./TaskDetail.scss";
 function TaskDetail({ currentTask }) {
   const categoryTask = useCategoryTask(currentTask.category);
 
-  console.log(currentTask.creationDate);
-
   const showDetails = () => {
     return (
       <Flex flexDirection="column" gap="2px" position="relative">
