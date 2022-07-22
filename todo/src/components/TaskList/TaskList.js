@@ -5,7 +5,6 @@ import "./TaskList.scss";
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
-import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import FilterButton from "../FilterButton/FilterButton";
 
 function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
@@ -105,7 +104,6 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
     <section className="task-list">
       <h1 className="todo__title">Todo app </h1>
       <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
-      <ToggleTheme />
       <Flex gap="5px">
         <FilterButton
           label={"All"}

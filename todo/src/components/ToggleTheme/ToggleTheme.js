@@ -5,7 +5,7 @@ function ToggleTheme() {
   const [isThemeDark, setIsThemeDark] = useState('false')
   const shapeEl = useRef();
 
-  function toggleTheme() {
+  function changeTheme() {
     setIsThemeDark(!isThemeDark)
     const replacedClass = isThemeDark ? "moon" : "sun";
     const replacedWithClass = isThemeDark ? "sun" : "moon";
@@ -15,7 +15,7 @@ function ToggleTheme() {
 
   return (
     <>
-      <button className="theme-toggle--button theme__button" onClick={toggleTheme}>
+      <button className="theme-toggle--button theme__button" onClick={changeTheme}>
         <span className="shape moon" ref={shapeEl}></span>
         <span className="rays--container">
           <span className="ray"></span>
