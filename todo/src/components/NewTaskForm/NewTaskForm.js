@@ -58,11 +58,8 @@ function NewTaskForm({ updateTaskBuff }) {
     <>
       <IconButton
         borderRadius="50%"
-        position="absolute"
         width="40px"
         height="40px"
-        top="160px"
-        right="30px"
         onClick={onOpen}
         icon={<AddIcon />}
       />

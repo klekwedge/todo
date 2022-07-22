@@ -1,11 +1,14 @@
 import { useState } from "react";
 import "./TodoMain.scss";
 
+import { Flex } from "@chakra-ui/react";
+
 import TaskList from "../TaskList/TaskList";
 import TaskDetail from "../TaskDetail/TaskDetail";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import BackgroundSelection from "../BackgroundSelection/BackgroundSelection";
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
+import Header from "../Header/Header";
 
 function TodoMain() {
   const [currentTask, setCurrentTask] = useState({});
@@ -16,15 +19,17 @@ function TodoMain() {
   };
 
   return (
-    <>
-      <main className="todo">
-        <ToggleTheme />
-        <BackgroundSelection />
+    <Flex flexDirection="column">
+      <Header>
         <NewTaskForm updateTaskBuff={updateTaskBuff} />
+        <BackgroundSelection />
+        <ToggleTheme />
+      </Header>
+      <main className="todo">
         <TaskList setCurrentTask={setCurrentTask} taskBuff={taskBuff} />
         <TaskDetail currentTask={currentTask} />
       </main>
-    </>
+    </Flex>
   );
 }
 

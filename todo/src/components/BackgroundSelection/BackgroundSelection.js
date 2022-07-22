@@ -68,11 +68,9 @@ function BackgroundSelection() {
   return (
     <>
       <IconButton
-        size="lg"
+        width="40px"
+        height="40px"
         borderRadius="50%"
-        position="absolute"
-        top="100px"
-        right="25px"
         icon={<RepeatIcon />}
         onClick={onOpen}
       />

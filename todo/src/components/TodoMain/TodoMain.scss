@@ -7,7 +7,6 @@
 body {
   margin: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
   gap: 10px;
   background: whitesmoke;
@@ -19,6 +18,8 @@ body {
 .todo {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
+  margin: 0 auto;
   gap: 50px;
   width: 1000px;
   // width: 100vw;
