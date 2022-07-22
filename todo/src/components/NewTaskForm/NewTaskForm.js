@@ -20,50 +20,6 @@ import format from "date-fns/format";
 import "react-datepicker/dist/react-datepicker.css";
 import "./NewTaskForm.scss";
 
-// const datePicker = () => {
-//   const [startDate, setStartDate] = useState(new Date());
-//   const [isOpen, setIsOpen] = useState(false);
-//   const handleChange = (e) => {
-//     setIsOpen(!isOpen);
-//     setStartDate(e);
-//   };
-//   const handleClick = (e) => {
-//     e.preventDefault();
-//     setIsOpen(!isOpen);
-//   };
-
-//   return (
-//     <>
-//       <button className="example-custom-input" onClick={handleClick}>
-//         {format(startDate, "dd-MM-yyyy")}
-//       </button>
-//       {isOpen && (
-//         <DatePicker selected={startDate} onChange={handleChange} inline />
-//       )}
-//     </>
-//   );
-// };
-
-// <Button onClick={onOpen}>Open Modal</Button>
-
-// <Modal isOpen={isOpen} onClose={onClose}>
-//   <ModalOverlay />
-//   <ModalContent>
-//     <ModalHeader>Modal Title</ModalHeader>
-//     <ModalCloseButton />
-//     <ModalBody>
-//       <Lorem count={2} />
-//     </ModalBody>
-
-//     <ModalFooter>
-//       <Button colorScheme='blue' mr={3} onClick={onClose}>
-//         Close
-//       </Button>
-//       <Button variant='ghost'>Secondary Action</Button>
-//     </ModalFooter>
-//   </ModalContent>
-// </Modal>
-
 function NewTaskForm({ updateTaskBuff }) {
   const [taskNameInput, setTaskNameInput] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
@@ -100,7 +56,7 @@ function NewTaskForm({ updateTaskBuff }) {
 
   return (
     <>
-      <Button
+      <IconButton
         borderRadius="50%"
         position="absolute"
         width="40px"
@@ -108,9 +64,8 @@ function NewTaskForm({ updateTaskBuff }) {
         top="160px"
         right="30px"
         onClick={onOpen}
-      >
-        <IconButton icon={<AddIcon />} />
-      </Button>
+        icon={<AddIcon />}
+      />
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

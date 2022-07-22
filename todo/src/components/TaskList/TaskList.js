@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Flex, Skeleton, Heading } from "@chakra-ui/react";
 import "./TaskList.scss";
 
@@ -6,7 +6,12 @@ import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
 import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import FilterButton from "../FilterButton/FilterButton";
 
-function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
+function TodoMain({
+  taskDetailIsOpen,
+  setTaskDetailIsOpen,
+  setCurrentTask,
+  taskBuff,
+}) {
   // const localTasks = localStorage.getItem('tasks')
 
   const [tasks, setTasks] = useState([]);
@@ -14,20 +19,28 @@ function TodoMain({ taskDetailIsOpen, setTaskDetailIsOpen, setCurrentTask }) {
   const [completedTasksAtTheEnd, setCompletedTasksAtTheEnd] = useState(false);
   const [filterTasks, setFilterTasks] = useState("default");
 
-  const addTask = (name, category, description) => {
-    if (name) {
+  // console.log(taskBuff);
+
+  useEffect(() => {
+    console.log(taskBuff);
+
+    if (taskBuff.name) {
       const newTask = {
         id: Math.random().toString(36).substring(2, 9),
-        nameTask: name,
+        nameTask: taskBuff.name,
         complete: false,
-        category: category,
-        description: description,
+        category: taskBuff.category,
+        description: taskBuff.description,
         creationDate: new Date().toLocaleString().split(", "),
       };
 
       setTasks([...tasks, newTask]);
     }
-  };
+  }, [taskBuff]);
+
+  // const addTask = (name, category, description) => {
+
+  // };
 
   const removeTask = (taskId) => {
     // setTasks(tasks.filter((task) => task.id !== taskId))

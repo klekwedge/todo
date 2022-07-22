@@ -11,17 +11,17 @@ function TodoMain() {
   const [currentTask, setCurrentTask] = useState({});
   const [taskBuff, setTaskBuff] = useState({});
 
-  const updateTaskBuff = (taskNameInput, optionCategory, taskDescription) => {
-    setTaskBuff({taskNameInput, optionCategory, taskDescription});
- }
+  const updateTaskBuff = (name, category, description) => {
+    setTaskBuff({ name, category, description });
+  };
 
   return (
     <>
       <main className="todo">
         <ToggleTheme />
         <BackgroundSelection />
-        <NewTaskForm updateTaskBuff={updateTaskBuff}/>
-        <TaskList setCurrentTask={setCurrentTask} taskBuff={taskBuff}/>
+        <NewTaskForm updateTaskBuff={updateTaskBuff} />
+        <TaskList setCurrentTask={setCurrentTask} taskBuff={taskBuff} />
         <TaskDetail currentTask={currentTask} />
       </main>
     </>
