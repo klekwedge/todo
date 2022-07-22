@@ -64,7 +64,7 @@ function NewTaskForm({ addTask }) {
   return (
     <>
       <form className="new-task" onSubmit={handleSubmit}>
-        <div className="wrapper">
+        <div className="new-task__wrapper">
           <input
             type="text"
             className="new-task__input"
@@ -79,7 +79,7 @@ function NewTaskForm({ addTask }) {
           </button>
         </div>
 
-        <div className="wrapper">
+        <div className="new-task__wrapper">
         <input
             type="text"
             className="new-task__input"

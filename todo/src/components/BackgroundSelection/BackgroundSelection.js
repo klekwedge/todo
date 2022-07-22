@@ -7,8 +7,9 @@ import {
   Flex,
   UnorderedList,
   ListItem,
-  ListIcon,
+  Heading,
   Image,
+  Box,
 } from "@chakra-ui/react";
 import { RepeatIcon } from "@chakra-ui/icons";
 import {
@@ -23,6 +24,8 @@ import {
 
 import BackgroundCubes from "../BackgroundOptions/BackgroundCubes/BackgroundCubes";
 import BackgroundDiagonals from "../BackgroundOptions/BackgroundDiagonals/BackgroundDiagonals";
+import BackgroundSquareCircles from "../BackgroundOptions/BackgroundSquareCircles/BackgroundSquareCircles";
+// import BackgroundLines from "../BackgroundOptions/BackgroundLines/BackgroundLines";
 
 function BackgroundSelection() {
   const [currentBackground, setCurrentBackground] = useState("white");
@@ -34,6 +37,10 @@ function BackgroundSelection() {
         return <BackgroundCubes />;
       case "diagonals":
         return <BackgroundDiagonals />;
+      case "squareCircles":
+        return <BackgroundSquareCircles />;
+      // case "lines":
+      //   return <BackgroundLines />;
       default:
         return null;
     }
@@ -47,7 +54,6 @@ function BackgroundSelection() {
         position="absolute"
         top="100px"
         right="25px"
-        className="background-select"
         icon={<RepeatIcon />}
         onClick={onOpen}
       />
@@ -59,7 +65,26 @@ function BackgroundSelection() {
           <ModalCloseButton />
           <ModalBody>
             <Flex flexDirection="column" gap="5px">
-              <h2>Animated background:</h2>
+              <Box
+                cursor="pointer"
+                width="180px"
+                mb="20px"
+                onClick={() => setCurrentBackground("white")}
+              >
+                <Image
+                  borderRadius="10px"
+                  width="180px"
+                  mb="10px"
+                  src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
+                ></Image>
+                <Heading as="h4" size="sm" textAlign="center">
+                  Default
+                </Heading>
+              </Box>
+
+              <Heading as="h3" size="md" fontWeight="500">
+                Animated background:
+              </Heading>
 
               <UnorderedList
                 display="flex"
@@ -69,25 +94,10 @@ function BackgroundSelection() {
               >
                 <ListItem
                   display="flex"
-                  alignItems="center"
-                  cursor="pointer"
-                  flexDirection="column"
-                  gap="10px"
-                  onClick={() => setCurrentBackground("")}
-                >
-                  <Image
-                    borderRadius="10px"
-                    width="200px"
-                    src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
-                  ></Image>
-                  <h3>Default</h3>
-                </ListItem>
-
-                <ListItem
-                  display="flex"
                   flexDirection="column"
                   alignItems="center"
                   cursor="pointer"
+                  textAlign="center"
                   gap="10px"
                   onClick={() => setCurrentBackground("cubes")}
                 >
@@ -105,6 +115,7 @@ function BackgroundSelection() {
                   cursor="pointer"
                   flexDirection="column"
                   gap="10px"
+                  textAlign="center"
                   onClick={() => setCurrentBackground("diagonals")}
                 >
                   <Image
@@ -114,9 +125,41 @@ function BackgroundSelection() {
                   ></Image>
                   <h3>Diagonals</h3>
                 </ListItem>
-              </UnorderedList>
 
-              {/* <Image > </Image> */}
+                <ListItem
+                  display="flex"
+                  alignItems="center"
+                  cursor="pointer"
+                  flexDirection="column"
+                  gap="10px"
+                  textAlign="center"
+                  onClick={() => setCurrentBackground("squareCircles")}
+                >
+                  <Image
+                    borderRadius="10px"
+                    width="200px"
+                    src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
+                  ></Image>
+                  <h3>Square and circles </h3>
+                </ListItem>
+
+                {/* <ListItem
+                  display="flex"
+                  alignItems="center"
+                  cursor="pointer"
+                  flexDirection="column"
+                  gap="10px"
+                  textAlign="center"
+                  onClick={() => setCurrentBackground("lines")}
+                >
+                  <Image
+                    borderRadius="10px"
+                    width="200px"
+                    src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
+                  ></Image>
+                  <h3>Lines </h3>
+                </ListItem> */}
+              </UnorderedList>
             </Flex>
           </ModalBody>
 
