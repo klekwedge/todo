@@ -60,7 +60,7 @@ function TodoTaskItem({
       onClick={() => setCurrentTask(task)}
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">
-        <Flex gap="20px" alignItems="center">
+        <Flex gap="10px" alignItems="center">
           {doneButton ? (
             <DoneButton
               taskId={task.id}
@@ -75,7 +75,6 @@ function TodoTaskItem({
             />
           ) : null}
 
-          {/*  onClick={() => toggleTask(task.id)} */}
           <h3
             className="task__name"
             ref={refFirst}
@@ -106,15 +105,6 @@ function TodoTaskItem({
           />
         </Flex>
       </Flex>
-
-      {/* <Flex
-        gap="20px"
-        justifyContent="flex-end"
-        alignItems="center"
-        padding="0px 0px 0px 0px"
-      >
-        {categoryTask}
-      </Flex> */}
     </li>
   );
 }
