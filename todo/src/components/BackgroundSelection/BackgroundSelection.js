@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   IconButton,
   Button,
@@ -60,10 +60,15 @@ function BackgroundSelection() {
     }
   };
 
-  const focusOnItem = (id) => {
-    itemRefs.current.forEach((myRef) => myRef.classList.remove("active"));
-    itemRefs.current[id].classList.add("active");
-  };
+  // useEffect(()=>{
+  //   itemRefs.current.forEach((myRef) => myRef.classList.remove("active"));
+  //   itemRefs.current[id].classList.add("active");
+  // }, [currentBackground])
+
+  // const focusOnItem = (id) => {
+  //   itemRefs.current.forEach((myRef) => myRef.classList.remove("active"));
+  //   itemRefs.current[id].classList.add("active");
+  // };
 
   return (
     <>
@@ -121,7 +126,7 @@ function BackgroundSelection() {
                     gap="10px"
                     onClick={() => {
                       setCurrentBackground(backgroundValue[i]);
-                      focusOnItem(i);
+                      // focusOnItem(i);
                     }}
                   >
                     <Image

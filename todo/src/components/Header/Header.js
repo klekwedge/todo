@@ -18,11 +18,11 @@ function Header({ children }) {
         </Flex>
         <Flex justifyContent="flex-end" gap="10px" alignItems="center">
           {children}
-          <Avatar>
+          <Avatar size='md'>
             <AvatarBadge
               borderColor="papayawhip"
               bg="green.500"
-              boxSize="1.25em"
+              boxSize="1.10em"
             />
           </Avatar>
         </Flex>

@@ -1,30 +1,24 @@
+import { useState } from "react";
+import { IconButton } from "@chakra-ui/react";
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import "./ToggleTheme.scss";
-import { useRef, useState } from 'react';
 
 function ToggleTheme() {
-  const [isThemeDark, setIsThemeDark] = useState('false')
-  const shapeEl = useRef();
+  const [isThemeDark, setIsThemeDark] = useState("false");
+  const [lightTheme, setLightTheme] = useState(true);
 
   function changeTheme() {
-    setIsThemeDark(!isThemeDark)
-    const replacedClass = isThemeDark ? "moon" : "sun";
-    const replacedWithClass = isThemeDark ? "sun" : "moon";
-    shapeEl.current.classList.replace(replacedClass, replacedWithClass);
-    document.body.classList.toggle('dark')
+    setLightTheme(!lightTheme);
+    setIsThemeDark(!isThemeDark);
+    document.body.classList.toggle("dark");
   }
 
   return (
-    <>
-      <button className="theme-toggle--button theme__button" onClick={changeTheme}>
-        <span className="shape moon" ref={shapeEl}></span>
-        <span className="rays--container">
-          <span className="ray"></span>
-          <span className="ray"></span>
-          <span className="ray"></span>
-          <span className="ray"></span>
-        </span>
-      </button>
-    </>
+    <IconButton
+      icon={lightTheme ? <SunIcon /> : <MoonIcon />}
+      borderRadius="50%"
+      onClick={changeTheme}
+    ></IconButton>
   );
 }
 
