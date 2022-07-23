@@ -6,6 +6,7 @@ import { Flex } from "@chakra-ui/react";
 import TaskList from "../TaskList/TaskList";
 import TaskDetail from "../TaskDetail/TaskDetail";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
+import Settings from '../Settings/Settings';
 import BackgroundSelection from "../BackgroundSelection/BackgroundSelection";
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
 import Header from "../Header/Header";
@@ -22,6 +23,7 @@ function TodoMain() {
     <Flex flexDirection="column">
       <Header>
         <NewTaskForm updateTaskBuff={updateTaskBuff} />
+        <Settings/>
         <BackgroundSelection />
         <ToggleTheme />
       </Header>
