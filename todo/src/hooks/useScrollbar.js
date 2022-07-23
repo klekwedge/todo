@@ -11,7 +11,7 @@ const config = {
 const useScrollbar = (root, hasScroll) => {
   useEffect(() => {
     let scrollbars;
-
+    console.log('opa');
     if (root.current && hasScroll) {
       scrollbars = OverlayScrollbars(root.current, config);
     }

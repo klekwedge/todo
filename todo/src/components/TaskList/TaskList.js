@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Flex, Skeleton, Heading, Box } from "@chakra-ui/react";
+import { Flex, Skeleton, Heading } from "@chakra-ui/react";
 import useScrollbar from "../../hooks/useScrollbar";
 import "./TaskList.scss";
 
@@ -15,9 +15,9 @@ function TodoMain({
 
   const [tasks, setTasks] = useState([]);
 
-  const todoWrapper = useRef(null);
+  const todoListScrollWrapper = useRef(null);
   const hasScroll = tasks.length > 6;
-  useScrollbar(todoWrapper, hasScroll);
+  useScrollbar(todoListScrollWrapper, hasScroll);
 
   useEffect(() => {
     if (taskBuff.name) {
@@ -34,10 +34,6 @@ function TodoMain({
     }
   }, [taskBuff]);
 
-  // const addTask = (name, category, description) => {
-
-  // };
-
   const removeTask = (taskId) => {
     // setTasks(tasks.filter((task) => task.id !== taskId))
     setTasks([...tasks.filter((task) => task.id !== taskId)]);
@@ -51,26 +47,6 @@ function TodoMain({
       ),
     ]);
   };
-
-  // const renderTasks = () => {
-  //   const taskArr = filterTasksFunc();
-
-  //   switch (filterTasks) {
-  //     case "default":
-  //       return taskArr.map((task) => (
-  //         <TodoTaskItem
-  //           task={task}
-  //           key={task.id}
-  //           toggleTask={toggleTask}
-  //           removeTask={removeTask}
-  //           tasks={tasks}
-  //           setTasks={setTasks}
-  //         />
-  //       ));
-  //     default:
-  //       return null;
-  //   }
-  // };
 
   return (
     <section className="task-list">
@@ -97,7 +73,13 @@ function TodoMain({
         </Flex>
       </Flex>
 
-      <Box height={hasScroll} minHeight="450px" ref={todoWrapper}>
+      <div
+        style={{
+          height: hasScroll ? "475px" : "auto",
+          minHeight: "475px",
+        }}
+        ref={todoListScrollWrapper}
+      >
         <ul className="todo__task-list">
           {tasks.length > 0 ? (
             tasks.map((task) => (
@@ -114,10 +96,12 @@ function TodoMain({
               />
             ))
           ) : (
-            <Skeleton height="50px" width="100%" />
+            <>
+              <Skeleton height="475px" width="100%" />
+            </>
           )}
         </ul>
-      </Box>
+      </div>
     </section>
   );
 }
