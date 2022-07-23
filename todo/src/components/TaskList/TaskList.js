@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { Flex, Skeleton, Heading } from "@chakra-ui/react";
+import { useState, useEffect, useRef } from "react";
+import { Flex, Skeleton, Heading, Box } from "@chakra-ui/react";
+import useScrollbar from "../../hooks/useScrollbar";
 import "./TaskList.scss";
 
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
@@ -14,6 +15,9 @@ function TodoMain({
 
   const [tasks, setTasks] = useState([]);
 
+  const todoWrapper = useRef(null);
+  const hasScroll = tasks.length > 6;
+  useScrollbar(todoWrapper, hasScroll);
 
   useEffect(() => {
     if (taskBuff.name) {
@@ -93,25 +97,27 @@ function TodoMain({
         </Flex>
       </Flex>
 
-      <ul className="todo__task-list">
-        {tasks.length > 0 ? (
-          tasks.map((task) => (
-            <TodoTaskItem
-              task={task}
-              key={task.id}
-              toggleTask={toggleTask}
-              removeTask={removeTask}
-              tasks={tasks}
-              setTasks={setTasks}
-              setDetailOpen={setTaskDetailIsOpen}
-              taskDetailIsOpen={taskDetailIsOpen}
-              setCurrentTask={setCurrentTask}
-            />
-          ))
-        ) : (
-          <Skeleton height="50px" width="100%" />
-        )}
-      </ul>
+      <Box height={hasScroll} minHeight="450px" ref={todoWrapper}>
+        <ul className="todo__task-list">
+          {tasks.length > 0 ? (
+            tasks.map((task) => (
+              <TodoTaskItem
+                task={task}
+                key={task.id}
+                toggleTask={toggleTask}
+                removeTask={removeTask}
+                tasks={tasks}
+                setTasks={setTasks}
+                setDetailOpen={setTaskDetailIsOpen}
+                taskDetailIsOpen={taskDetailIsOpen}
+                setCurrentTask={setCurrentTask}
+              />
+            ))
+          ) : (
+            <Skeleton height="50px" width="100%" />
+          )}
+        </ul>
+      </Box>
     </section>
   );
 }

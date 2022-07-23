@@ -21,7 +21,7 @@ function TodoMain() {
   };
 
   return (
-    <Flex flexDirection="column">
+    <Flex flexDirection="column" minHeight="100%">
       <Header>
         <NewTaskForm updateTaskBuff={updateTaskBuff} />
         <Settings />
@@ -30,7 +30,7 @@ function TodoMain() {
       </Header>
       <main className="todo">
         <TaskList setCurrentTask={setCurrentTask} taskBuff={taskBuff} />
-        <Flex flexDirection="column" gap="40px" minWidth='450px'>
+        <Flex flexDirection="column" gap="40px" minWidth="450px">
           <TaskDetail currentTask={currentTask} />
           <Filters />
         </Flex>

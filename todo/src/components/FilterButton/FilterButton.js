@@ -10,7 +10,7 @@ function FilterButton({
   return (
     <Button
       colorScheme={buttonColorScheme}
-      size="xs"
+      size="sm"
       onClick={() => setFilterTasks(filterRule)}
     >
       {label}
