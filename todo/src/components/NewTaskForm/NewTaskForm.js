@@ -32,7 +32,7 @@ function NewTaskForm({ updateTaskBuff }) {
     onClose: onCloseDatePicker,
   } = useDisclosure();
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
 
   const handleChangeDatePicker = (e) => {
     onCloseDatePicker();
@@ -41,7 +41,8 @@ function NewTaskForm({ updateTaskBuff }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateTaskBuff(taskNameInput, optionCategory, taskDescription);
+    console.log(startDate);
+    updateTaskBuff(taskNameInput, optionCategory, taskDescription, format(startDate, "dd-MM-yyyy"));
     setTaskNameInput("");
     setOptionCategory("");
     setTaskDescription("");
@@ -115,7 +116,7 @@ function NewTaskForm({ updateTaskBuff }) {
                   className="example-custom-input"
                   onClick={onOpenDatePicker}
                 >
-                  {format(startDate, "dd-MM-yyyy")}
+                  {startDate ? format(startDate, "dd-MM-yyyy") : 'No deadline '}
                 </Button>
 
                 <Modal isOpen={isOpenDatePicker} onClose={onCloseDatePicker}>
@@ -123,7 +124,7 @@ function NewTaskForm({ updateTaskBuff }) {
                   <ModalContent>
                     <ModalHeader>Choose deadline:</ModalHeader>
                     <ModalCloseButton />
-                    <ModalBody pb='0px'>
+                    <ModalBody pb="0px">
                       <Flex justifyContent="center" minHeight="280px">
                         <DatePicker
                           selected={startDate}

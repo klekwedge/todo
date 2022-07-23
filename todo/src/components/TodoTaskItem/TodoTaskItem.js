@@ -13,8 +13,6 @@ function TodoTaskItem({
   task,
   removeTask,
   toggleTask,
-  doneButton = true,
-  returnButton = false,
   tasks,
   setTasks,
   setCurrentTask,

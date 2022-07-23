@@ -8,6 +8,7 @@ import "./TaskDetail.scss";
 
 function TaskDetail({ currentTask }) {
   const categoryTask = useCategoryTask(currentTask.category);
+  console.log(currentTask)
 
   const showDetails = () => {
     return (
@@ -20,6 +21,12 @@ function TaskDetail({ currentTask }) {
 
         <h3 className="task-detail__status">
           Status: {currentTask.complete === "true" ? "Done" : "Active"}
+        </h3>
+
+        <h3 className="task-detail__descr">
+          Deadline:{" "}
+        
+          {currentTask.deadline ? currentTask.deadline : "No deadline"}
         </h3>
 
         <h3 className="task-detail__descr">
