@@ -4,16 +4,13 @@ import {
   Input,
   Avatar,
   AvatarBadge,
-  AvatarGroup,
-  Wrap,
-  WrapItem,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import "./Header.scss";
 
 function Header({ children }) {
   return (
-    <header>
+    <header className='header'>
       <Flex justifyContent="space-between" gap="40px" alignItems="center">
         <Flex gap="5px" alignItems="center">
           <IconButton icon={<SearchIcon />} />
