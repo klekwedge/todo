@@ -123,7 +123,7 @@ function NewTaskForm({ updateTaskBuff }) {
                   <ModalContent>
                     <ModalHeader>Choose deadline:</ModalHeader>
                     <ModalCloseButton />
-                    <ModalBody>
+                    <ModalBody pb='0px'>
                       <Flex justifyContent="center" minHeight="280px">
                         <DatePicker
                           selected={startDate}
