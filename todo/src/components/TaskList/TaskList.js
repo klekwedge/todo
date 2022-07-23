@@ -3,8 +3,6 @@ import { Flex, Skeleton, Heading } from "@chakra-ui/react";
 import "./TaskList.scss";
 
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
-import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
-import FilterButton from "../FilterButton/FilterButton";
 
 function TodoMain({
   taskDetailIsOpen,
@@ -16,8 +14,6 @@ function TodoMain({
 
   const [tasks, setTasks] = useState([]);
 
-  const [completedTasksAtTheEnd, setCompletedTasksAtTheEnd] = useState(false);
-  const [filterTasks, setFilterTasks] = useState("default");
 
   useEffect(() => {
     if (taskBuff.name) {
@@ -72,46 +68,13 @@ function TodoMain({
   //   }
   // };
 
-  const filterTasksFunc = () => {
-    if (completedTasksAtTheEnd) {
-      return tasks
-        .map((task) => (
-          <TodoTaskItem
-            task={task}
-            key={task.id}
-            toggleTask={toggleTask}
-            removeTask={removeTask}
-            tasks={tasks}
-            setTasks={setTasks}
-            setDetailOpen={setTaskDetailIsOpen}
-            taskDetailIsOpen={taskDetailIsOpen}
-            setCurrentTask={setCurrentTask}
-          />
-        ))
-        .sort((task) => (task.complete ? 1 : -1));
-    }
-
-    return tasks.map((task) => (
-      <TodoTaskItem
-        task={task}
-        key={task.id}
-        toggleTask={toggleTask}
-        removeTask={removeTask}
-        tasks={tasks}
-        setTasks={setTasks}
-        setDetailOpen={setTaskDetailIsOpen}
-        taskDetailIsOpen={taskDetailIsOpen}
-        setCurrentTask={setCurrentTask}
-      />
-    ));
-  };
-
   return (
     <section className="task-list">
       <Flex
         borderBottom="1px solid rgba(0, 0, 0, 0.3)"
         pb="10px"
         justifyContent="space-between"
+        mb="20px"
       >
         <Heading as="h1" fontWeight="400">
           Your tasks
@@ -130,78 +93,25 @@ function TodoMain({
         </Flex>
       </Flex>
 
-      <h2 className="todo__subtitle">Get things done, one item at a time.</h2>
-      <Flex gap="5px" mb='20px'>
-        <FilterButton
-          label={"All"}
-          buttonColorScheme={"blue"}
-          filterRule={"default"}
-          setFilterTasks={setFilterTasks}
-        />
-        <FilterButton
-          label={"Active"}
-          buttonColorScheme={"red"}
-          filterRule={"active"}
-          setFilterTasks={setFilterTasks}
-        />
-        <FilterButton
-          label={"Done"}
-          buttonColorScheme={"green"}
-          filterRule={"done"}
-          setFilterTasks={setFilterTasks}
-        />
-      </Flex>
-
       <ul className="todo__task-list">
         {tasks.length > 0 ? (
-          filterTasksFunc()
+          tasks.map((task) => (
+            <TodoTaskItem
+              task={task}
+              key={task.id}
+              toggleTask={toggleTask}
+              removeTask={removeTask}
+              tasks={tasks}
+              setTasks={setTasks}
+              setDetailOpen={setTaskDetailIsOpen}
+              taskDetailIsOpen={taskDetailIsOpen}
+              setCurrentTask={setCurrentTask}
+            />
+          ))
         ) : (
           <Skeleton height="50px" width="100%" />
         )}
       </ul>
-
-      {/* <ul className="todo__task-list">
-          {tasks.map((task) => {
-            if (task.complete === false) {
-              return (
-                <TodoTaskItem
-                  task={task}
-                  key={task.id}
-                  toggleTask={toggleTask}
-                  removeTask={removeTask}
-                  tasks={tasks}
-                  setTasks={setTasks}
-                />
-              );
-            }
-            return;
-          })}
-        </ul> */}
-
-      {/* <ul className="todo__task-list">
-          {tasks.map((task) => {
-            if (task.complete === true) {
-              return (
-                <TodoTaskItem
-                  task={task}
-                  key={task.id}
-                  toggleTask={toggleTask}
-                  removeTask={removeTask}
-                  doneButton={false}
-                  returnButton={true}
-                  tasks={tasks}
-                  setTasks={setTasks}
-                />
-              );
-            }
-            return;
-          })}
-        </ul> */}
-
-      <MoveDoneItems
-        completedTasksAtTheEnd={completedTasksAtTheEnd}
-        setCompletedTasksAtTheEnd={setCompletedTasksAtTheEnd}
-      />
     </section>
   );
 }
