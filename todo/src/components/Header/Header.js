@@ -18,7 +18,7 @@ function Header({ children }) {
         </Flex>
         <Flex justifyContent="flex-end" gap="10px" alignItems="center">
           {children}
-          <Avatar size='md'>
+          <Avatar width='40px' height='40px'>
             <AvatarBadge
               borderColor="papayawhip"
               bg="green.500"

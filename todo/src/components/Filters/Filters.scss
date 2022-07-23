@@ -8,34 +8,3 @@
   width: 100%;
   max-width: 490px;
 }
-
-
-.todo__total-tasks {
-  text-align: center;
-  font-size: 24px;
-  color: #007bff;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.todo__tasks {
-  font-size: 24px;
-  color: #007bff;
-  font-weight: 00;
-}
-
-.todo__subtitle {
-  font-weight: 300;
-  font-size: 20px;
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-
-.todo__task-list {
-  margin: 0px 0px 20px 0px; 
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-}

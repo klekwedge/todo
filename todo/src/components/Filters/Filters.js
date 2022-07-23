@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Flex, Skeleton, Heading } from "@chakra-ui/react";
+import { Flex, Skeleton, Heading, Button } from "@chakra-ui/react";
 import "./Filters.scss";
 
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
@@ -48,35 +48,96 @@ function Filters() {
 
   return (
     <section className="filters">
-      <Heading as="h2" fontWeight="400" mb='20px'>
+      <Heading as="h2" fontWeight="400" mb="10px">
         Filters
       </Heading>
 
-      <Flex gap="5px" mb="20px">
-        <FilterButton
-          label={"All"}
-          buttonColorScheme={"blue"}
-          filterRule={"default"}
-          setFilterTasks={setFilterTasks}
-        />
-        <FilterButton
-          label={"Active"}
-          buttonColorScheme={"red"}
-          filterRule={"active"}
-          setFilterTasks={setFilterTasks}
-        />
-        <FilterButton
-          label={"Done"}
-          buttonColorScheme={"green"}
-          filterRule={"done"}
-          setFilterTasks={setFilterTasks}
-        />
+      <Flex gap="5px" mb="20px" flexDirection="column">
+        <Heading fontSize="28px" as="h3" fontWeight="300" mb="5px">
+          Task status
+        </Heading>
+        <Flex gap="10px" mb="5px">
+          <FilterButton
+            label={"All"}
+            buttonColorScheme={"blue"}
+            filterRule={"default"}
+            setFilterTasks={setFilterTasks}
+          />
+          <FilterButton
+            label={"Active"}
+            buttonColorScheme={"red"}
+            filterRule={"active"}
+            setFilterTasks={setFilterTasks}
+          />
+          <FilterButton
+            label={"Done"}
+            buttonColorScheme={"green"}
+            filterRule={"done"}
+            setFilterTasks={setFilterTasks}
+          />
+        </Flex>
+
+        <Heading fontSize="28px" as="h3" fontWeight="300" mb="5px">
+          Category
+        </Heading>
+        <Flex gap="10px" mb="5px">
+          <FilterButton
+            label={"All"}
+            buttonColorScheme={"blue"}
+            filterRule={"default"}
+            setFilterTasks={setFilterTasks}
+          />
+          <FilterButton
+            label={"Active"}
+            buttonColorScheme={"red"}
+            filterRule={"active"}
+            setFilterTasks={setFilterTasks}
+          />
+          <FilterButton
+            label={"Done"}
+            buttonColorScheme={"green"}
+            filterRule={"done"}
+            setFilterTasks={setFilterTasks}
+          />
+        </Flex>
+
+        <Heading fontSize="28px" as="h3" fontWeight="300" mb="5px">
+          Time
+        </Heading>
+        <Flex gap="10px">
+          <FilterButton
+            label={"All"}
+            buttonColorScheme={"blue"}
+            filterRule={"default"}
+            setFilterTasks={setFilterTasks}
+          />
+          <FilterButton
+            label={"Morning"}
+            buttonColorScheme={"red"}
+            filterRule={"active"}
+            setFilterTasks={setFilterTasks}
+          />
+          <FilterButton
+            label={"Noon"}
+            buttonColorScheme={"green"}
+            filterRule={"done"}
+            setFilterTasks={setFilterTasks}
+          />
+          <FilterButton
+            label={"Evening"}
+            buttonColorScheme={"blue"}
+            filterRule={"done"}
+            setFilterTasks={setFilterTasks}
+          />
+        </Flex>
       </Flex>
-      
-      <MoveDoneItems
+
+      <Button>Select filters</Button>
+
+      {/* <MoveDoneItems
         completedTasksAtTheEnd={completedTasksAtTheEnd}
         setCompletedTasksAtTheEnd={setCompletedTasksAtTheEnd}
-      />
+      /> */}
     </section>
   );
 }
