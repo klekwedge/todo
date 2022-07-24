@@ -27,7 +27,7 @@ function TodoMain({
         complete: false,
         category: taskBuff.category,
         description: taskBuff.description,
-        deadline: taskBuff.deadline.replace(/-/g, '.'),
+        deadline: taskBuff.deadline,
         creationDate: new Date().toLocaleString().split(", "),
       };
 

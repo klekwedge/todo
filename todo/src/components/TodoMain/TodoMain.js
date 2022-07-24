@@ -17,7 +17,6 @@ function TodoMain() {
   const [taskBuff, setTaskBuff] = useState({});
 
   const updateTaskBuff = (name, category, description, deadline) => {
-    console.log('OPA', deadline);
     setTaskBuff({ name, category, description, deadline });
   };
 

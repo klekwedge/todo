@@ -41,8 +41,12 @@ function NewTaskForm({ updateTaskBuff }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(startDate);
-    updateTaskBuff(taskNameInput, optionCategory, taskDescription, format(startDate, "dd-MM-yyyy"));
+    updateTaskBuff(
+      taskNameInput,
+      optionCategory,
+      taskDescription,
+      startDate ? format(startDate, "dd-MM-yyyy").replace(/-/g, '.') : null
+    );
     setTaskNameInput("");
     setOptionCategory("");
     setTaskDescription("");
@@ -116,7 +120,7 @@ function NewTaskForm({ updateTaskBuff }) {
                   className="example-custom-input"
                   onClick={onOpenDatePicker}
                 >
-                  {startDate ? format(startDate, "dd-MM-yyyy") : 'No deadline '}
+                  {startDate ? format(startDate, "dd-MM-yyyy") : "No deadline"}
                 </Button>
 
                 <Modal isOpen={isOpenDatePicker} onClose={onCloseDatePicker}>

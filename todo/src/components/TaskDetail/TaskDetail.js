@@ -8,7 +8,7 @@ import "./TaskDetail.scss";
 
 function TaskDetail({ currentTask }) {
   const categoryTask = useCategoryTask(currentTask.category);
-  console.log(currentTask)
+
 
   const showDetails = () => {
     return (
