@@ -11,6 +11,7 @@ import {
   ModalCloseButton,
   IconButton,
   Button,
+  Input,
   useDisclosure,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
@@ -45,7 +46,7 @@ function NewTaskForm({ updateTaskBuff }) {
       taskNameInput,
       optionCategory,
       taskDescription,
-      startDate ? format(startDate, "dd-MM-yyyy").replace(/-/g, '.') : null
+      startDate ? format(startDate, "dd-MM-yyyy").replace(/-/g, ".") : null
     );
     setTaskNameInput("");
     setOptionCategory("");
@@ -77,33 +78,32 @@ function NewTaskForm({ updateTaskBuff }) {
           <ModalBody>
             <form className="new-task" onSubmit={handleSubmit}>
               <div className="new-task__wrapper">
-                <input
+                {/* <label className="new-task__label">New task</label> */}
+                <Input
                   type="text"
-                  className="new-task__input"
                   value={taskNameInput}
                   required
-                  minLength='3'
+                  minLength="3"
                   autoFocus
+                  placeholder="Enter the name of your task"
                   onChange={(e) => setTaskNameInput(e.target.value)}
                   onKeyDown={handleKeyPress}
                 />
-                <label className="new-task__label">New task</label>
+                {/* <label className="new-task__label">New task</label> */}
                 <button type="submit" className="new-task__button">
                   Add
                 </button>
               </div>
 
-              <div className="new-task__wrapper">
-                <input
-                  type="text"
-                  className="new-task__input"
-                  value={taskDescription}
-                  onChange={(e) => setTaskDescription(e.target.value)}
-                />
-                <label className="new-task__label">
+              <Input
+                type="text"
+                value={taskDescription}
+                onChange={(e) => setTaskDescription(e.target.value)}
+                placeholder='Enter a description of your task'
+              />
+              {/* <label className="new-task__label">
                   What do you need to do?
-                </label>
-              </div>
+                </label> */}
 
               <Flex gap="10px">
                 <Select

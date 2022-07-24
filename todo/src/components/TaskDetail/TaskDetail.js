@@ -78,10 +78,10 @@ function TaskDetail({ currentTask }) {
             <h3>Please, choose task</h3>
           </Flex>
           <Stack>
-            <Skeleton height="20px" />
-            <Skeleton height="20px" />
-            <Skeleton height="20px" />
-            <Skeleton height="20px" />
+            <Skeleton height="15px" />
+            <Skeleton height="15px" />
+            <Skeleton height="15px" />
+            <Skeleton height="15px" />
           </Stack>
         </Flex>
       )}

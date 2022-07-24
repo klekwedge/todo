@@ -22,31 +22,6 @@
   border: 2px solid gray;
 }
 
-.new-task__label {
-  padding: 5px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 15px;
-  font-size: 14px;
-  color: black;
-  pointer-events: none;
-  transition: 0.5s;
-}
-
-.new-task__input:valid ~ .new-task__label,
-.new-task__input:focus ~ .new-task__label {
-  top: -2px;
-  left: 10px;
-  color: #007bff;
-  font-size: 12px;
-  background-color: #f8f9fa;
-}
-
-.new-task__input:focus,
-.new-task__input:focus {
-  border: 2px solid #007bff;
-}
 
 .new-task__button {
   min-width: 80px;
