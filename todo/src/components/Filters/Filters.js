@@ -48,12 +48,12 @@ function Filters() {
 
   return (
     <section className="filters">
-      <Heading as="h2" fontWeight="400" mb="10px">
+      <Heading as="h2" fontWeight="400" mb="10px" fontSize='32px'>
         Filters
       </Heading>
 
       <Flex gap="5px" mb="20px" flexDirection="column">
-        <Heading fontSize="28px" as="h3" fontWeight="300" mb="5px">
+        <Heading fontSize="18px" as="h3" fontWeight="300" mb="5px">
           Task status
         </Heading>
         <Flex gap="10px" mb="5px">
@@ -77,7 +77,7 @@ function Filters() {
           />
         </Flex>
 
-        <Heading fontSize="28px" as="h3" fontWeight="300" mb="5px">
+        <Heading fontSize="18px" as="h3" fontWeight="300" mb="5px" >
           Category
         </Heading>
         <Flex gap="10px" mb="5px">
@@ -101,7 +101,7 @@ function Filters() {
           />
         </Flex>
 
-        <Heading fontSize="28px" as="h3" fontWeight="300" mb="5px">
+        <Heading fontSize="18px" as="h3" fontWeight="300" mb="5px">
           Time
         </Heading>
         <Flex gap="10px">
@@ -132,7 +132,7 @@ function Filters() {
         </Flex>
       </Flex>
 
-      <Button>Select filters</Button>
+      <Button className='btn-select'>Select filters</Button>
 
       {/* <MoveDoneItems
         completedTasksAtTheEnd={completedTasksAtTheEnd}

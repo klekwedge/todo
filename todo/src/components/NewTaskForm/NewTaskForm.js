@@ -118,7 +118,7 @@ function NewTaskForm({ updateTaskBuff }) {
                 </Select>
 
                 <Button
-                  className="example-custom-input"
+                  className="example-custom-input btn-select"
                   onClick={onOpenDatePicker}
                 >
                   {startDate ? format(startDate, "dd-MM-yyyy") : "No deadline"}

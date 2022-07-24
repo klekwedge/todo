@@ -26,24 +26,17 @@ import BackgroundCubes from "../BackgroundOptions/BackgroundCubes/BackgroundCube
 import BackgroundDiagonals from "../BackgroundOptions/BackgroundDiagonals/BackgroundDiagonals";
 import BackgroundSquareCircles from "../BackgroundOptions/BackgroundSquareCircles/BackgroundSquareCircles";
 // import BackgroundLines from "../BackgroundOptions/BackgroundLines/BackgroundLines";
-import BackgroundMountain from '../BackgroundOptions/BackgroundMountain/BackgroundMountain';
-
+import BackgroundMountain from "../BackgroundOptions/BackgroundMountain/BackgroundMountain";
 
 function BackgroundSelection() {
-  const [currentBackground, setCurrentBackground] = useState("white");
+  const [currentBackground, setCurrentBackground] = useState("cubes");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const itemRefs = useRef([]);
 
-  const backgroundNames = [
-    "Mountain",
-    "Cubes",
-    "Diagonals",
-    "Square and circles",
-  ];
-  const backgroundValue = ["mountain", "cubes", "diagonals", "squareCircles"];
+  const backgroundNames = ["Cubes", "Diagonals", "Square and circles"];
+  const backgroundValue = ["cubes", "diagonals", "squareCircles"];
   const pathBackgrounds = [
-    "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
     "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
     "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
@@ -65,7 +58,7 @@ function BackgroundSelection() {
       //   return <BackgroundLines />;
       case "mountain":
         return <BackgroundMountain />;
-      
+
       default:
         return null;
     }

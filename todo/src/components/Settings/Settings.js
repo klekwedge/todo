@@ -40,7 +40,7 @@ function Settings() {
           <ModalCloseButton />
           <ModalBody>
             <Flex gap="10px">
-              <Button className="example-custom-input" onClick={onOpenModal}>
+              <Button className="example-custom-input btn-select" onClick={onOpenModal}>
                 Click
               </Button>
 

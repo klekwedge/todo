@@ -6,14 +6,13 @@
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
-  gap: 10px;
   background: whitesmoke;
   font-size: 1.1rem;
   font-family: "Quicksand", sans-serif;
 }
-
 
 .todo {
   display: flex;
@@ -30,15 +29,38 @@ body {
 /*-----Dark Theme----------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-body.dark {
-  background: #161616;
-}
-
-
-// body.dark * {
-//   color: white;
+// body.dark {
+//   background: #161616;
 // }
 
+body.dark * {
+  color: white;
+}
+
+// body.dark * {
+//   background: black;
+// }
+
+body.dark section {
+  background: black;
+}
+
+body.dark .btn-select {
+  border: 1px solid white;
+  background: black;
+}
+
+body.dark .react-datepicker__month-container,
+body.dark .react-datepicker__month,
+body.dark .react-datepicker__header {
+  background: black;
+  color: white;
+}
+
+body.dark .react-datepicker__day:hover {
+  background: white;
+  color: black;
+}
 
 // body.dark {
 //   box-shadow: 0px 0px 5px 5px gray;
@@ -56,6 +78,6 @@ body.dark {
 //   opacity: 1;
 // }
 
-#root{
+#root {
   overflow: hidden;
 }
