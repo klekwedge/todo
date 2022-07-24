@@ -1,6 +1,6 @@
-import "./BackgroundLines.scss";
+import "./BackgroundGradientSquares.scss";
 
-function BackgroundSquareCircles() {
+function BackgroundGradientSquares() {
   return (
     <div className="background__wrapper">
       <div className="test">
@@ -19,4 +19,4 @@ function BackgroundSquareCircles() {
   );
 }
 
-export default BackgroundSquareCircles;
+export default BackgroundGradientSquares;
