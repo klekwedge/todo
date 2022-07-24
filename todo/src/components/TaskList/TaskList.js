@@ -57,7 +57,7 @@ function TodoMain({
         justifyContent="space-between"
         mb="20px"
       >
-        <Heading as="h1" fontWeight="400">
+        <Heading as="h1" fontWeight="500" fontSize="32px">
           Your tasks
         </Heading>
 

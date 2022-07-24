@@ -1,7 +1,6 @@
 import { Flex, Stack } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Skeleton } from "@chakra-ui/react";
-
+import { Skeleton, Heading, Badge } from "@chakra-ui/react";
 import { useCategoryTask } from "../../hooks/useCategoryTask";
 
 import "./TaskDetail.scss";
@@ -9,44 +8,67 @@ import "./TaskDetail.scss";
 function TaskDetail({ currentTask }) {
   const categoryTask = useCategoryTask(currentTask.category);
 
-
   const showDetails = () => {
     return (
       <Flex flexDirection="column" gap="2px" position="relative">
-        <h3 className="task-detail__name">{currentTask.nameTask}</h3>
+        <Flex justifyContent="space-between" alignItems="center" mb='10px'>
+          <Heading as="h3" fontWeight="500" fontSize="20px" lineHeight="24px">
+            {currentTask.nameTask}
+          </Heading>
 
-        <h3 className="task-detail__category">
-          {currentTask.category ? categoryTask : "Not category"}
-        </h3>
+          <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">
+            {currentTask.category ? (
+              categoryTask
+            ) : (
+              <Badge
+                size="8xl"
+                variant="outline"
+                colorScheme="green"
+                cursor="pointer"
+              >
+                Add category
+              </Badge>
+            )}
+          </Heading>
+        </Flex>
 
-        <h3 className="task-detail__status">
-          Status: {currentTask.complete === "true" ? "Done" : "Active"}
-        </h3>
+        <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">
+          <span>Status:</span>{" "}
+          {currentTask.complete === "true" ? "Done" : "Active"}
+        </Heading>
 
-        <h3 className="task-detail__descr">
-          Deadline:{" "}
-        
+        <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">
+          <span>Deadline:</span>{" "}
           {currentTask.deadline ? currentTask.deadline : "No deadline"}
-        </h3>
+        </Heading>
 
-        <h3 className="task-detail__descr">
-          Description:{" "}
+        <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">
+          <span>Description:</span>{" "}
           {currentTask.description
             ? currentTask.description
             : "Not description"}
-        </h3>
+        </Heading>
 
-        <h3 className="task-detail__date">
-          Task creation date: {currentTask.creationDate[0].slice(0, -5)}.
+        <Heading as="h4" fontWeight="400" fontSize="16px">
+          <span>Task creation date:</span>{" "}
+          {currentTask.creationDate[0].slice(0, -5)}.
           {currentTask.creationDate[0].slice(8)} ({currentTask.creationDate[1]})
-        </h3>
+        </Heading>
       </Flex>
     );
   };
 
   return (
     <section className="task-detail">
-      <h2 className="task-detail__title">Task details:</h2>
+      <Heading
+        as="h2"
+        fontWeight="400"
+        fontSize="32px"
+        borderBottom="1px solid rgba(0, 0, 0, 0.3)"
+        mb="10px"
+      >
+        Task details:
+      </Heading>
       {currentTask.nameTask ? (
         showDetails()
       ) : (

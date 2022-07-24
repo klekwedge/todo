@@ -82,6 +82,7 @@ function NewTaskForm({ updateTaskBuff }) {
                   className="new-task__input"
                   value={taskNameInput}
                   required
+                  minLength='3'
                   autoFocus
                   onChange={(e) => setTaskNameInput(e.target.value)}
                   onKeyDown={handleKeyPress}
