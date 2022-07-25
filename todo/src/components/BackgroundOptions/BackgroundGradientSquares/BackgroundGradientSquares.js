@@ -3,7 +3,7 @@ import "./BackgroundGradientSquares.scss";
 function BackgroundGradientSquares() {
   return (
     <div className="background__wrapper">
-      <div className="test">
+      <div className="background__gradient-squares">
         <div></div>
         <div></div>
         <div></div>

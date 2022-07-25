@@ -3,7 +3,7 @@ import "./BackgroundCubes.scss";
 function BackgroundDefault() {
   return (
     <div className="area">
-      <ul className="circles">
+      <ul className="cubes">
         <li></li>
         <li></li>
         <li></li>

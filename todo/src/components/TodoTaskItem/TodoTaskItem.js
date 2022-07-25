@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Flex } from "@chakra-ui/react";
-import { IconButton } from "@chakra-ui/react";
+import { Flex, Checkbox, IconButton } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
 import { useCategoryTask } from "../../hooks/useCategoryTask";
 
 import "./TodoTaskItem.scss";
-
-import DoneButton from "../DoneButton/DoneButton";
 
 function TodoTaskItem({
   task,
@@ -66,11 +63,7 @@ function TodoTaskItem({
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">
         <Flex gap="10px" alignItems="center">
-          <DoneButton
-            taskId={task.id}
-            onToggleTask={() => toggleTask(task.id)}
-          />
-
+          <Checkbox size="lg" title={"Done"} onChange={() => toggleTask(task.id)}></Checkbox>
           <h3
             className="task__name"
             ref={refFirst}
