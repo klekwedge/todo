@@ -53,7 +53,7 @@ function TodoTaskItem({
   return (
     // key={task.id}}
     <li
-      className={task.complete ? "todo__item task green" : "todo__item task"}
+      className={task.complete ? "todo__item task todo__item_complete" : "todo__item task"}
       onClick={() => setCurrentTask(task)}
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">

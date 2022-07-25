@@ -2,26 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 30px 5px;
-  margin: 30px 0px 20px 0px;
+  margin: 10px 0px 20px 0px;
 }
-
-.new-task__wrapper {
-  display: flex;
-  gap: 5px;
-  position: relative;
-}
-
-.new-task__input {
-  width: 100%;
-  padding: 17px 10px 15px 10px;
-  font-size: 16px;
-  color: black;
-  outline: none;
-  background: transparent;
-  border-radius: 5px;
-  border: 2px solid gray;
-}
-
 
 .new-task__button {
   min-width: 80px;
@@ -39,23 +21,4 @@
   border: 2px solid #007bff;
   background: none;
   color: #007bff;
-}
-
-.new-task__descr {
-  position: absolute;
-  top: -10px;
-  transform: translateY(-50%);
-  left: 5px;
-  font-size: 14px;
-  color: black;
-  pointer-events: none;
-  transition: 0.5s;
-}
-
-.new-task__input {
-  height: 2rem;
-}
-
-.new-task__button {
-  height: 2.2rem;
 }

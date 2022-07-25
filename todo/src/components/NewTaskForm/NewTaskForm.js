@@ -77,30 +77,37 @@ function NewTaskForm({ updateTaskBuff }) {
           <ModalCloseButton />
           <ModalBody>
             <form className="new-task" onSubmit={handleSubmit}>
-              <div className="new-task__wrapper">
-                {/* <label className="new-task__label">New task</label> */}
+              <Flex flexDirection="column" gap="5px">
+                <label>New task</label>
+                <Flex gap="10px" >
+                  <Input
+                    type="text"
+                    value={taskNameInput}
+                    required
+                    minLength="3"
+                    autoFocus
+                    placeholder="Enter the name of your task"
+                    onChange={(e) => setTaskNameInput(e.target.value)}
+                    onKeyDown={handleKeyPress}
+                  />
+                  <button type="submit" className="new-task__button">
+                    Add
+                  </button>
+                </Flex>
+              </Flex>
+
+              <Flex flexDirection="column" gap="5px">
+                <label>
+                  Description of your task
+                </label>
                 <Input
                   type="text"
-                  value={taskNameInput}
-                  required
-                  minLength="3"
-                  autoFocus
-                  placeholder="Enter the name of your task"
-                  onChange={(e) => setTaskNameInput(e.target.value)}
-                  onKeyDown={handleKeyPress}
+                  value={taskDescription}
+                  onChange={(e) => setTaskDescription(e.target.value)}
+                  placeholder="Enter a description of your task"
                 />
-                {/* <label className="new-task__label">New task</label> */}
-                <button type="submit" className="new-task__button">
-                  Add
-                </button>
-              </div>
+              </Flex>
 
-              <Input
-                type="text"
-                value={taskDescription}
-                onChange={(e) => setTaskDescription(e.target.value)}
-                placeholder='Enter a description of your task'
-              />
               {/* <label className="new-task__label">
                   What do you need to do?
                 </label> */}

@@ -83,19 +83,21 @@ function TodoMain({
       >
         <ul className="todo__task-list">
           {tasks.length > 0 ? (
-            tasks.map((task) => (
-              <TodoTaskItem
-                task={task}
-                key={task.id}
-                toggleTask={toggleTask}
-                removeTask={removeTask}
-                tasks={tasks}
-                setTasks={setTasks}
-                setDetailOpen={setTaskDetailIsOpen}
-                taskDetailIsOpen={taskDetailIsOpen}
-                setCurrentTask={setCurrentTask}
-              />
-            ))
+            tasks
+              .map((task) => (
+                <TodoTaskItem
+                  task={task}
+                  key={task.id}
+                  toggleTask={toggleTask}
+                  removeTask={removeTask}
+                  tasks={tasks}
+                  setTasks={setTasks}
+                  setDetailOpen={setTaskDetailIsOpen}
+                  taskDetailIsOpen={taskDetailIsOpen}
+                  setCurrentTask={setCurrentTask}
+                />
+              ))
+              .sort((el) => (el.props.task.complete ? 1 : -1))
           ) : (
             <>
               <Skeleton height="475px" width="100%" />

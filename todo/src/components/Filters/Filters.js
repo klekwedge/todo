@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
-import { Flex, Skeleton, Heading, Button } from "@chakra-ui/react";
+import { useState } from "react";
+import { Flex, Heading, Button } from "@chakra-ui/react";
 import "./Filters.scss";
 
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
-import MoveDoneItems from "../MoveDoneItems/MoveDoneItems";
 import FilterButton from "../FilterButton/FilterButton";
 
 function Filters() {
   const [tasks, setTasks] = useState([]);
 
-  const [completedTasksAtTheEnd, setCompletedTasksAtTheEnd] = useState(false);
   const [filterTasks, setFilterTasks] = useState("default");
 
   // const filterTasksFunc = () => {
@@ -30,21 +28,6 @@ function Filters() {
   //       ))
   //       .sort((task) => (task.complete ? 1 : -1));
   //   }
-
-  //   return tasks.map((task) => (
-  //     <TodoTaskItem
-  //       task={task}
-  //       key={task.id}
-  //       toggleTask={toggleTask}
-  //       removeTask={removeTask}
-  //       tasks={tasks}
-  //       setTasks={setTasks}
-  //       setDetailOpen={setTaskDetailIsOpen}
-  //       taskDetailIsOpen={taskDetailIsOpen}
-  //       setCurrentTask={setCurrentTask}
-  //     />
-  //   ));
-  // };
 
   return (
     <section className="filters">
@@ -133,11 +116,6 @@ function Filters() {
       </Flex>
 
       <Button className='btn-select'>Select filters</Button>
-
-      {/* <MoveDoneItems
-        completedTasksAtTheEnd={completedTasksAtTheEnd}
-        setCompletedTasksAtTheEnd={setCompletedTasksAtTheEnd}
-      /> */}
     </section>
   );
 }

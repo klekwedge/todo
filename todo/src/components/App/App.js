@@ -30,7 +30,7 @@ function App() {
       </Header>
       <main className="todo">
         <TaskList setCurrentTask={setCurrentTask} taskBuff={taskBuff} />
-        <Flex flexDirection="column" gap="40px" minWidth="450px">
+        <Flex flexDirection="column" gap="30px" minWidth="450px">
           <TaskDetail currentTask={currentTask} />
           <Filters />
         </Flex>
