@@ -26,6 +26,10 @@ import BackgroundCubes from "../BackgroundOptions/BackgroundCubes/BackgroundCube
 import BackgroundDiagonals from "../BackgroundOptions/BackgroundDiagonals/BackgroundDiagonals";
 import BackgroundSquareCircles from "../BackgroundOptions/BackgroundSquareCircles/BackgroundSquareCircles";
 import BackgroundGradientSquares from "../BackgroundOptions/BackgroundGradientSquares/BackgroundGradientSquares";
+import BackgroundPS from "../BackgroundOptions/BackgroundPS/BackgroundPS";
+import BackgroundGrid from "../BackgroundOptions/BackgroundGrid/BackgroundGrid";
+import BackgroundLines from "../BackgroundOptions/BackgroundLines/BackgroundLines";
+import BackgroundBubles from "../BackgroundOptions/BackgroundBubles/BackgroundBubles";
 
 function BackgroundSelection() {
   const [currentBackground, setCurrentBackground] = useState("cubes");
@@ -33,9 +37,31 @@ function BackgroundSelection() {
 
   const itemRefs = useRef([]);
 
-  const backgroundNames = ["Cubes", "Diagonals", "Square and circles", "Gradient Squares"];
-  const backgroundValue = ["cubes", "diagonals", "squareCircles", "gradientSquares"];
+  const backgroundNames = [
+    "Cubes",
+    "Diagonals",
+    "Square and circles",
+    "Gradient Squares",
+    "PS",
+    "Grid",
+    "Lines",
+    "Bubles",
+  ];
+  const backgroundValue = [
+    "cubes",
+    "diagonals",
+    "squareCircles",
+    "gradientSquares",
+    "ps",
+    "grid",
+    "lines",
+    "bubles",
+  ];
   const pathBackgrounds = [
+    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
+    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
+    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
+    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
     "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
     "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
     "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
@@ -56,6 +82,14 @@ function BackgroundSelection() {
         return <BackgroundSquareCircles />;
       case "gradientSquares":
         return <BackgroundGradientSquares />;
+      case "ps":
+        return <BackgroundPS />;
+      case "grid":
+        return <BackgroundGrid />;
+      case "lines":
+        return <BackgroundLines />;
+      case "bubles":
+        return <BackgroundBubles />;
       default:
         return <BackgroundCubes />;
     }
@@ -88,11 +122,11 @@ function BackgroundSelection() {
           <ModalCloseButton />
           <ModalBody>
             <Flex flexDirection="column" gap="5px">
-              <Box
+              {/* <Box
                 cursor="pointer"
                 width="180px"
                 mb="20px"
-                onClick={() => setCurrentBackground("white")}
+                onClick={() => setCurrentBackground("cubes")}
               >
                 <Image
                   borderRadius="10px"
@@ -107,16 +141,19 @@ function BackgroundSelection() {
 
               <Heading as="h3" size="md" fontWeight="500">
                 Animated background:
-              </Heading>
+              </Heading> */}
 
               <UnorderedList
                 display="flex"
+                alignItems="baseline"
+                flexWrap="wrap"
                 gap="20px"
                 styleType="none"
-                margin="10px 0px 0px 0px"
+                margin="10px 0px 20px 0px"
               >
                 {backgroundList.map((item, i) => (
                   <ListItem
+                    flex="1 1 20%"
                     ref={(el) => (itemRefs.current[i] = el)}
                     key={Math.random().toString(36).substring(2, 9)}
                     display="flex"
@@ -132,7 +169,7 @@ function BackgroundSelection() {
                   >
                     <Image
                       borderRadius="10px"
-                      width="200px"
+                      width="100%"
                       src={pathBackgrounds[i]}
                     ></Image>
                     <h3>{backgroundNames[i]}</h3>
