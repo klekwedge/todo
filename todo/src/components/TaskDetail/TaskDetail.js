@@ -34,7 +34,7 @@ function TaskDetail({ currentTask }) {
 
         <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">
           <span>Status:</span>{" "}
-          {currentTask.complete === "true" ? "Done" : "Active"}
+          {currentTask.complete ? "Done" : "Active"}
         </Heading>
 
         <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">

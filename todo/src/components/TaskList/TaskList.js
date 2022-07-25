@@ -10,6 +10,7 @@ function TodoMain({
   setTaskDetailIsOpen,
   setCurrentTask,
   taskBuff,
+  currentTask,
 }) {
   // const localTasks = localStorage.getItem('tasks')
 
@@ -47,6 +48,10 @@ function TodoMain({
         task.id === taskId ? { ...task, complete: !task.complete } : { ...task }
       ),
     ]);
+
+    if (currentTask.id === taskId) {
+      setCurrentTask({ ...currentTask, complete: !currentTask.complete });
+    }
   };
 
   return (

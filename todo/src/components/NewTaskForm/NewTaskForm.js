@@ -46,7 +46,8 @@ function NewTaskForm({ updateTaskBuff }) {
       taskNameInput,
       optionCategory,
       taskDescription,
-      startDate ? format(startDate, "dd-MM-yyyy").replace(/-/g, ".") : null
+      startDate ? format(startDate, "dd-MM-yyyy").replace(/-/g, ".") : null,
+      
     );
     setTaskNameInput("");
     setOptionCategory("");

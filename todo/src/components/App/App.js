@@ -29,7 +29,7 @@ function App() {
         <ToggleTheme />
       </Header>
       <main className="todo">
-        <TaskList setCurrentTask={setCurrentTask} taskBuff={taskBuff} />
+        <TaskList currentTask={currentTask} setCurrentTask={setCurrentTask} taskBuff={taskBuff} />
         <Flex flexDirection="column" gap="30px" minWidth="450px">
           <TaskDetail currentTask={currentTask} />
           <Filters />

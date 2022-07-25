@@ -10,25 +10,6 @@ function Filters() {
 
   const [filterTasks, setFilterTasks] = useState("default");
 
-  // const filterTasksFunc = () => {
-  //   if (completedTasksAtTheEnd) {
-  //     return tasks
-  //       .map((task) => (
-  //         <TodoTaskItem
-  //           task={task}
-  //           key={task.id}
-  //           toggleTask={toggleTask}
-  //           removeTask={removeTask}
-  //           tasks={tasks}
-  //           setTasks={setTasks}
-  //           setDetailOpen={setTaskDetailIsOpen}
-  //           taskDetailIsOpen={taskDetailIsOpen}
-  //           setCurrentTask={setCurrentTask}
-  //         />
-  //       ))
-  //       .sort((task) => (task.complete ? 1 : -1));
-  //   }
-
   return (
     <section className="filters">
       <Heading as="h2" fontWeight="400" mb="10px" fontSize='32px'>

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
@@ -50,10 +50,18 @@ function TodoTaskItem({
 
   const categoryTask = useCategoryTask(task.category);
 
+  useEffect(() => {
+    setCurrentTask(task);
+  }, [task]);
+
   return (
     // key={task.id}}
     <li
-      className={task.complete ? "todo__item task todo__item_complete" : "todo__item task"}
+      className={
+        task.complete
+          ? "todo__item task todo__item_complete"
+          : "todo__item task"
+      }
       onClick={() => setCurrentTask(task)}
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">
