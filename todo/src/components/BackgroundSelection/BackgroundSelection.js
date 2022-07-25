@@ -47,6 +47,7 @@ function BackgroundSelection() {
     "Lines",
     "Bubles",
   ];
+
   const backgroundValue = [
     "cubes",
     "diagonals",
@@ -95,15 +96,19 @@ function BackgroundSelection() {
     }
   };
 
-  // useEffect(()=>{
-  //   itemRefs.current.forEach((myRef) => myRef.classList.remove("active"));
-  //   itemRefs.current[id].classList.add("active");
-  // }, [currentBackground])
+  const focusOnItem = () => {
+    // console.log(backgroundValue.indexOf(currentBackground));
+    // console.log(currentBackground);
+    // console.log(itemRefs.current);
+    if (itemRefs.current.length > 0) {
+      itemRefs.current.forEach((myRef) => myRef.classList.remove("active"));
+      itemRefs.current[
+        backgroundValue.indexOf(currentBackground)
+      ].classList.add("active");
+    }
+  };
 
-  // const focusOnItem = (id) => {
-  //   itemRefs.current.forEach((myRef) => myRef.classList.remove("active"));
-  //   itemRefs.current[id].classList.add("active");
-  // };
+  useEffect(focusOnItem, [currentBackground]);
 
   return (
     <>
@@ -156,6 +161,7 @@ function BackgroundSelection() {
                     flex="1 1 20%"
                     ref={(el) => (itemRefs.current[i] = el)}
                     key={Math.random().toString(36).substring(2, 9)}
+                    className={i === 0 ? "active" : null}
                     display="flex"
                     flexDirection="column"
                     alignItems="center"
@@ -164,10 +170,11 @@ function BackgroundSelection() {
                     gap="10px"
                     onClick={() => {
                       setCurrentBackground(backgroundValue[i]);
-                      // focusOnItem(i);
+                      focusOnItem(backgroundValue[i]);
                     }}
                   >
                     <Image
+                      className="background__item-image"
                       borderRadius="10px"
                       width="100%"
                       src={pathBackgrounds[i]}
