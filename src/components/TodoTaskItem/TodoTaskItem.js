@@ -47,13 +47,9 @@ function TodoTaskItem({
 
   const categoryTask = useCategoryTask(task.category);
 
-  useEffect(() => {
-    setCurrentTask(task);
-  }, [task]);
-
   return (
-    // key={task.id}}
     <li
+      key={task.id}
       className={
         task.complete
           ? "todo__item task todo__item_complete"
@@ -63,7 +59,11 @@ function TodoTaskItem({
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">
         <Flex gap="10px" alignItems="center">
-          <Checkbox size="lg" title={"Done"} onChange={() => toggleTask(task.id)}></Checkbox>
+          <Checkbox
+            size="lg"
+            title={"Done"}
+            onChange={() => toggleTask(task.id)}
+          ></Checkbox>
           <h3
             className="task__name"
             ref={refFirst}

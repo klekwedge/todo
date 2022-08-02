@@ -39,6 +39,10 @@ function TodoMain({
   const removeTask = (taskId) => {
     // setTasks(tasks.filter((task) => task.id !== taskId))
     setTasks([...tasks.filter((task) => task.id !== taskId)]);
+
+    // if (currentTask.id === taskId) {
+    //   setCurrentTask({ ...currentTask, nameTask: null });
+    // }
   };
 
   const toggleTask = (taskId) => {
