@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import { Flex, Checkbox, IconButton } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 
-import { useCategoryTask } from '../../hooks/useCategoryTask';
+import useCategoryTask from '../../hooks/useCategoryTask';
 
 import './TodoTaskItem.scss';
 

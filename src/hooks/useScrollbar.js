@@ -3,9 +3,9 @@ import OverlayScrollbars from 'overlayscrollbars';
 
 const config = {
   scrollbars: {
-    visibility: "auto",
-    autoHide: "never",
-  }
+    visibility: 'auto',
+    autoHide: 'never',
+  },
 };
 
 const useScrollbar = (root, hasScroll) => {
@@ -20,7 +20,7 @@ const useScrollbar = (root, hasScroll) => {
       if (scrollbars) {
         scrollbars.destroy();
       }
-    }
+    };
   }, [root, hasScroll]);
 };
 

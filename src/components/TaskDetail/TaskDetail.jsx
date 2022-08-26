@@ -3,7 +3,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
-import { useCategoryTask } from '../../hooks/useCategoryTask';
+import useCategoryTask from '../../hooks/useCategoryTask';
 
 import './TaskDetail.scss';
 
