@@ -1,18 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import { Flex, Checkbox, IconButton } from "@chakra-ui/react";
-import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useRef, useState } from 'react';
+import { Flex, Checkbox, IconButton } from '@chakra-ui/react';
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 
-import { useCategoryTask } from "../../hooks/useCategoryTask";
+import { useCategoryTask } from '../../hooks/useCategoryTask';
 
-import "./TodoTaskItem.scss";
+import './TodoTaskItem.scss';
 
 function TodoTaskItem({
-  task,
-  removeTask,
-  toggleTask,
-  tasks,
-  setTasks,
-  setCurrentTask,
+  task, removeTask, toggleTask, tasks, setTasks, setCurrentTask,
 }) {
   const [taskName, setTaskName] = useState(task.nameTask);
   const refFirst = useRef();
@@ -28,11 +25,9 @@ function TodoTaskItem({
       refFirst.current.contentEditable = false;
 
       setTasks([
-        ...tasks.map((taskItem) =>
-          taskItem.id === task.id
-            ? { ...task, nameTask: refFirst.current.textContent }
-            : { ...taskItem }
-        ),
+        ...tasks.map((taskItem) => (taskItem.id === task.id
+          ? { ...task, nameTask: refFirst.current.textContent }
+          : { ...taskItem })),
       ]);
     }
 
@@ -40,7 +35,7 @@ function TodoTaskItem({
   };
 
   const keySaveTaskEdit = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       refFirst.current.blur();
     }
   };
@@ -50,20 +45,12 @@ function TodoTaskItem({
   return (
     <li
       key={task.id}
-      className={
-        task.complete
-          ? "todo__item task todo__item_complete"
-          : "todo__item task"
-      }
+      className={task.complete ? 'todo__item task todo__item_complete' : 'todo__item task'}
       onClick={() => setCurrentTask(task)}
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">
         <Flex gap="10px" alignItems="center">
-          <Checkbox
-            size="lg"
-            title={"Done"}
-            onChange={() => toggleTask(task.id)}
-          ></Checkbox>
+          <Checkbox size="lg" title="Done" onChange={() => toggleTask(task.id)} />
           <h3
             className="task__name"
             ref={refFirst}

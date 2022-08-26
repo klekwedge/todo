@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Flex,
   Modal,
@@ -10,18 +11,13 @@ import {
   IconButton,
   Button,
   useDisclosure,
-} from "@chakra-ui/react";
-import { SettingsIcon } from "@chakra-ui/icons";
-
-import "./Settings.scss";
+} from '@chakra-ui/react';
+import { SettingsIcon } from '@chakra-ui/icons';
+import './Settings.scss';
 
 function Settings() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {
-    isOpen: isOpenModal,
-    onOpen: onOpenModal,
-    onClose: onCloseModal,
-  } = useDisclosure();
+  const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure();
 
   return (
     <>

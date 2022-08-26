@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+/* eslint-disable no-return-assign */
+import React, { useState, useRef, useEffect } from 'react';
 import {
   IconButton,
   Button,
@@ -6,9 +7,7 @@ import {
   Flex,
   UnorderedList,
   ListItem,
-  Heading,
   Image,
-  Box,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -16,80 +15,78 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { RepeatIcon } from "@chakra-ui/icons";
+import { RepeatIcon } from '@chakra-ui/icons';
 
-import "./BackgroundSelection.scss";
+import './BackgroundSelection.scss';
 
-import BackgroundCubes from "../BackgroundOptions/BackgroundCubes/BackgroundCubes";
-import BackgroundDiagonals from "../BackgroundOptions/BackgroundDiagonals/BackgroundDiagonals";
-import BackgroundSquareCircles from "../BackgroundOptions/BackgroundSquareCircles/BackgroundSquareCircles";
-import BackgroundGradientSquares from "../BackgroundOptions/BackgroundGradientSquares/BackgroundGradientSquares";
-import BackgroundPS from "../BackgroundOptions/BackgroundPS/BackgroundPS";
-import BackgroundGrid from "../BackgroundOptions/BackgroundGrid/BackgroundGrid";
-import BackgroundLines from "../BackgroundOptions/BackgroundLines/BackgroundLines";
-import BackgroundBubles from "../BackgroundOptions/BackgroundBubles/BackgroundBubles";
+import BackgroundCubes from '../BackgroundOptions/BackgroundCubes/BackgroundCubes';
+import BackgroundDiagonals from '../BackgroundOptions/BackgroundDiagonals/BackgroundDiagonals';
+import BackgroundSquareCircles from '../BackgroundOptions/BackgroundSquareCircles/BackgroundSquareCircles';
+import BackgroundGradientSquares from '../BackgroundOptions/BackgroundGradientSquares/BackgroundGradientSquares';
+import BackgroundPS from '../BackgroundOptions/BackgroundPS/BackgroundPS';
+import BackgroundGrid from '../BackgroundOptions/BackgroundGrid/BackgroundGrid';
+import BackgroundLines from '../BackgroundOptions/BackgroundLines/BackgroundLines';
+import BackgroundBubles from '../BackgroundOptions/BackgroundBubles/BackgroundBubles';
 
 function BackgroundSelection() {
-  const [currentBackground, setCurrentBackground] = useState("cubes");
+  const [currentBackground, setCurrentBackground] = useState('cubes');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const itemRefs = useRef([]);
 
   const backgroundNames = [
-    "Cubes",
-    "Diagonals",
-    "Square and circles",
-    "Gradient Squares",
-    "PS",
-    "Grid",
-    "Lines",
-    "Bubles",
+    'Cubes',
+    'Diagonals',
+    'Square and circles',
+    'Gradient Squares',
+    'PS',
+    'Grid',
+    'Lines',
+    'Bubles',
   ];
 
   const backgroundValue = [
-    "cubes",
-    "diagonals",
-    "squareCircles",
-    "gradientSquares",
-    "ps",
-    "grid",
-    "lines",
-    "bubles",
+    'cubes',
+    'diagonals',
+    'squareCircles',
+    'gradientSquares',
+    'ps',
+    'grid',
+    'lines',
+    'bubles',
   ];
   const pathBackgrounds = [
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
   ];
 
-  const backgroundList = Array.from(Array(backgroundNames.length)).map(
-    (item, i) => i
-  );
+  const backgroundList = Array.from(Array(backgroundNames.length)).map((item, i) => i);
 
   const chooseBackground = () => {
     switch (currentBackground) {
-      case "cubes":
+      case 'cubes':
         return <BackgroundCubes />;
-      case "diagonals":
+      case 'diagonals':
         return <BackgroundDiagonals />;
-      case "squareCircles":
+      case 'squareCircles':
         return <BackgroundSquareCircles />;
-      case "gradientSquares":
+      case 'gradientSquares':
         return <BackgroundGradientSquares />;
-      case "ps":
+      case 'ps':
         return <BackgroundPS />;
-      case "grid":
+      case 'grid':
         return <BackgroundGrid />;
-      case "lines":
+      case 'lines':
         return <BackgroundLines />;
-      case "bubles":
+      case 'bubles':
         return <BackgroundBubles />;
       default:
         return <BackgroundCubes />;
@@ -101,10 +98,8 @@ function BackgroundSelection() {
     // console.log(currentBackground);
     // console.log(itemRefs.current);
     if (itemRefs.current.length > 0) {
-      itemRefs.current.forEach((myRef) => myRef.classList.remove("active"));
-      itemRefs.current[
-        backgroundValue.indexOf(currentBackground)
-      ].classList.add("active");
+      itemRefs.current.forEach((myRef) => myRef.classList.remove('active'));
+      itemRefs.current[backgroundValue.indexOf(currentBackground)].classList.add('active');
     }
   };
 
@@ -161,7 +156,7 @@ function BackgroundSelection() {
                     flex="1 1 20%"
                     ref={(el) => (itemRefs.current[i] = el)}
                     key={Math.random().toString(36).substring(2, 9)}
-                    className={i === 0 ? "active" : null}
+                    className={i === 0 ? 'active' : null}
                     display="flex"
                     flexDirection="column"
                     alignItems="center"
@@ -178,7 +173,7 @@ function BackgroundSelection() {
                       borderRadius="10px"
                       width="100%"
                       src={pathBackgrounds[i]}
-                    ></Image>
+                    />
                     <h3>{backgroundNames[i]}</h3>
                   </ListItem>
                 ))}

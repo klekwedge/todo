@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
-import { Flex, Skeleton, Heading } from "@chakra-ui/react";
-import useScrollbar from "../../hooks/useScrollbar";
-import "./TaskList.scss";
+import React, { useState, useEffect, useRef } from 'react';
+import { Flex, Skeleton, Heading } from '@chakra-ui/react';
+import useScrollbar from '../../hooks/useScrollbar';
+import './TaskList.scss';
 
-import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
+import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
 
 function TodoMain({
   taskDetailIsOpen,
@@ -12,8 +12,6 @@ function TodoMain({
   taskBuff,
   currentTask,
 }) {
-  // const localTasks = localStorage.getItem('tasks')
-
   const [tasks, setTasks] = useState([]);
 
   const todoListScrollWrapper = useRef(null);
@@ -29,7 +27,7 @@ function TodoMain({
         category: taskBuff.category,
         description: taskBuff.description,
         deadline: taskBuff.deadline,
-        creationDate: new Date().toLocaleString().split(", "),
+        creationDate: new Date().toLocaleString().split(', '),
       };
 
       setTasks([...tasks, newTask]);
@@ -37,20 +35,13 @@ function TodoMain({
   }, [taskBuff]);
 
   const removeTask = (taskId) => {
-    // setTasks(tasks.filter((task) => task.id !== taskId))
     setTasks([...tasks.filter((task) => task.id !== taskId)]);
-
-    // if (currentTask.id === taskId) {
-    //   setCurrentTask({ ...currentTask, nameTask: null });
-    // }
   };
 
   const toggleTask = (taskId) => {
-    // setTasks(tasks.filter((task) => task.id !== taskId))
     setTasks([
-      ...tasks.map((task) =>
-        task.id === taskId ? { ...task, complete: !task.complete } : { ...task }
-      ),
+      // eslint-disable-next-line max-len
+      ...tasks.map((task) => (task.id === taskId ? { ...task, complete: !task.complete } : { ...task })),
     ]);
 
     if (currentTask.id === taskId) {
@@ -72,21 +63,27 @@ function TodoMain({
 
         <Flex alignItems="flex-end" gap="10px" fontWeight="400">
           <Heading as="h2" size="sm" fontWeight="400">
-            All: {tasks.length}
+            All:
+            {' '}
+            {tasks.length}
           </Heading>
           <Heading as="h2" size="sm" fontWeight="400">
-            Done: {tasks.filter((task) => task.complete === true).length}
+            Done:
+            {' '}
+            {tasks.filter((task) => task.complete === true).length}
           </Heading>
           <Heading as="h2" size="sm" fontWeight="400">
-            Active: {tasks.filter((task) => task.complete !== true).length}
+            Active:
+            {' '}
+            {tasks.filter((task) => task.complete !== true).length}
           </Heading>
         </Flex>
       </Flex>
 
       <div
         style={{
-          height: hasScroll ? "475px" : "auto",
-          minHeight: "475px",
+          height: hasScroll ? '475px' : 'auto',
+          minHeight: '475px',
         }}
         ref={todoListScrollWrapper}
       >
@@ -108,9 +105,7 @@ function TodoMain({
               ))
               .sort((el) => (el.props.task.complete ? 1 : -1))
           ) : (
-            <>
-              <Skeleton height="475px" width="100%" />
-            </>
+            <Skeleton height="475px" width="100%" />
           )}
         </ul>
       </div>
