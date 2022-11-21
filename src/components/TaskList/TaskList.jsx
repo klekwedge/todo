@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Flex, Skeleton, Heading } from '@chakra-ui/react';
+import { Flex, Heading } from '@chakra-ui/react';
 import useScrollbar from '../../hooks/useScrollbar';
 import './TaskList.scss';
 
@@ -105,7 +105,7 @@ function TodoMain({
               ))
               .sort((el) => (el.props.task.complete ? 1 : -1))
           ) : (
-            <Skeleton height="475px" width="100%" />
+            <h2>You do not have any tasks</h2>
           )}
         </ul>
       </div>

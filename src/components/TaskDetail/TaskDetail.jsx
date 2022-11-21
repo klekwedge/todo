@@ -1,5 +1,5 @@
 import {
-  Flex, Stack, Skeleton, Heading, Badge,
+  Flex, Heading, Badge,
 } from '@chakra-ui/react';
 import React from 'react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
@@ -79,12 +79,7 @@ function TaskDetail({ currentTask }) {
             <ArrowBackIcon />
             <h3>Please, choose task</h3>
           </Flex>
-          <Stack>
-            <Skeleton height="15px" />
-            <Skeleton height="15px" />
-            <Skeleton height="15px" />
-            <Skeleton height="15px" />
-          </Stack>
+          <h3>You have not selected a task</h3>
         </Flex>
       )}
     </section>
