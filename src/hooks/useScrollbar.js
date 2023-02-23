@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import OverlayScrollbars from 'overlayscrollbars';
+// import OverlayScrollbars from 'overlayscrollbars';
 
 const config = {
   scrollbars: {
