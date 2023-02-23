@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import { useState } from "react";
 import {
   Select,
   Flex,
@@ -14,18 +13,19 @@ import {
   Button,
   Input,
   useDisclosure,
-} from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
-import DatePicker from 'react-datepicker';
-import format from 'date-fns/format';
+} from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
+import DatePicker from "react-datepicker";
+import format from "date-fns/format";
 
-import 'react-datepicker/dist/react-datepicker.css';
-import './NewTaskForm.scss';
+import "react-datepicker/dist/react-datepicker.css";
+import "./NewTaskForm.scss";
+import React from "react";
 
 function NewTaskForm({ updateTaskBuff }) {
-  const [taskNameInput, setTaskNameInput] = useState('');
-  const [taskDescription, setTaskDescription] = useState('');
-  const [optionCategory, setOptionCategory] = useState('');
+  const [taskNameInput, setTaskNameInput] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
+  const [optionCategory, setOptionCategory] = useState("");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -43,20 +43,24 @@ function NewTaskForm({ updateTaskBuff }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     updateTaskBuff(
+      Math.random().toString(36).substring(2, 9),
       taskNameInput,
+      false,
       optionCategory,
       taskDescription,
-      startDate ? format(startDate, 'dd-MM-yyyy').replace(/-/g, '.') : null,
+      startDate ? format(startDate, "dd-MM-yyyy").replace(/-/g, ".") : null,
+      new Date().toLocaleString().split(", ")
     );
-    setTaskNameInput('');
-    setOptionCategory('');
-    setTaskDescription('');
+    setTaskNameInput("");
+    setOptionCategory("");
+    setTaskDescription("");
     onClose();
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSubmit(e);
     }
   };
@@ -69,6 +73,7 @@ function NewTaskForm({ updateTaskBuff }) {
         height="40px"
         onClick={onOpen}
         icon={<AddIcon />}
+        aria-label={""}
       />
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -85,7 +90,7 @@ function NewTaskForm({ updateTaskBuff }) {
                     type="text"
                     value={taskNameInput}
                     required
-                    minLength="3"
+                    minLength={3}
                     autoFocus
                     placeholder="Enter the name of your task"
                     onChange={(e) => setTaskNameInput(e.target.value)}
@@ -123,8 +128,11 @@ function NewTaskForm({ updateTaskBuff }) {
                   <option value="other">Other</option>
                 </Select>
 
-                <Button className="example-custom-input btn-select" onClick={onOpenDatePicker}>
-                  {startDate ? format(startDate, 'dd-MM-yyyy') : 'No deadline'}
+                <Button
+                  className="example-custom-input btn-select"
+                  onClick={onOpenDatePicker}
+                >
+                  {startDate ? format(startDate, "dd-MM-yyyy") : "No deadline"}
                 </Button>
 
                 <Modal isOpen={isOpenDatePicker} onClose={onCloseDatePicker}>
@@ -134,7 +142,11 @@ function NewTaskForm({ updateTaskBuff }) {
                     <ModalCloseButton />
                     <ModalBody pb="0px">
                       <Flex justifyContent="center" minHeight="280px">
-                        <DatePicker selected={startDate} onChange={handleChangeDatePicker} inline />
+                        <DatePicker
+                          selected={startDate}
+                          onChange={handleChangeDatePicker}
+                          inline
+                        />
                       </Flex>
                     </ModalBody>
                     <ModalFooter>

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Flex,
   Modal,
@@ -11,13 +10,17 @@ import {
   IconButton,
   Button,
   useDisclosure,
-} from '@chakra-ui/react';
-import { SettingsIcon } from '@chakra-ui/icons';
-import './Settings.scss';
+} from "@chakra-ui/react";
+import { SettingsIcon } from "@chakra-ui/icons";
+import "./Settings.scss";
 
 function Settings() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure();
+  const {
+    isOpen: isOpenModal,
+    onOpen: onOpenModal,
+    onClose: onCloseModal,
+  } = useDisclosure();
 
   return (
     <>
@@ -27,6 +30,7 @@ function Settings() {
         height="40px"
         onClick={onOpen}
         icon={<SettingsIcon />}
+        aria-label={""}
       />
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -36,7 +40,10 @@ function Settings() {
           <ModalCloseButton />
           <ModalBody>
             <Flex gap="10px">
-              <Button className="example-custom-input btn-select" onClick={onOpenModal}>
+              <Button
+                className="example-custom-input btn-select"
+                onClick={onOpenModal}
+              >
                 Click
               </Button>
 

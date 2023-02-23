@@ -1,50 +1,52 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Flex, Heading } from '@chakra-ui/react';
-import useScrollbar from '../../hooks/useScrollbar';
-import './TaskList.scss';
+import { useState, useEffect, useRef } from "react";
+import { Flex, Heading } from "@chakra-ui/react";
+// import useScrollbar from '../../hooks/useScrollbar';
+import "./TaskList.scss";
+import TodoTaskItem from "../TodoTaskItem/TodoTaskItem.tsx";
+import { ITask } from "../../types/types";
+import React from "react";
 
-import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
+interface TodoMainProps {
+  setCurrentTask: (currentTask: ITask) => void;
+  taskBuff: ITask | undefined;
+  currentTask: ITask| undefined;
+}
 
-function TodoMain({
-  taskDetailIsOpen,
-  setTaskDetailIsOpen,
-  setCurrentTask,
-  taskBuff,
-  currentTask,
-}) {
-  const [tasks, setTasks] = useState([]);
+function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
+  const [tasks, setTasks] = useState<ITask[]>([]);
 
   const todoListScrollWrapper = useRef(null);
   const hasScroll = tasks.length > 6;
-  useScrollbar(todoListScrollWrapper, hasScroll);
+  // useScrollbar(todoListScrollWrapper, hasScroll);
 
   useEffect(() => {
-    if (taskBuff.name) {
-      const newTask = {
-        id: Math.random().toString(36).substring(2, 9),
-        nameTask: taskBuff.name,
-        complete: false,
+    if (taskBuff && taskBuff.taskName) {
+      const newTask: ITask = {
+        id: taskBuff.id,
+        taskName: taskBuff.taskName,
+        complete: taskBuff.complete,
         category: taskBuff.category,
         description: taskBuff.description,
         deadline: taskBuff.deadline,
-        creationDate: new Date().toLocaleString().split(', '),
+        creationDate: taskBuff.creationDate,
       };
 
       setTasks([...tasks, newTask]);
     }
   }, [taskBuff]);
 
-  const removeTask = (taskId) => {
+  const removeTask = (taskId: string) => {
     setTasks([...tasks.filter((task) => task.id !== taskId)]);
   };
 
-  const toggleTask = (taskId) => {
+  const toggleTask = (taskId: string) => {
     setTasks([
-      // eslint-disable-next-line max-len
-      ...tasks.map((task) => (task.id === taskId ? { ...task, complete: !task.complete } : { ...task })),
+      ...tasks.map((task) =>
+        task.id === taskId ? { ...task, complete: !task.complete } : { ...task }
+      ),
     ]);
 
-    if (currentTask.id === taskId) {
+    if (currentTask && currentTask.id === taskId) {
       setCurrentTask({ ...currentTask, complete: !currentTask.complete });
     }
   };
@@ -63,27 +65,21 @@ function TodoMain({
 
         <Flex alignItems="flex-end" gap="10px" fontWeight="400">
           <Heading as="h2" size="sm" fontWeight="400">
-            All:
-            {' '}
-            {tasks.length}
+            All: {tasks.length}
           </Heading>
           <Heading as="h2" size="sm" fontWeight="400">
-            Done:
-            {' '}
-            {tasks.filter((task) => task.complete === true).length}
+            Done: {tasks.filter((task) => task.complete === true).length}
           </Heading>
           <Heading as="h2" size="sm" fontWeight="400">
-            Active:
-            {' '}
-            {tasks.filter((task) => task.complete !== true).length}
+            Active: {tasks.filter((task) => task.complete !== true).length}
           </Heading>
         </Flex>
       </Flex>
 
       <div
         style={{
-          height: hasScroll ? '475px' : 'auto',
-          minHeight: '475px',
+          height: hasScroll ? "475px" : "auto",
+          minHeight: "475px",
         }}
         ref={todoListScrollWrapper}
       >
@@ -98,8 +94,6 @@ function TodoMain({
                   removeTask={removeTask}
                   tasks={tasks}
                   setTasks={setTasks}
-                  setDetailOpen={setTaskDetailIsOpen}
-                  taskDetailIsOpen={taskDetailIsOpen}
                   setCurrentTask={setCurrentTask}
                 />
               ))
