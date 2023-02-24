@@ -31,6 +31,7 @@
 - Framer motion
 - Date fns
 - React datepicker
+- Vite
 
 
 ### What I learned
