@@ -47,7 +47,9 @@ function TodoTaskItem({
     edit = !edit;
   };
 
-  const keySaveTaskEdit = (e) => {
+  const keySaveTaskEdit: React.KeyboardEventHandler<HTMLHeadingElement> = (
+    e
+  ) => {
     if (e.key === "Enter" && refFirst.current) {
       refFirst.current.blur();
     }
