@@ -1,5 +1,4 @@
-/* eslint-disable no-return-assign */
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import {
   IconButton,
   Button,
