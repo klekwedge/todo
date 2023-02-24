@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Flex, Heading } from "@chakra-ui/react";
-// import useScrollbar from '../../hooks/useScrollbar';
+import useScrollbar from "../../hooks/useScrollbar";
 import "./TaskList.scss";
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
 import { ITask } from "../../types/types";
@@ -9,7 +9,7 @@ import React from "react";
 interface TodoMainProps {
   setCurrentTask: (currentTask: ITask) => void;
   taskBuff: ITask | undefined;
-  currentTask: ITask| undefined;
+  currentTask: ITask | undefined;
 }
 
 function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
@@ -17,7 +17,6 @@ function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
 
   const todoListScrollWrapper = useRef(null);
   const hasScroll = tasks.length > 6;
-  // useScrollbar(todoListScrollWrapper, hasScroll);
 
   useEffect(() => {
     if (taskBuff && taskBuff.taskName) {
@@ -50,6 +49,8 @@ function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
       setCurrentTask({ ...currentTask, complete: !currentTask.complete });
     }
   };
+
+  useScrollbar(todoListScrollWrapper, hasScroll);
 
   return (
     <section className="task-list">
