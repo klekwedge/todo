@@ -34,8 +34,6 @@ function BackgroundSelection() {
   const [currentBackground, setCurrentBackground] = useState("cubes");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const itemRefs = useRef<typeof ListItem[]>([]);
-
   const backgroundNames = [
     "Cubes",
     "Diagonals",
@@ -95,17 +93,6 @@ function BackgroundSelection() {
     }
   };
 
-  const focusOnItem = () => {
-    if (itemRefs.current && itemRefs.current.length > 0) {
-      itemRefs.current.forEach((myRef) => myRef.classList.remove("active"));
-      itemRefs.current[
-        backgroundValue.indexOf(currentBackground)
-      ].classList.add("active");
-    }
-  };
-
-  useEffect(focusOnItem, [currentBackground]);
-
   return (
     <>
       <IconButton
@@ -156,19 +143,17 @@ function BackgroundSelection() {
                 {backgroundList.map((item, i) => (
                   <ListItem
                     flex="1 1 20%"
-                    ref={(el) => (itemRefs.current[i] = el)}
                     key={Math.random().toString(36).substring(2, 9)}
-                    className={i === 0 ? "active" : ""}
+                    className={
+                      backgroundValue[i] === currentBackground ? "active" : ""
+                    }
                     display="flex"
                     flexDirection="column"
                     alignItems="center"
                     cursor="pointer"
                     textAlign="center"
                     gap="10px"
-                    onClick={() => {
-                      setCurrentBackground(backgroundValue[i]);
-                      focusOnItem();
-                    }}
+                    onClick={() => setCurrentBackground(backgroundValue[i])}
                   >
                     <Image
                       className="background__item-image"
