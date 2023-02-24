@@ -12,18 +12,18 @@ function Header({ children }: HeaderProps) {
     <header className="header">
       <Flex justifyContent="space-between" gap="40px" alignItems="center">
         <Flex gap="5px" alignItems="center">
-          <IconButton icon={<SearchIcon />} aria-label={""} />
-          <Input placeholder="Search task" />
+          {/* <IconButton icon={<SearchIcon />} aria-label={""} />
+          <Input placeholder="Search task" /> */}
         </Flex>
         <Flex justifyContent="flex-end" gap="10px" alignItems="center">
           {children}
-          <Avatar width="40px" height="40px">
+          {/* <Avatar width="40px" height="40px">
             <AvatarBadge
               borderColor="papayawhip"
               bg="green.500"
               boxSize="1.10em"
             />
-          </Avatar>
+          </Avatar> */}
         </Flex>
       </Flex>
     </header>

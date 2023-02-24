@@ -7,7 +7,7 @@ import Settings from "../Settings/Settings";
 import BackgroundSelection from "../BackgroundSelection/BackgroundSelection";
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
 import Header from "../Header/Header";
-// import Filters from '../Filters/Filters';
+import Filters from '../Filters/Filters';
 import "./App.scss";
 import { ITask } from "../../types/types";
 
@@ -39,7 +39,7 @@ function App() {
     <Flex flexDirection="column" minHeight="100%">
       <Header>
         <NewTaskForm updateTaskBuff={updateTaskBuff} />
-        <Settings />
+        {/* <Settings /> */}
         <BackgroundSelection />
         <ToggleTheme />
       </Header>
@@ -50,7 +50,7 @@ function App() {
           taskBuff={taskBuff}
         />
         <Flex flexDirection="column" gap="30px" minWidth="450px">
-          {/* <TaskDetail currentTask={currentTask} /> */}
+          <TaskDetail currentTask={currentTask} />
           {/* <Filters /> */}
         </Flex>
       </main>

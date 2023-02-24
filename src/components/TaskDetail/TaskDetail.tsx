@@ -1,27 +1,39 @@
-import {
-  Flex, Heading, Badge,
-} from '@chakra-ui/react';
-import React from 'react';
-import { ArrowBackIcon } from '@chakra-ui/icons';
-import useCategoryTask from '../../hooks/useCategoryTask';
+import { Flex, Heading, Badge } from "@chakra-ui/react";
+import React from "react";
+import { ArrowBackIcon } from "@chakra-ui/icons";
+import useCategoryTask from "../../hooks/useCategoryTask";
 
-import './TaskDetail.scss';
+import "./TaskDetail.scss";
+import { ITask } from "../../types/types";
 
-function TaskDetail({ currentTask }) {
+interface TaskDetailProps {
+  currentTask: ITask | undefined;
+}
+
+function TaskDetail({ currentTask }: TaskDetailProps) {
+  if (!currentTask) {
+    return null;
+  }
+
   const categoryTask = useCategoryTask(currentTask.category);
 
   const showDetails = () => (
     <Flex flexDirection="column" gap="2px" position="relative">
       <Flex justifyContent="space-between" alignItems="center" mb="10px">
         <Heading as="h3" fontWeight="500" fontSize="20px" lineHeight="24px">
-          {currentTask.nameTask}
+          {currentTask.taskName}
         </Heading>
 
         <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">
           {currentTask.category ? (
             categoryTask
           ) : (
-            <Badge size="8xl" variant="outline" colorScheme="green" cursor="pointer">
+            <Badge
+              size="8xl"
+              variant="outline"
+              colorScheme="green"
+              cursor="pointer"
+            >
               Add category
             </Badge>
           )}
@@ -30,32 +42,23 @@ function TaskDetail({ currentTask }) {
 
       <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">
         <span>Status:</span>
-        {' '}
-        {currentTask.complete ? 'Done' : 'Active'}
+        {currentTask.complete ? "Done" : "Active"}
       </Heading>
 
       <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">
         <span>Deadline:</span>
-        {' '}
-        {currentTask.deadline ? currentTask.deadline : 'No deadline'}
+        {currentTask.deadline ? currentTask.deadline : "No deadline"}
       </Heading>
 
       <Heading as="h4" mb="5px" fontWeight="400" fontSize="16px">
         <span>Description:</span>
-        {' '}
-        {currentTask.description ? currentTask.description : 'Not description'}
+        {currentTask.description ? currentTask.description : "Not description"}
       </Heading>
 
       <Heading as="h4" fontWeight="400" fontSize="16px">
         <span>Task creation date:</span>
-        {' '}
-        {currentTask.creationDate[0].slice(0, -5)}
-        .
-        {currentTask.creationDate[0].slice(8)}
-        {' '}
-        (
-        {currentTask.creationDate[1]}
-        )
+        {currentTask.creationDate[0].slice(0, -5)}.
+        {currentTask.creationDate[0].slice(8)}({currentTask.creationDate[1]})
       </Heading>
     </Flex>
   );
@@ -71,7 +74,7 @@ function TaskDetail({ currentTask }) {
       >
         Task details:
       </Heading>
-      {currentTask.nameTask ? (
+      {currentTask.taskName ? (
         showDetails()
       ) : (
         <Flex flexDirection="column">

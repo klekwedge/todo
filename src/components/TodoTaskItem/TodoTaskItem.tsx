@@ -23,7 +23,7 @@ function TodoTaskItem({
   setCurrentTask,
 }: TodoTaskItemProps) {
   const [taskName, setTaskName] = useState(task.taskName);
-  const refFirst = useRef<HTMLHeadingElement>();
+  const refFirst = useRef<HTMLHeadingElement>(null);
 
   let edit = true;
 
