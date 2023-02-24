@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
 import { OverlayScrollbars } from "overlayscrollbars";
 
-
-
 const useScrollbar = (
   root: React.MutableRefObject<null>,
   hasScroll: boolean
 ) => {
-  console.log(root);
-  console.log(hasScroll);
 
   useEffect(() => {
     let scrollbars: OverlayScrollbars;

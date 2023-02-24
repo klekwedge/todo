@@ -22,7 +22,19 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./NewTaskForm.scss";
 import React from "react";
 
-function NewTaskForm({ updateTaskBuff }) {
+interface NewTaskFormProps {
+  updateTaskBuff: (
+    id: string,
+    taskName: string,
+    complete: boolean,
+    category: string,
+    description: string,
+    deadline: string | null,
+    creationDate: string[]
+  ) => void;
+}
+
+function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
   const [taskNameInput, setTaskNameInput] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [optionCategory, setOptionCategory] = useState("");
@@ -34,16 +46,14 @@ function NewTaskForm({ updateTaskBuff }) {
     onClose: onCloseDatePicker,
   } = useDisclosure();
 
-  const [startDate, setStartDate] = useState(null);
+  const [startDate, setStartDate] = useState<Date>();
 
-  const handleChangeDatePicker = (e) => {
+  const handleChangeDatePicker = (e: Date) => {
     onCloseDatePicker();
     setStartDate(e);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  function createTask() {
     updateTaskBuff(
       Math.random().toString(36).substring(2, 9),
       taskNameInput,
@@ -53,15 +63,21 @@ function NewTaskForm({ updateTaskBuff }) {
       startDate ? format(startDate, "dd-MM-yyyy").replace(/-/g, ".") : null,
       new Date().toLocaleString().split(", ")
     );
+
     setTaskNameInput("");
     setOptionCategory("");
     setTaskDescription("");
     onClose();
+  }
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    createTask();
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === "Enter") {
-      handleSubmit(e);
+      createTask();
     }
   };
 
