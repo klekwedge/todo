@@ -30,7 +30,7 @@
 ### Ссылки
 
 - [Ссылка на проект](https://github.com/klekwedge/todo)
-- [Деплой](klekwedge-todo.vercel.app)
+- [Деплой](https://klekwedge-todo.vercel.app/)
 
 ## Мой процесс
 

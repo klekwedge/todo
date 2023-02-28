@@ -30,7 +30,7 @@ You can also read this README in [русский](https://github.com/klekwedge/t
 ### Links
 
 - [Solution URL](https://github.com/klekwedge/todo)
-- [Live Site URL](klekwedge-todo.vercel.app)
+- [Live Site URL](https://klekwedge-todo.vercel.app/)
 
 ## My process
 
