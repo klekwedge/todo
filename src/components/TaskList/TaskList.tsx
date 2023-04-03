@@ -4,7 +4,6 @@ import useScrollbar from "../../hooks/useScrollbar";
 import "./TaskList.scss";
 import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
 import { ITask } from "../../types/types";
-import React from "react";
 
 interface TodoMainProps {
   setCurrentTask: (currentTask: ITask) => void;

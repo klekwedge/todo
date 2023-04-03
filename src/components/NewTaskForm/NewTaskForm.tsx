@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Select,
   Flex,
@@ -20,7 +20,6 @@ import format from "date-fns/format";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./NewTaskForm.scss";
-import React from "react";
 
 interface NewTaskFormProps {
   updateTaskBuff: (
@@ -89,7 +88,7 @@ function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
         height="40px"
         onClick={onOpen}
         icon={<AddIcon />}
-        aria-label={""}
+        aria-label=""
       />
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -100,7 +99,7 @@ function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
           <ModalBody>
             <form className="new-task" onSubmit={handleSubmit}>
               <Flex flexDirection="column" gap="5px">
-                <label>New task</label>
+                <h3>New task</h3>
                 <Flex gap="10px">
                   <Input
                     type="text"
@@ -119,7 +118,7 @@ function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
               </Flex>
 
               <Flex flexDirection="column" gap="5px">
-                <label>Description of your task</label>
+                <h3>Description of your task</h3>
                 <Input
                   type="text"
                   value={taskDescription}

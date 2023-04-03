@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   IconButton,
   Button,
@@ -100,7 +100,7 @@ function BackgroundSelection() {
         borderRadius="50%"
         icon={<RepeatIcon />}
         onClick={onOpen}
-        aria-label={""}
+        aria-label=""
       />
 
       <Modal isOpen={isOpen} onClose={onClose}>

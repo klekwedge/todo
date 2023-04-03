@@ -1,4 +1,3 @@
-import React from 'react';
 import './BackgroundSquareCircles.scss';
 
 function BackgroundSquareCircles() {

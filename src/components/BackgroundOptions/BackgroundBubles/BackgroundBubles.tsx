@@ -1,4 +1,3 @@
-import React from 'react';
 import './BackgroundBubles.scss';
 
 function BackgroundBubles() {

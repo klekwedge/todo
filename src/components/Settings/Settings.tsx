@@ -30,7 +30,7 @@ function Settings() {
         height="40px"
         onClick={onOpen}
         icon={<SettingsIcon />}
-        aria-label={""}
+        aria-label=""
       />
 
       <Modal isOpen={isOpen} onClose={onClose}>

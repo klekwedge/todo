@@ -3,11 +3,11 @@ import { Flex } from "@chakra-ui/react";
 import TaskList from "../TaskList/TaskList";
 import TaskDetail from "../TaskDetail/TaskDetail";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
-import Settings from "../Settings/Settings";
+// import Settings from "../Settings/Settings";
 import BackgroundSelection from "../BackgroundSelection/BackgroundSelection";
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
 import Header from "../Header/Header";
-import Filters from '../Filters/Filters';
+// import Filters from '../Filters/Filters';
 import "./App.scss";
 import { ITask } from "../../types/types";
 

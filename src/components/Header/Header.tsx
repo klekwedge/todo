@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Flex, IconButton, Input, Avatar, AvatarBadge } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import "./Header.scss";
