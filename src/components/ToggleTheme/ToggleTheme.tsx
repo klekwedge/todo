@@ -11,7 +11,7 @@ function ToggleTheme() {
     document.body.classList.toggle('dark');
   }
 
-  return <IconButton icon={isLightTheme ? <SunIcon /> : <MoonIcon />} borderRadius="50%" onClick={changeTheme} />;
+  return <IconButton icon={isLightTheme ? <SunIcon /> : <MoonIcon />} borderRadius="50%" onClick={changeTheme} aria-label={''} />;
 }
 
 export default ToggleTheme;
