@@ -4,7 +4,7 @@ import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import useCategoryTask from '../../hooks/useCategoryTask';
 import { ITask } from '../../types/types';
 import { useAppDispatch } from '../../hooks/redux-hook';
-import { removeTask, toggleTask } from '../../slices/tasksSlice';
+import { chooseTask, removeTask, toggleTask } from '../../slices/tasksSlice';
 import './TodoTaskItem.scss';
 
 interface TodoTaskItemProps {
@@ -14,7 +14,7 @@ interface TodoTaskItemProps {
 function TodoTaskItem({ task }: TodoTaskItemProps) {
   const dispatch = useAppDispatch();
 
-  const edit = () => {};
+  const edit = (taskId: string) => {};
 
   const toggle = (taskId: string) => {
     dispatch(toggleTask(taskId));
@@ -24,13 +24,17 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
     dispatch(removeTask(taskId));
   };
 
+  const choose = (taskId: string) => {
+    dispatch(chooseTask(taskId));
+  };
+
   const categoryTask = useCategoryTask(task.category);
 
   return (
     <li
       key={task.id}
       className={task.complete ? 'todo__item task todo__item_complete' : 'todo__item task'}
-      // onClick={() => setCurrentTask(task)}
+      onClick={() => choose(task.id)}
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">
         <Flex gap="10px" alignItems="center">

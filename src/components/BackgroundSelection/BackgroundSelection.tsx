@@ -18,8 +18,6 @@ import {
 
 import { RepeatIcon } from "@chakra-ui/icons";
 
-import "./BackgroundSelection.scss";
-
 import BackgroundCubes from "../BackgroundOptions/BackgroundCubes/BackgroundCubes";
 import BackgroundDiagonals from "../BackgroundOptions/BackgroundDiagonals/BackgroundDiagonals";
 import BackgroundSquareCircles from "../BackgroundOptions/BackgroundSquareCircles/BackgroundSquareCircles";
@@ -28,6 +26,8 @@ import BackgroundPS from "../BackgroundOptions/BackgroundPS/BackgroundPS";
 import BackgroundGrid from "../BackgroundOptions/BackgroundGrid/BackgroundGrid";
 import BackgroundLines from "../BackgroundOptions/BackgroundLines/BackgroundLines";
 import BackgroundBubles from "../BackgroundOptions/BackgroundBubles/BackgroundBubles";
+
+import "./BackgroundSelection.scss";
 
 function BackgroundSelection() {
   const [currentBackground, setCurrentBackground] = useState("cubes");
