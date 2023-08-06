@@ -1,15 +1,13 @@
-import { useState } from "react";
-import { Flex } from "@chakra-ui/react";
-import TaskList from "../TaskList/TaskList";
-import TaskDetail from "../TaskDetail/TaskDetail";
-import ToggleTheme from "../ToggleTheme/ToggleTheme";
-// import Settings from "../Settings/Settings";
-import BackgroundSelection from "../BackgroundSelection/BackgroundSelection";
-import NewTaskForm from "../NewTaskForm/NewTaskForm";
-import Header from "../Header/Header";
-// import Filters from '../Filters/Filters';
-import "./App.scss";
-import { ITask } from "../../types/types";
+import { useState } from 'react';
+import { Flex } from '@chakra-ui/react';
+import TaskList from '../TaskList/TaskList';
+import TaskDetail from '../TaskDetail/TaskDetail';
+import ToggleTheme from '../ToggleTheme/ToggleTheme';
+import BackgroundSelection from '../BackgroundSelection/BackgroundSelection';
+import NewTaskForm from '../NewTaskForm/NewTaskForm';
+import Header from '../Header/Header';
+import { ITask } from '../../types/types';
+import './App.scss';
 
 function App() {
   const [currentTask, setCurrentTask] = useState<ITask>();
@@ -22,7 +20,7 @@ function App() {
     category: string,
     description: string,
     deadline: string | null,
-    creationDate: string[]
+    creationDate: string[],
   ) => {
     setTaskBuff({
       id,
@@ -39,19 +37,13 @@ function App() {
     <Flex flexDirection="column" minHeight="100%">
       <Header>
         <NewTaskForm updateTaskBuff={updateTaskBuff} />
-        {/* <Settings /> */}
         <BackgroundSelection />
         <ToggleTheme />
       </Header>
       <main className="todo">
-        <TaskList
-          currentTask={currentTask}
-          setCurrentTask={setCurrentTask}
-          taskBuff={taskBuff}
-        />
+        <TaskList currentTask={currentTask} setCurrentTask={setCurrentTask} taskBuff={taskBuff} />
         <Flex flexDirection="column" gap="30px" minWidth="450px">
           <TaskDetail currentTask={currentTask} />
-          {/* <Filters /> */}
         </Flex>
       </main>
     </Flex>

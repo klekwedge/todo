@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useRef, useState } from "react";
 import { Flex, Checkbox, IconButton } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
@@ -101,7 +102,7 @@ function TodoTaskItem({
             onClick={() => removeTask(task.id)}
             size="sm"
             icon={<DeleteIcon />}
-            aria-label={""}
+            aria-label=""
           />
         </Flex>
       </Flex>
