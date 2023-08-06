@@ -6,6 +6,7 @@ import BackgroundSelection from '../BackgroundSelection/BackgroundSelection';
 import NewTaskForm from '../NewTaskForm/NewTaskForm';
 import Header from '../Header/Header';
 import './App.scss';
+import Filters from '../Filters/Filters';
 
 function App() {
   return (
