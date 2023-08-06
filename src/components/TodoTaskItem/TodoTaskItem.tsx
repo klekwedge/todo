@@ -1,59 +1,28 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { useRef, useState } from "react";
-import { Flex, Checkbox, IconButton } from "@chakra-ui/react";
-import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
-import useCategoryTask from "../../hooks/useCategoryTask";
-import "./TodoTaskItem.scss";
-import { ITask } from "../../types/types";
+import { Flex, Checkbox, IconButton } from '@chakra-ui/react';
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import useCategoryTask from '../../hooks/useCategoryTask';
+import { ITask } from '../../types/types';
+import { useAppDispatch } from '../../hooks/redux-hook';
+import { removeTask, toggleTask } from '../../slices/tasksSlice';
+import './TodoTaskItem.scss';
+
 
 interface TodoTaskItemProps {
   task: ITask;
-  // removeTask: (taskId: string) => void;
-  // toggleTask: (taskId: string) => void;
-  tasks: ITask[];
-  // setTasks: (tasks: ITask[]) => void;
-  // setCurrentTask: (task: ITask) => void;
 }
 
-function TodoTaskItem({
-  task,
-  // removeTask,
-  // toggleTask,
-  tasks,
-  // setTasks,
-  // setCurrentTask,
-}: TodoTaskItemProps) {
-  const [taskName, setTaskName] = useState(task.taskName);
-  const refFirst = useRef<HTMLHeadingElement>(null);
+function TodoTaskItem({ task }: TodoTaskItemProps) {
+  const dispatch = useAppDispatch();
 
-  let edit = true;
+  const edit = function () {};
 
-  const saveTaskEdit = function () {
-    if (edit && refFirst.current) {
-      refFirst.current.contentEditable = "true";
-      refFirst.current.focus();
-    } else if (refFirst.current && refFirst.current.textContent !== null) {
-      setTaskName(refFirst.current.textContent);
-      refFirst.current.contentEditable = "false";
-
-      setTasks([
-        ...tasks.map((taskItem) =>
-          taskItem.id === task.id
-            ? { ...task, nameTask: " refFirst.current.textContent" }
-            : taskItem
-        ),
-      ]);
-    }
-
-    edit = !edit;
+  const toggle = (taskId: string) => {
+    dispatch(toggleTask(taskId));
   };
 
-  const keySaveTaskEdit: React.KeyboardEventHandler<HTMLHeadingElement> = (
-    e
-  ) => {
-    if (e.key === "Enter" && refFirst.current) {
-      refFirst.current.blur();
-    }
+  const remove = (taskId: string) => {
+    dispatch(removeTask(taskId));
   };
 
   const categoryTask = useCategoryTask(task.category);
@@ -61,35 +30,20 @@ function TodoTaskItem({
   return (
     <li
       key={task.id}
-      className={
-        task.complete
-          ? "todo__item task todo__item_complete"
-          : "todo__item task"
-      }
-      onClick={() => setCurrentTask(task)}
+      className={task.complete ? 'todo__item task todo__item_complete' : 'todo__item task'}
+      // onClick={() => setCurrentTask(task)}
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">
         <Flex gap="10px" alignItems="center">
-          <Checkbox
-            size="lg"
-            title="Done"
-            onChange={() => toggleTask(task.id)}
-          />
-          <h3
-            className="task__name"
-            ref={refFirst}
-            onBlur={saveTaskEdit}
-            onKeyDown={keySaveTaskEdit}
-          >
-            {taskName}
-          </h3>
+          <Checkbox size="lg" title="Done" onChange={() => toggle(task.id)} />
+          <h3 className="task__name">{task.taskName}</h3>
         </Flex>
 
         <Flex alignItems="center" gap="5px">
           {categoryTask}
           <IconButton
             title="Edit"
-            // onClick={saveTaskEdit}
+            onClick={() => edit(task.id)}
             colorScheme="teal"
             aria-label="Call Segun"
             size="sm"
@@ -99,7 +53,7 @@ function TodoTaskItem({
           <IconButton
             title="Delete task"
             colorScheme="blue"
-            onClick={() => removeTask(task.id)}
+            onClick={() => remove(task.id)}
             size="sm"
             icon={<DeleteIcon />}
             aria-label=""

@@ -35,17 +35,6 @@ function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
     // }
   }, [taskBuff]);
 
-  // const removeTask = (taskId: string) => {
-  //   setTasks([...tasks.filter((task) => task.id !== taskId)]);
-  // };
-
-  // const toggleTask = (taskId: string) => {
-  //   setTasks([...tasks.map((task) => (task.id === taskId ? { ...task, complete: !task.complete } : { ...task }))]);
-
-  //   if (currentTask && currentTask.id === taskId) {
-  //     setCurrentTask({ ...currentTask, complete: !currentTask.complete });
-  //   }
-  // };
 
   useScrollbar(todoListScrollWrapper, hasScroll);
 
