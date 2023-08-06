@@ -8,20 +8,20 @@ import { ITask } from "../../types/types";
 
 interface TodoTaskItemProps {
   task: ITask;
-  removeTask: (taskId: string) => void;
-  toggleTask: (taskId: string) => void;
+  // removeTask: (taskId: string) => void;
+  // toggleTask: (taskId: string) => void;
   tasks: ITask[];
-  setTasks: (tasks: ITask[]) => void;
-  setCurrentTask: (task: ITask) => void;
+  // setTasks: (tasks: ITask[]) => void;
+  // setCurrentTask: (task: ITask) => void;
 }
 
 function TodoTaskItem({
   task,
-  removeTask,
-  toggleTask,
+  // removeTask,
+  // toggleTask,
   tasks,
-  setTasks,
-  setCurrentTask,
+  // setTasks,
+  // setCurrentTask,
 }: TodoTaskItemProps) {
   const [taskName, setTaskName] = useState(task.taskName);
   const refFirst = useRef<HTMLHeadingElement>(null);
@@ -89,7 +89,7 @@ function TodoTaskItem({
           {categoryTask}
           <IconButton
             title="Edit"
-            onClick={saveTaskEdit}
+            // onClick={saveTaskEdit}
             colorScheme="teal"
             aria-label="Call Segun"
             size="sm"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Select,
   Flex,
@@ -13,13 +13,15 @@ import {
   Button,
   Input,
   useDisclosure,
-} from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
-import DatePicker from "react-datepicker";
-import format from "date-fns/format";
+} from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
+import DatePicker from 'react-datepicker';
+import format from 'date-fns/format';
 
-import "react-datepicker/dist/react-datepicker.css";
-import "./NewTaskForm.scss";
+import 'react-datepicker/dist/react-datepicker.css';
+import './NewTaskForm.scss';
+import { useAppDispatch } from '../../hooks/redux-hook';
+import { createNewTask } from '../../slices/tasksSlice';
 
 interface NewTaskFormProps {
   updateTaskBuff: (
@@ -29,21 +31,19 @@ interface NewTaskFormProps {
     category: string,
     description: string,
     deadline: string | null,
-    creationDate: string[]
+    creationDate: string[],
   ) => void;
 }
 
 function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
-  const [taskNameInput, setTaskNameInput] = useState("");
-  const [taskDescription, setTaskDescription] = useState("");
-  const [optionCategory, setOptionCategory] = useState("");
+  const dispatch = useAppDispatch();
+
+  const [taskNameInput, setTaskNameInput] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
+  const [optionCategory, setOptionCategory] = useState('');
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {
-    isOpen: isOpenDatePicker,
-    onOpen: onOpenDatePicker,
-    onClose: onCloseDatePicker,
-  } = useDisclosure();
+  const { isOpen: isOpenDatePicker, onOpen: onOpenDatePicker, onClose: onCloseDatePicker } = useDisclosure();
 
   const [startDate, setStartDate] = useState<Date>();
 
@@ -53,19 +53,21 @@ function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
   };
 
   function createTask() {
-    updateTaskBuff(
-      Math.random().toString(36).substring(2, 9),
-      taskNameInput,
-      false,
-      optionCategory,
-      taskDescription,
-      startDate ? format(startDate, "dd-MM-yyyy").replace(/-/g, ".") : null,
-      new Date().toLocaleString().split(", ")
+    dispatch(
+      createNewTask({
+        id: Math.random().toString(36).substring(2, 9),
+        taskName: taskNameInput,
+        complete: false,
+        category: optionCategory,
+        description: taskDescription,
+        deadline: startDate ? format(startDate, 'dd-MM-yyyy').replace(/-/g, '.') : null,
+        creationDate: new Date().toLocaleString().split(', '),
+      }),
     );
 
-    setTaskNameInput("");
-    setOptionCategory("");
-    setTaskDescription("");
+    setTaskNameInput('');
+    setOptionCategory('');
+    setTaskDescription('');
     onClose();
   }
 
@@ -75,21 +77,14 @@ function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
   };
 
   const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       createTask();
     }
   };
 
   return (
     <>
-      <IconButton
-        borderRadius="50%"
-        width="40px"
-        height="40px"
-        onClick={onOpen}
-        icon={<AddIcon />}
-        aria-label=""
-      />
+      <IconButton borderRadius="50%" width="40px" height="40px" onClick={onOpen} icon={<AddIcon />} aria-label="" />
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -143,11 +138,8 @@ function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
                   <option value="other">Other</option>
                 </Select>
 
-                <Button
-                  className="example-custom-input btn-select"
-                  onClick={onOpenDatePicker}
-                >
-                  {startDate ? format(startDate, "dd-MM-yyyy") : "No deadline"}
+                <Button className="example-custom-input btn-select" onClick={onOpenDatePicker}>
+                  {startDate ? format(startDate, 'dd-MM-yyyy') : 'No deadline'}
                 </Button>
 
                 <Modal isOpen={isOpenDatePicker} onClose={onCloseDatePicker}>
@@ -157,11 +149,7 @@ function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
                     <ModalCloseButton />
                     <ModalBody pb="0px">
                       <Flex justifyContent="center" minHeight="280px">
-                        <DatePicker
-                          selected={startDate}
-                          onChange={handleChangeDatePicker}
-                          inline
-                        />
+                        <DatePicker selected={startDate} onChange={handleChangeDatePicker} inline />
                       </Flex>
                     </ModalBody>
                     <ModalFooter>

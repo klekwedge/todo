@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import { Flex, Heading } from "@chakra-ui/react";
-import useScrollbar from "../../hooks/useScrollbar";
-import "./TaskList.scss";
-import TodoTaskItem from "../TodoTaskItem/TodoTaskItem";
-import { ITask } from "../../types/types";
+import { useState, useEffect, useRef } from 'react';
+import { Flex, Heading } from '@chakra-ui/react';
+import useScrollbar from '../../hooks/useScrollbar';
+import './TaskList.scss';
+import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
+import { ITask } from '../../types/types';
+import { useAppSelector } from '../../hooks/redux-hook';
 
 interface TodoMainProps {
   setCurrentTask: (currentTask: ITask) => void;
@@ -12,53 +13,45 @@ interface TodoMainProps {
 }
 
 function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
-  const [tasks, setTasks] = useState<ITask[]>([]);
+  // const [tasks, setTasks] = useState<ITask[]>([]);
+  const { tasks } = useAppSelector((state) => state.tasks);
 
   const todoListScrollWrapper = useRef(null);
   const hasScroll = tasks.length > 6;
 
   useEffect(() => {
-    if (taskBuff && taskBuff.taskName) {
-      const newTask: ITask = {
-        id: taskBuff.id,
-        taskName: taskBuff.taskName,
-        complete: taskBuff.complete,
-        category: taskBuff.category,
-        description: taskBuff.description,
-        deadline: taskBuff.deadline,
-        creationDate: taskBuff.creationDate,
-      };
+    // if (taskBuff && taskBuff.taskName) {
+    //   const newTask: ITask = {
+    //     id: taskBuff.id,
+    //     taskName: taskBuff.taskName,
+    //     complete: taskBuff.complete,
+    //     category: taskBuff.category,
+    //     description: taskBuff.description,
+    //     deadline: taskBuff.deadline,
+    //     creationDate: taskBuff.creationDate,
+    //   };
 
-      setTasks([...tasks, newTask]);
-    }
+    //   setTasks([...tasks, newTask]);
+    // }
   }, [taskBuff]);
 
-  const removeTask = (taskId: string) => {
-    setTasks([...tasks.filter((task) => task.id !== taskId)]);
-  };
+  // const removeTask = (taskId: string) => {
+  //   setTasks([...tasks.filter((task) => task.id !== taskId)]);
+  // };
 
-  const toggleTask = (taskId: string) => {
-    setTasks([
-      ...tasks.map((task) =>
-        task.id === taskId ? { ...task, complete: !task.complete } : { ...task }
-      ),
-    ]);
+  // const toggleTask = (taskId: string) => {
+  //   setTasks([...tasks.map((task) => (task.id === taskId ? { ...task, complete: !task.complete } : { ...task }))]);
 
-    if (currentTask && currentTask.id === taskId) {
-      setCurrentTask({ ...currentTask, complete: !currentTask.complete });
-    }
-  };
+  //   if (currentTask && currentTask.id === taskId) {
+  //     setCurrentTask({ ...currentTask, complete: !currentTask.complete });
+  //   }
+  // };
 
   useScrollbar(todoListScrollWrapper, hasScroll);
 
   return (
     <section className="task-list">
-      <Flex
-        borderBottom="1px solid rgba(0, 0, 0, 0.3)"
-        pb="10px"
-        justifyContent="space-between"
-        mb="20px"
-      >
+      <Flex borderBottom="1px solid rgba(0, 0, 0, 0.3)" pb="10px" justifyContent="space-between" mb="20px">
         <Heading as="h1" fontWeight="500" fontSize="32px">
           Your tasks
         </Heading>
@@ -78,8 +71,8 @@ function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
 
       <div
         style={{
-          height: hasScroll ? "475px" : "auto",
-          minHeight: "475px",
+          height: hasScroll ? '475px' : 'auto',
+          minHeight: '475px',
         }}
         ref={todoListScrollWrapper}
       >
@@ -90,10 +83,10 @@ function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
                 <TodoTaskItem
                   task={task}
                   key={task.id}
-                  toggleTask={toggleTask}
-                  removeTask={removeTask}
+                  // toggleTask={toggleTask}
+                  // removeTask={removeTask}
                   tasks={tasks}
-                  setTasks={setTasks}
+                  // setTasks={setTasks}
                   setCurrentTask={setCurrentTask}
                 />
               ))
