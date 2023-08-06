@@ -2,7 +2,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import TasksState from './tasksSlice.types';
 
-
 const initialState: TasksState = {
     tasks: [],
     currentTask: null
@@ -22,12 +21,8 @@ const tasksSlice = createSlice({
             state.tasks = [...state.tasks.filter((task) => task.id !== action.payload)];
         },
         chooseTask: (state, action) => {
-            console.log(action.payload);
-            state.currentTask = state.tasks.find(task => task.id === action.payload)
+            state.currentTask = state.tasks.find(task => task.id === action.payload) || null
         },
-    },
-    extraReducers: (builder) => {
-
     },
 });
 

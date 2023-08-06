@@ -49,7 +49,7 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
             title="Edit"
             onClick={() => edit(task.id)}
             colorScheme="teal"
-            aria-label="Call Segun"
+            aria-label=""
             size="sm"
             icon={<EditIcon />}
           />
