@@ -6,35 +6,12 @@ import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
 import { ITask } from '../../types/types';
 import { useAppSelector } from '../../hooks/redux-hook';
 
-interface TodoMainProps {
-  setCurrentTask: (currentTask: ITask) => void;
-  taskBuff: ITask | undefined;
-  currentTask: ITask | undefined;
-}
 
-function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
-  // const [tasks, setTasks] = useState<ITask[]>([]);
+function TodoMain() {
   const { tasks } = useAppSelector((state) => state.tasks);
 
   const todoListScrollWrapper = useRef(null);
   const hasScroll = tasks.length > 6;
-
-  useEffect(() => {
-    // if (taskBuff && taskBuff.taskName) {
-    //   const newTask: ITask = {
-    //     id: taskBuff.id,
-    //     taskName: taskBuff.taskName,
-    //     complete: taskBuff.complete,
-    //     category: taskBuff.category,
-    //     description: taskBuff.description,
-    //     deadline: taskBuff.deadline,
-    //     creationDate: taskBuff.creationDate,
-    //   };
-
-    //   setTasks([...tasks, newTask]);
-    // }
-  }, [taskBuff]);
-
 
   useScrollbar(todoListScrollWrapper, hasScroll);
 
@@ -72,11 +49,6 @@ function TodoMain({ setCurrentTask, taskBuff, currentTask }: TodoMainProps) {
                 <TodoTaskItem
                   task={task}
                   key={task.id}
-                  // toggleTask={toggleTask}
-                  // removeTask={removeTask}
-                  tasks={tasks}
-                  // setTasks={setTasks}
-                  setCurrentTask={setCurrentTask}
                 />
               ))
               .sort((el) => (el.props.task.complete ? 1 : -1))

@@ -7,7 +7,6 @@ import { useAppDispatch } from '../../hooks/redux-hook';
 import { removeTask, toggleTask } from '../../slices/tasksSlice';
 import './TodoTaskItem.scss';
 
-
 interface TodoTaskItemProps {
   task: ITask;
 }
@@ -15,7 +14,7 @@ interface TodoTaskItemProps {
 function TodoTaskItem({ task }: TodoTaskItemProps) {
   const dispatch = useAppDispatch();
 
-  const edit = function () {};
+  const edit = () => {};
 
   const toggle = (taskId: string) => {
     dispatch(toggleTask(taskId));

@@ -23,19 +23,7 @@ import './NewTaskForm.scss';
 import { useAppDispatch } from '../../hooks/redux-hook';
 import { createNewTask } from '../../slices/tasksSlice';
 
-interface NewTaskFormProps {
-  updateTaskBuff: (
-    id: string,
-    taskName: string,
-    complete: boolean,
-    category: string,
-    description: string,
-    deadline: string | null,
-    creationDate: string[],
-  ) => void;
-}
-
-function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
+function NewTaskForm() {
   const dispatch = useAppDispatch();
 
   const [taskNameInput, setTaskNameInput] = useState('');
@@ -85,7 +73,6 @@ function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
   return (
     <>
       <IconButton borderRadius="50%" width="40px" height="40px" onClick={onOpen} icon={<AddIcon />} aria-label="" />
-
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -121,11 +108,6 @@ function NewTaskForm({ updateTaskBuff }: NewTaskFormProps) {
                   placeholder="Enter a description of your task"
                 />
               </Flex>
-
-              {/* <label className="new-task__label">
-                  What do you need to do?
-                </label> */}
-
               <Flex gap="10px">
                 <Select
                   placeholder="Select category"
