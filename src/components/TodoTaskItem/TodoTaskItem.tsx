@@ -16,11 +16,12 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
 
   const edit = (taskId: string) => {};
 
-  const toggle = (taskId: string) => {
+  const toggle = (e: React.ChangeEvent, taskId: string) => {
     dispatch(toggleTask(taskId));
   };
 
-  const remove = (taskId: string) => {
+  const remove = (e: React.MouseEvent, taskId: string) => {
+    e.stopPropagation()
     dispatch(removeTask(taskId));
   };
 
@@ -38,7 +39,7 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">
         <Flex gap="10px" alignItems="center">
-          <Checkbox size="lg" title="Done" onChange={() => toggle(task.id)} />
+          <Checkbox size="lg" title="Done" onChange={(e) => toggle(e, task.id)} />
           <h3 className="task__name">{task.taskName}</h3>
         </Flex>
 
@@ -56,7 +57,7 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
           <IconButton
             title="Delete task"
             colorScheme="blue"
-            onClick={() => remove(task.id)}
+            onClick={(e) => remove(e, task.id)}
             size="sm"
             icon={<DeleteIcon />}
             aria-label=""
