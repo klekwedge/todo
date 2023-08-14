@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Flex, Heading } from '@chakra-ui/react';
 import useScrollbar from '../../hooks/useScrollbar';
 import './TaskList.scss';
 import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
-import { ITask } from '../../types/types';
 import { useAppSelector } from '../../hooks/redux-hook';
 
 

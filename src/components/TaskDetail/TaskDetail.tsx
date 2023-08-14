@@ -45,7 +45,7 @@ function TaskDetail() {
 
           <Heading as="h4" fontWeight="400" fontSize="16px">
             <span>Task creation date:</span> {currentTask.creationDate[0].slice(0, -5)}.
-            {currentTask.creationDate[0].slice(8)}({currentTask.creationDate[1]})
+            {currentTask.creationDate[0].slice(8)} ({currentTask.creationDate[1]})
           </Heading>
         </Flex>
       ) : (
