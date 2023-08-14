@@ -1,8 +1,7 @@
 import { Flex, Heading, Badge, Button } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
-import useCategoryTask from '../../hooks/useCategoryTask';
-import './TaskDetail.scss';
 import { useAppSelector } from '../../hooks/redux-hook';
+import './TaskDetail.scss';
 
 function TaskDetail() {
   const { currentTask } = useAppSelector((state) => state.tasks);
