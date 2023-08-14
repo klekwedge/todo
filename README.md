@@ -1,40 +1,40 @@
 # Todo
 
-You can also read this README in [русский](https://github.com/klekwedge/todo/blob/main/README.RU.md)
+Вы также можете прочитать этот README на [английском](https://github.com/klekwedge/todo/blob/main/README.EN.md)
 
-## Table of contents
+## Оглавление
 
-- [Deployment instructions](#deployment-instructions)
-- [Overview](#overview)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-- [Author](#author)
+- [Инструкции по развертыванию](#инструкции-по-развертыванию)
+- [Обзор](#обзор)
+  - [Скриншот](#скриншот)
+  - [Ссылки](#ссылки)
+- [Мой процесс](#мой-процесс)
+  - [Стек](#стек)
+  - [Что я узнал](#что-я-узнал)
+- [Автор](#автор)
 
-## Deployment instructions
+## Инструкции по развертыванию
 
-**To run the project, you need to have [npm](https://nodejs.org/en/) and [git](https://git-scm.com/downloads) installed on your computer**
+**Для запуска проекта на вашем компьютере должны быть установлены [npm](https://nodejs.org/en/) и [git](https://git-scm.com/downloads)**
 
-1. Make a clone of this repository ```git clone https://github.com/klekwedge/todo.git```
-2. Install all required npm packages with ```npm i```
-3. Run the project with the command ```npm run dev```
+1. Сделайте клон этого репозитория ```git clone https://github.com/klekwedge/todo.git```
+2. Установите все необходимые пакеты npm с помощью ```npm i```
+3. Запустите проект командой ```npm run dev```
 
-## Overview
+## Обзор
 
-### Screenshot
+### Скриншот
 
-![Main screen](./preview/screenshot.png)
+![Главный экран](./preview/screenshot.png)
 
-### Links
+### Ссылки
 
-- [Solution URL](https://github.com/klekwedge/todo)
-- [Live Site URL](https://klekwedge-todo.vercel.app/)
+- [Ссылка на проект](https://github.com/klekwedge/todo)
+- [Деплой](https://klekwedge-todo.vercel.app/)
 
-## My process
+## Мой процесс
 
-### Built with
+### Стек
 
 - React
 - SCSS
@@ -44,13 +44,12 @@ You can also read this README in [русский](https://github.com/klekwedge/t
 - React datepicker
 - Vite
 
+### Что я узнал
 
-### What I learned
+Создал свое первое React-приложение, научился отображать список в JSX-разметке, добавлять, удалять, изменять задачу в списке дел, передавать пропсы, научился использовать хуки. Я понял, как организовать структуру проекта React, научился менять состояние компонентов и реагировать на изменения, использовать библиотеку UI-компонентов.
 
-Created my first React application, learned how to display a list in JSX markup, add, delete, change a task in the to-do list, pass props, learned how to use hooks. I understood how to organize the React project structure, learned how to change the state of the components and react to changes, use the library of UI components.
+## Автор
 
-## Author
-
-- [Website](https://klekwedge-cv.vercel.app/)
+- [Вебсайт](https://klekwedge-cv.vercel.app/)
 - [Linkedin](https://www.linkedin.com/in/klekwedge/)
 - [Facebook](https://www.facebook.com/klekwedge)
