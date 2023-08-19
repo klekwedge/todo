@@ -9,6 +9,8 @@ function TaskDetail() {
     return null;
   }
 
+  console.log(typeof currentTask.deadline);
+
   return (
     <section className="task-detail">
       <Title
@@ -29,7 +31,7 @@ function TaskDetail() {
           </Title>
 
           <Title order={4} mb="5px" fw="400" fz="18px">
-            <span className='_highlight'>Deadline:</span> {currentTask.deadline ? currentTask.deadline.toLocaleDateString() : 'No deadline'}
+            <span className='_highlight'>Deadline:</span> {currentTask.deadline ? '' : 'No deadline'}
           </Title>
 
           <Title order={4} mb="5px" fw="400" fz="18px">
