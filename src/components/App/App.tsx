@@ -9,7 +9,7 @@ import './App.scss';
 
 function App() {
   return (
-    <Flex flexDirection="column" minHeight="100%">
+    <Flex className='app' flexDirection="column" minHeight="100%">
       <Header>
         <NewTaskForm />
         {/* <BackgroundSelection /> */}
@@ -17,9 +17,9 @@ function App() {
       </Header>
       <main className="todo">
         <TaskList />
-        <Flex flexDirection="column" gap="30px" minWidth="450px">
+        {/* <Flex flexDirection="column" gap="30px" minWidth="450px">
           <TaskDetail />
-        </Flex>
+        </Flex> */}
       </main>
     </Flex>
   );

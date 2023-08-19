@@ -4,17 +4,27 @@
   box-sizing: border-box;
 }
 
+#resize {
+  position: absolute;
+  top:0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  z-index: 1;
+  cursor: e-resize;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+}
+
 body {
   display: flex;
   justify-content: center;
   background: whitesmoke;
   font-size: 1.1rem;
-  font-family: "Quicksand", sans-serif;
-}
-
-.todo {
-  display: flex;
-  width: 1000px;
+  font-family: "Roboto", sans-serif;
 }
 
 /*-------------------------------------------------------------*/
