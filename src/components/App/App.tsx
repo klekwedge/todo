@@ -12,7 +12,7 @@ function App() {
     <Flex flexDirection="column" minHeight="100%">
       <Header>
         <NewTaskForm />
-        <BackgroundSelection />
+        {/* <BackgroundSelection /> */}
         <ToggleTheme />
       </Header>
       <main className="todo">
