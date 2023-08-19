@@ -26,7 +26,9 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
   };
 
   const choose = (e: React.MouseEvent, taskId: string) => {
-    if (e.target.tagName === 'DIV') {
+    const target = e.target as HTMLElement;
+
+    if (target === 'DIV') {
       dispatch(chooseTask(taskId));
     }
   };

@@ -99,7 +99,6 @@ function NewTaskForm() {
                   </button>
                 </Flex>
               </Flex>
-
               <Flex flexDirection="column" gap="5px">
                 <h3>Description of your task</h3>
                 <Textarea
