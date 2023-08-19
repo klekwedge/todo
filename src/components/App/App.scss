@@ -2,16 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-#resize {
-  position: absolute;
-  top:0;
-  right: 0;
-  width: 5px;
-  height: 100%;
-  z-index: 1;
-  cursor: e-resize;
+  outline: none;
 }
 
 .app {
@@ -19,12 +10,29 @@
   height: 100vh;
 }
 
+.todo {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+#resize {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  z-index: 1;
+  cursor: e-resize;
+}
+
 body {
   display: flex;
   justify-content: center;
   background: whitesmoke;
   font-size: 1.1rem;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 /*-------------------------------------------------------------*/
@@ -55,7 +63,7 @@ body.dark .react-datepicker__day:hover {
   color: black;
 }
 
-body.dark option{
+body.dark option {
   background: black;
 }
 // body.dark {

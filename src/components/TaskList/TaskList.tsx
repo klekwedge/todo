@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useEffect, useRef } from 'react';
 import { Flex, Heading } from '@chakra-ui/react';
 import useScrollbar from '../../hooks/useScrollbar';
@@ -58,10 +59,10 @@ function TodoMain() {
   document.addEventListener('mouseup', stopStretch);
   document.addEventListener('mousemove', moveBlock);
 
-  const todoListScrollWrapper = useRef(null);
-  const hasScroll = tasks.length > 6;
+  // const todoListScrollWrapper = useRef(null);
+  // const hasScroll = tasks.length > 6;
 
-  useScrollbar(todoListScrollWrapper, hasScroll);
+  // useScrollbar(todoListScrollWrapper, hasScroll);
 
   return (
     <section className="task-list" ref={taskListRef}>
@@ -84,11 +85,11 @@ function TodoMain() {
       </Flex>
 
       <div
-        style={{
-          height: hasScroll ? '475px' : 'auto',
-          minHeight: '475px',
-        }}
-        ref={todoListScrollWrapper}
+        // style={{
+        //   height: hasScroll ? '475px' : 'auto',
+        //   minHeight: '475px',
+        // }}
+        // ref={todoListScrollWrapper}
       >
         <ul className="todo__task-list">
           {tasks.length > 0 ? (
