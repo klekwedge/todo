@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { Flex, Checkbox, IconButton } from '@chakra-ui/react';
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { Flex, Checkbox, IconButton, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import { EditIcon, DeleteIcon, SettingsIcon } from '@chakra-ui/icons';
 import useCategoryTask from '../../hooks/useCategoryTask';
 import { ITask } from '../../types/types';
 import { useAppDispatch } from '../../hooks/redux-hook';
@@ -45,23 +45,17 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
 
         <Flex alignItems="center" gap="5px">
           {categoryTask}
-          <IconButton
-            title="Edit"
-            onClick={() => edit(task.id)}
-            colorScheme="teal"
-            aria-label=""
-            size="sm"
-            icon={<EditIcon />}
-          />
-
-          <IconButton
-            title="Delete task"
-            colorScheme="blue"
-            onClick={(e) => remove(e, task.id)}
-            size="sm"
-            icon={<DeleteIcon />}
-            aria-label=""
-          />
+          <Menu>
+            <MenuButton as={IconButton} aria-label="Options" icon={<SettingsIcon />} variant="outline" />
+            <MenuList>
+              <MenuItem icon={<EditIcon />} onClick={() => edit(task.id)}>
+                Edit task
+              </MenuItem>
+              <MenuItem icon={<DeleteIcon />} onClick={(e) => remove(e, task.id)}>
+                Delete task
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </Flex>
       </Flex>
     </li>
