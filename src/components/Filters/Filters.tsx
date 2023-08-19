@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Flex, Heading, Button } from '@chakra-ui/react';
+// import { Flex, Heading, Button } from '@chakra-ui/react';
 import './Filters.scss';
 import FilterButton from '../FilterButton/FilterButton';
 
@@ -10,7 +10,7 @@ function Filters() {
 
   return (
     <section className="filters">
-      <Heading as="h2" fontWeight="400" mb="10px" fontSize="32px">
+      {/* <Heading as="h2" fontWeight="400" mb="10px" fontSize="32px">
         Filters
       </Heading>
 
@@ -94,7 +94,7 @@ function Filters() {
         </Flex>
       </Flex>
 
-      <Button className="btn-select">Select filters</Button>
+      <Button className="btn-select">Select filters</Button> */}
     </section>
   );
 }
