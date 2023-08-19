@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useEffect, useRef } from 'react';
-import { Flex, Heading } from '@chakra-ui/react';
+import { Flex, Title } from '@mantine/core';
+// import { Flex, Heading } from '@chakra-ui/react';
 import useScrollbar from '../../hooks/useScrollbar';
 import './TaskList.scss';
 import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
@@ -66,30 +67,30 @@ function TodoMain() {
 
   return (
     <section className="task-list" ref={taskListRef}>
-      <Flex borderBottom="1px solid rgba(0, 0, 0, 0.3)" pb="10px" justifyContent="space-between" mb="20px">
-        <Heading as="h1" fontWeight="500" fontSize="32px">
+      <Flex pb="10px" justify="space-between" mb="20px">
+        <Title order={2} fw="500" fz="32px">
           Your tasks
-        </Heading>
+        </Title>
 
-        <Flex alignItems="flex-end" gap="10px" fontWeight="400">
-          <Heading as="h2" size="sm" fontWeight="400">
+        <Flex align="flex-end" gap="10px" fw="400">
+          <Title order={3} size="sm" fw="400">
             All: {tasks.length}
-          </Heading>
-          <Heading as="h2" size="sm" fontWeight="400">
+          </Title>
+          <Title order={3} size="sm" fw="400">
             Done: {tasks.filter((task) => task.complete === true).length}
-          </Heading>
-          <Heading as="h2" size="sm" fontWeight="400">
+          </Title>
+          <Title order={3} size="sm" fw="400">
             Active: {tasks.filter((task) => task.complete !== true).length}
-          </Heading>
+          </Title>
         </Flex>
       </Flex>
 
       <div
-        // style={{
-        //   height: hasScroll ? '475px' : 'auto',
-        //   minHeight: '475px',
-        // }}
-        // ref={todoListScrollWrapper}
+      // style={{
+      //   height: hasScroll ? '475px' : 'auto',
+      //   minHeight: '475px',
+      // }}
+      // ref={todoListScrollWrapper}
       >
         <ul className="todo__task-list">
           {tasks.length > 0 ? (
