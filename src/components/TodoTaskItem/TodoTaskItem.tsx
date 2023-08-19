@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { Flex, Checkbox, IconButton, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import { Flex, Checkbox, Menu, ActionIcon } from '@mantine/core';
 import { EditIcon, DeleteIcon, SettingsIcon } from '@chakra-ui/icons';
 import useCategoryTask from '../../hooks/useCategoryTask';
 import { ITask } from '../../types/types';
@@ -28,7 +28,7 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
   const choose = (e: React.MouseEvent, taskId: string) => {
     const target = e.target as HTMLElement;
 
-    if (target === 'DIV') {
+    if (target.tagName === 'DIV') {
       dispatch(chooseTask(taskId));
     }
   };
@@ -41,24 +41,28 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
       className={task.complete ? 'todo__item task todo__item_complete' : 'todo__item task'}
       onClick={(e) => choose(e, task.id)}
     >
-      <Flex gap="20px" justifyContent="space-between" mb="5px">
-        <Flex gap="10px" alignItems="center">
-          <Checkbox size="lg" title="Done" onChange={(e) => toggle(e, task.id)} />
+      <Flex gap="20px" justify="space-between" mb="5px">
+        <Flex gap="10px" align="center">
+          <Checkbox size="sm" title="Done" onChange={(e) => toggle(e, task.id)} />
           <h3 className="task__name">{task.taskName}</h3>
         </Flex>
 
-        <Flex alignItems="center" gap="5px">
+        <Flex align="center" gap="5px">
           {categoryTask}
           <Menu>
-            <MenuButton as={IconButton} aria-label="Options" icon={<SettingsIcon />} variant="outline" />
-            <MenuList>
-              <MenuItem icon={<EditIcon />} onClick={() => edit(task.id)}>
+            <Menu.Target>
+              <ActionIcon>
+                <SettingsIcon />
+              </ActionIcon>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item icon={<EditIcon />} onClick={() => edit(task.id)}>
                 Edit task
-              </MenuItem>
-              <MenuItem icon={<DeleteIcon />} onClick={(e) => remove(e, task.id)}>
+              </Menu.Item>
+              <Menu.Item icon={<DeleteIcon />} onClick={(e) => remove(e, task.id)}>
                 Delete task
-              </MenuItem>
-            </MenuList>
+              </Menu.Item>
+            </Menu.Dropdown>
           </Menu>
         </Flex>
       </Flex>
