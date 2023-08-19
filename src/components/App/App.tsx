@@ -17,9 +17,7 @@ function App() {
       </Header>
       <main className="todo">
         <TaskList />
-        {/* <Flex flexDirection="column" gap="30px" minWidth="450px">
-          <TaskDetail />
-        </Flex> */}
+        <TaskDetail />
       </main>
     </Flex>
   );

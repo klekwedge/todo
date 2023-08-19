@@ -1,13 +1,27 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Flex, Heading } from '@chakra-ui/react';
 import useScrollbar from '../../hooks/useScrollbar';
 import './TaskList.scss';
 import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
-import { useAppSelector } from '../../hooks/redux-hook';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hook';
+import { setTasks } from '../../slices/tasksSlice';
 
 function TodoMain() {
   const { tasks } = useAppSelector((state) => state.tasks);
+  const dispatch = useAppDispatch();
   const taskListRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const localTasks = JSON.parse(localStorage.getItem('tasks') || '');
+
+    if (localTasks) {
+      dispatch(setTasks(localTasks));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   let downed: boolean;
   let x: number;
