@@ -25,8 +25,10 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
     dispatch(removeTask(taskId));
   };
 
-  const choose = (taskId: string) => {
-    dispatch(chooseTask(taskId));
+  const choose = (e: React.MouseEvent, taskId: string) => {
+    if (e.target.tagName === 'DIV') {
+      dispatch(chooseTask(taskId));
+    }
   };
 
   const categoryTask = useCategoryTask(task.category);
@@ -35,7 +37,7 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
     <li
       key={task.id}
       className={task.complete ? 'todo__item task todo__item_complete' : 'todo__item task'}
-      onClick={() => choose(task.id)}
+      onClick={(e) => choose(e, task.id)}
     >
       <Flex gap="20px" justifyContent="space-between" mb="5px">
         <Flex gap="10px" alignItems="center">
