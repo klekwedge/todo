@@ -5,6 +5,12 @@
   outline: none;
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+
 .app {
   width: 100vw;
   height: 100vh;
@@ -27,63 +33,4 @@
   height: 100%;
   z-index: 1;
   cursor: e-resize;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  background: whitesmoke;
-  font-size: 1.1rem;
-  font-family: 'Roboto', sans-serif;
-}
-
-/*-------------------------------------------------------------*/
-/*-----Dark Theme----------------------------------------------*/
-/*-------------------------------------------------------------*/
-
-body.dark * {
-  color: white;
-}
-body.dark section {
-  background: black;
-}
-
-body.dark .btn-select {
-  border: 1px solid white;
-  background: black;
-}
-
-body.dark .react-datepicker__month-container,
-body.dark .react-datepicker__month,
-body.dark .react-datepicker__header {
-  background: black;
-  color: white;
-}
-
-body.dark .react-datepicker__day:hover {
-  background: white;
-  color: black;
-}
-
-body.dark option {
-  background: black;
-}
-// body.dark {
-//   box-shadow: 0px 0px 5px 5px gray;
-// }
-
-// .background {
-//   opacity: 0;
-//   width: 100%;
-//   height: 100%;
-//   position: fixed;
-//   transition: opacity 500ms;
-//   background-image: radial-gradient(circle at top, #353175 20%, #111);
-// }
-// .background.dark {
-//   opacity: 1;
-// }
-
-#root {
-  overflow: hidden;
 }

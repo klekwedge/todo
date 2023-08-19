@@ -12,6 +12,10 @@
   cursor: pointer;
 }
 
+.task__name {
+  font-weight: 400;
+}
+
 .todo__item_complete {
   text-decoration: line-through;
 }

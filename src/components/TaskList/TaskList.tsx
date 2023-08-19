@@ -67,7 +67,7 @@ function TodoMain() {
   return (
     <section className="task-list" ref={taskListRef}>
       <Flex pb="10px" justify="space-between" mb="20px">
-        <Title order={2} fw="500" fz="32px">
+        <Title order={2} fw="400" fz="32px">
           Your tasks
         </Title>
 

@@ -4,6 +4,6 @@ export interface ITask {
   complete: boolean;
   category: string;
   description: string;
-  deadline: string | null;
+  deadline: Date | null;
   creationDate: string[];
 }
