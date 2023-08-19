@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useEffect, useRef } from 'react';
 import { Flex, Title } from '@mantine/core';
-// import { Flex, Heading } from '@chakra-ui/react';
 import useScrollbar from '../../hooks/useScrollbar';
 import './TaskList.scss';
 import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hook';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { setTasks } from '../../slices/tasksSlice';
 
 function TodoMain() {

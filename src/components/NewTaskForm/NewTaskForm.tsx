@@ -1,28 +1,10 @@
 import React, { useState } from 'react';
-import {
-  Select,
-  Flex,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  IconButton,
-  Button,
-  Input,
-  Textarea,
-  useDisclosure,
-} from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
-import DatePicker from 'react-datepicker';
-import format from 'date-fns/format';
-
-import 'react-datepicker/dist/react-datepicker.css';
-import './NewTaskForm.scss';
-import { useAppDispatch } from '../../hooks/redux-hook';
+import { useDisclosure } from '@mantine/hooks';
+import { Flex, Modal, Textarea, Select, Button, Input, ActionIcon } from '@mantine/core';
+import { BsPlusCircle } from 'react-icons/bs';
+import { useAppDispatch } from '../../hooks/useRedux';
 import { createNewTask } from '../../slices/tasksSlice';
+import './NewTaskForm.scss';
 
 function NewTaskForm() {
   const dispatch = useAppDispatch();
@@ -31,15 +13,14 @@ function NewTaskForm() {
   const [taskDescription, setTaskDescription] = useState('');
   const [optionCategory, setOptionCategory] = useState('');
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen: isOpenDatePicker, onOpen: onOpenDatePicker, onClose: onCloseDatePicker } = useDisclosure();
+  const [opened, { open, close }] = useDisclosure(false);
 
   const [startDate, setStartDate] = useState<Date>();
 
-  const handleChangeDatePicker = (e: Date) => {
-    onCloseDatePicker();
-    setStartDate(e);
-  };
+  // const handleChangeDatePicker = (e: Date) => {
+  //   // onCloseDatePicker();
+  //   setStartDate(e);
+  // };
 
   function createTask() {
     dispatch(
@@ -49,7 +30,9 @@ function NewTaskForm() {
         complete: false,
         category: optionCategory,
         description: taskDescription,
-        deadline: startDate ? format(startDate, 'dd-MM-yyyy').replace(/-/g, '.') : null,
+        deadline:
+          //  startDate ? format(startDate, 'dd-MM-yyyy').replace(/-/g, '.') :
+          null,
         creationDate: new Date().toLocaleString().split(', '),
       }),
     );
@@ -57,7 +40,7 @@ function NewTaskForm() {
     setTaskNameInput('');
     setOptionCategory('');
     setTaskDescription('');
-    onClose();
+    close();
   }
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -73,58 +56,58 @@ function NewTaskForm() {
 
   return (
     <>
-      <IconButton borderRadius="50%" width="40px" height="40px" onClick={onOpen} icon={<AddIcon />} aria-label="" />
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Create New Task</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <form className="new-task" onSubmit={handleSubmit}>
-              <Flex flexDirection="column" gap="5px">
-                <h3>New task</h3>
-                <Flex gap="10px">
-                  <Input
-                    type="text"
-                    value={taskNameInput}
-                    required
-                    minLength={3}
-                    autoFocus
-                    placeholder="Enter the name of your task"
-                    onChange={(e) => setTaskNameInput(e.target.value)}
-                    onKeyDown={handleKeyPress}
-                  />
-                  <button type="submit" className="new-task__button">
-                    Add
-                  </button>
-                </Flex>
-              </Flex>
-              <Flex flexDirection="column" gap="5px">
-                <h3>Description of your task</h3>
-                <Textarea
-                  value={taskDescription}
-                  onChange={(e) => setTaskDescription(e.target.value)}
-                  placeholder="Enter a description of your task"
-                  resize="vertical"
-                />
-              </Flex>
-              <Flex gap="10px">
-                <Select
-                  placeholder="Select category"
-                  onChange={(e) => setOptionCategory(e.target.value)}
-                  value={optionCategory}
-                >
-                  <option value="personal">Personal</option>
-                  <option value="work">Work</option>
-                  <option value="study">Study</option>
-                  <option value="other">Other</option>
-                </Select>
+      <ActionIcon size="2.5rem" radius="50%" onClick={open}>
+        <BsPlusCircle size="20px" />
+      </ActionIcon>
+      <Modal.Root opened={opened} onClose={close} centered title="Create New Task">
+        <Modal.Overlay />
+        <Modal.Content>21212121</Modal.Content>
+        {/* <form className="new-task" onSubmit={handleSubmit}>
+          <Flex direction="column" gap="5px">
+            <h3>New task</h3>
+            <Flex gap="10px">
+              <Input
+                type="text"
+                value={taskNameInput}
+                required
+                minLength={3}
+                autoFocus
+                placeholder="Enter the name of your task"
+                onChange={(e) => setTaskNameInput(e.target.value)}
+                onKeyDown={handleKeyPress}
+              />
+              <button type="submit" className="new-task__button">
+                Add
+              </button>
+            </Flex>
+          </Flex>
+          <Flex direction="column" gap="5px">
+            <h3>Description of your task</h3>
+            <Textarea
+              value={taskDescription}
+              onChange={(e) => setTaskDescription(e.target.value)}
+              placeholder="Enter a description of your task"
+              autosize
+            />
+          </Flex>
+          <Flex gap="10px">
+            <Select
+              placeholder="Select category"
+              // onChange={(e) => setOptionCategory(e.target.value)}
+              value={optionCategory}
+              data={[
+                { value: 'personal', label: 'Personal' },
+                { value: 'work', label: 'Work' },
+                { value: 'study', label: 'Study' },
+                { value: 'other', label: 'Other' },
+              ]}
+            />
 
-                <Button className="example-custom-input btn-select" onClick={onOpenDatePicker}>
-                  {startDate ? format(startDate, 'dd-MM-yyyy') : 'No deadline'}
-                </Button>
+            {/* <Button className="example-custom-input btn-select" onClick={onOpenDatePicker}>
+              {startDate ? format(startDate, 'dd-MM-yyyy') : 'No deadline'}
+            </Button> */}
 
-                <Modal isOpen={isOpenDatePicker} onClose={onCloseDatePicker}>
+        {/* <Modal isOpen={isOpenDatePicker} onClose={onCloseDatePicker}>
                   <ModalOverlay />
                   <ModalContent>
                     <ModalHeader>Choose deadline:</ModalHeader>
@@ -140,12 +123,10 @@ function NewTaskForm() {
                       </Button>
                     </ModalFooter>
                   </ModalContent>
-                </Modal>
-              </Flex>
-            </form>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+                </Modal> */}
+        {/* </Flex>
+        </form> */}
+      </Modal.Root>
     </>
   );
 }

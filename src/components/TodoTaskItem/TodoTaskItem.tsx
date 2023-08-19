@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { Flex, Checkbox, Menu, ActionIcon } from '@mantine/core';
-import { EditIcon, DeleteIcon, SettingsIcon } from '@chakra-ui/icons';
+import { BsPencilSquare, BsTrashFill, BsGearFill } from 'react-icons/bs';
 import useCategoryTask from '../../hooks/useCategoryTask';
 import { ITask } from '../../types/types';
-import { useAppDispatch } from '../../hooks/redux-hook';
+import { useAppDispatch } from '../../hooks/useRedux';
 import { chooseTask, removeTask, toggleTask } from '../../slices/tasksSlice';
 import './TodoTaskItem.scss';
 
@@ -52,14 +52,14 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
           <Menu>
             <Menu.Target>
               <ActionIcon>
-                <SettingsIcon />
+                <BsGearFill />
               </ActionIcon>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item icon={<EditIcon />} onClick={() => edit(task.id)}>
+              <Menu.Item icon={<BsPencilSquare />} onClick={() => edit(task.id)}>
                 Edit task
               </Menu.Item>
-              <Menu.Item icon={<DeleteIcon />} onClick={(e) => remove(e, task.id)}>
+              <Menu.Item icon={<BsTrashFill />} onClick={(e) => remove(e, task.id)}>
                 Delete task
               </Menu.Item>
             </Menu.Dropdown>

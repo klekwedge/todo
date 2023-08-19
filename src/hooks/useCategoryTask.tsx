@@ -1,30 +1,30 @@
-import { Tag } from '@chakra-ui/react';
+import { Badge } from '@mantine/core';
 
 const useCategoryTask = (taskCategory: string) => {
   switch (taskCategory) {
     case 'personal':
       return (
-        <Tag variant='solid' colorScheme='teal'>
+        <Badge color='teal'>
           Personal
-        </Tag>
+        </Badge>
       );
     case 'work':
       return (
-        <Tag variant='solid' colorScheme='purple'>
+        <Badge color='purple'>
           Work
-        </Tag>
+        </Badge>
       );
     case 'study':
       return (
-        <Tag variant='solid' colorScheme='blue'>
+        <Badge color='blue'>
           Study
-        </Tag>
+        </Badge>
       );
     case 'other':
       return (
-        <Tag variant='solid' colorScheme='orange'>
+        <Badge color='orange'>
           Other
-        </Tag>
+        </Badge>
       );
     default:
       return null;

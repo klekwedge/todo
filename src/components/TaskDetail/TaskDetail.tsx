@@ -1,6 +1,5 @@
 import { Flex, Title, Button, Badge } from '@mantine/core';
-// import { Flex, Heading, Button, Tag } from '@chakra-ui/react';
-import { useAppSelector } from '../../hooks/redux-hook';
+import { useAppSelector } from '../../hooks/useRedux';
 import './TaskDetail.scss';
 
 function TaskDetail() {
@@ -44,11 +43,11 @@ function TaskDetail() {
         </Flex>
         <Title order={4} mb="5px" fw="400" fz="18px">
           {currentTask.category ? (
-            <Badge size="md"  variant='solid' color='teal'>
+            <Badge size='md'>
               {currentTask.category[0].toUpperCase() + currentTask.category.slice(1)}
             </Badge>
           ) : (
-            <Button p="5px" size="8xl" color="green">
+            <Button p="5px" size="8xl" color="blue">
               Add category
             </Button>
           )}
