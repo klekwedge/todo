@@ -12,6 +12,7 @@ import {
   IconButton,
   Button,
   Input,
+  Textarea,
   useDisclosure,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
@@ -101,11 +102,11 @@ function NewTaskForm() {
 
               <Flex flexDirection="column" gap="5px">
                 <h3>Description of your task</h3>
-                <Input
-                  type="text"
+                <Textarea
                   value={taskDescription}
                   onChange={(e) => setTaskDescription(e.target.value)}
                   placeholder="Enter a description of your task"
+                  resize="vertical"
                 />
               </Flex>
               <Flex gap="10px">

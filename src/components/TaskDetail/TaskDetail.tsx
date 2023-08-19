@@ -45,7 +45,7 @@ function TaskDetail() {
         <Heading as="h4" mb="5px" fontWeight="400" fontSize="18px">
           {currentTask.category ? (
             <Tag size="md"  variant='solid' colorScheme='teal'>
-              {currentTask.category.toUpperCase() + currentTask.category.slice(1)}
+              {currentTask.category[0].toUpperCase() + currentTask.category.slice(1)}
             </Tag>
           ) : (
             <Button p="5px" size="8xl" colorScheme="green">
