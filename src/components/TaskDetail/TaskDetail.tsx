@@ -1,4 +1,5 @@
-import { Flex, Heading, Button, Tag } from '@chakra-ui/react';
+import { Flex, Title, Button, Badge } from '@mantine/core';
+// import { Flex, Heading, Button, Tag } from '@chakra-ui/react';
 import { useAppSelector } from '../../hooks/redux-hook';
 import './TaskDetail.scss';
 
@@ -11,48 +12,47 @@ function TaskDetail() {
 
   return (
     <section className="task-detail">
-      <Heading
-        as="h3"
-        fontWeight="500"
-        fontSize="28px"
+      <Title
+      order={3}
+        fw="500"
+        fz="28px"
         p="0px 0px 10px 0px"
-        lineHeight="24px"
-        borderBottom="1px solid rgba(0, 0, 0, 0.3)"
+        lh="24px"
         mb="10px"
       >
         {currentTask.taskName}
-      </Heading>
+      </Title>
 
-      <Flex justifyContent="space-between" mb="10px">
-        <Flex flexDirection="column" gap="2px" position="relative">
-          <Heading as="h4" mb="5px" fontWeight="400" fontSize="18px">
-            <span>Status:</span> {currentTask.complete ? 'Done' : 'Active'}
-          </Heading>
+      <Flex justify='space-between' mb="10px">
+        <Flex direction="column" gap="2px" pos="relative">
+          <Title order={4} mb="5px" fw="400" fz="18px">
+            <span className='_highlight'>Status:</span> {currentTask.complete ? 'Done' : 'Active'}
+          </Title>
 
-          <Heading as="h4" mb="5px" fontWeight="400" fontSize="18px">
-            <span>Deadline:</span> {currentTask.deadline ? currentTask.deadline : 'No deadline'}
-          </Heading>
+          <Title order={4} mb="5px" fw="400" fz="18px">
+            <span className='_highlight'>Deadline:</span> {currentTask.deadline ? currentTask.deadline : 'No deadline'}
+          </Title>
 
-          <Heading as="h4" mb="5px" fontWeight="400" fontSize="18px">
-            <span>Description:</span> {currentTask.description ? currentTask.description : 'Not description'}
-          </Heading>
+          <Title order={4} mb="5px" fw="400" fz="18px">
+            <span className='_highlight'>Description:</span> {currentTask.description ? currentTask.description : 'Not description'}
+          </Title>
 
-          <Heading as="h4" fontWeight="400" fontSize="18px">
-            <span>Task creation date:</span> {currentTask.creationDate[0].slice(0, -5)}.
+          <Title order={4} mb="5px" fw="400" fz="18px">
+            <span className='_highlight'>Task creation date:</span> {currentTask.creationDate[0].slice(0, -5)}.
             {currentTask.creationDate[0].slice(8)} ({currentTask.creationDate[1]})
-          </Heading>
+          </Title>
         </Flex>
-        <Heading as="h4" mb="5px" fontWeight="400" fontSize="18px">
+        <Title order={4} mb="5px" fw="400" fz="18px">
           {currentTask.category ? (
-            <Tag size="md"  variant='solid' colorScheme='teal'>
+            <Badge size="md"  variant='solid' color='teal'>
               {currentTask.category[0].toUpperCase() + currentTask.category.slice(1)}
-            </Tag>
+            </Badge>
           ) : (
-            <Button p="5px" size="8xl" colorScheme="green">
+            <Button p="5px" size="8xl" color="green">
               Add category
             </Button>
           )}
-        </Heading>
+        </Title>
       </Flex>
     </section>
   );
