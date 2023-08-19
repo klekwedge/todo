@@ -21,7 +21,7 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
   };
 
   const remove = (e: React.MouseEvent, taskId: string) => {
-    e.stopPropagation()
+    e.stopPropagation();
     dispatch(removeTask(taskId));
   };
 

@@ -1,5 +1,4 @@
-import { Flex, Heading, Badge, Button } from '@chakra-ui/react';
-import { ArrowBackIcon } from '@chakra-ui/icons';
+import { Flex, Heading, Button, Tag } from '@chakra-ui/react';
 import { useAppSelector } from '../../hooks/redux-hook';
 import './TaskDetail.scss';
 
@@ -45,9 +44,9 @@ function TaskDetail() {
         </Flex>
         <Heading as="h4" mb="5px" fontWeight="400" fontSize="18px">
           {currentTask.category ? (
-            <Badge size="8xl" variant="outline" colorScheme="green" cursor="pointer">
-              {currentTask.category}
-            </Badge>
+            <Tag size="md"  variant='solid' colorScheme='teal'>
+              {currentTask.category.toUpperCase() + currentTask.category.slice(1)}
+            </Tag>
           ) : (
             <Button p="5px" size="8xl" colorScheme="green">
               Add category

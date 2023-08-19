@@ -1,37 +1,33 @@
-import { Badge } from '@chakra-ui/react';
+import { Tag } from '@chakra-ui/react';
 
 const useCategoryTask = (taskCategory: string) => {
   switch (taskCategory) {
     case 'personal':
       return (
-        <Badge colorScheme="green" padding="5px" color="black">
+        <Tag variant='solid' colorScheme='teal'>
           Personal
-        </Badge>
+        </Tag>
       );
     case 'work':
       return (
-        <Badge colorScheme="red" padding="5px" color="black">
+        <Tag variant='solid' colorScheme='purple'>
           Work
-        </Badge>
+        </Tag>
       );
     case 'study':
       return (
-        <Badge colorScheme="purple" padding="5px" color="black">
+        <Tag variant='solid' colorScheme='blue'>
           Study
-        </Badge>
+        </Tag>
       );
     case 'other':
       return (
-        <Badge colorScheme="blue" padding="5px" color="black">
+        <Tag variant='solid' colorScheme='orange'>
           Other
-        </Badge>
+        </Tag>
       );
     default:
-      return (
-        <Badge colorScheme="green" padding="5px" color="black">
-          Personal
-        </Badge>
-      );
+      return null;
   }
 };
 
