@@ -13,9 +13,9 @@ function TodoMain() {
   const taskListRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const localTasks = JSON.parse(localStorage.getItem('tasks') || '');
+    const localTasks = JSON.parse(localStorage.getItem('tasks') || '{}');
 
-    if (localTasks) {
+    if (Array.isArray(localTasks)) {
       dispatch(setTasks(localTasks));
     }
   }, []);

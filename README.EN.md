@@ -38,7 +38,7 @@
 
 - React
 - SCSS
-- Chakra UI
+- Mantine
 - Framer motion
 - Date fns
 - React datepicker
