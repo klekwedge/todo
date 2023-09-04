@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import { Flex, Modal, Textarea, Select, Input, ActionIcon, Title, Button } from '@mantine/core';
+import { Modal, Select, Input, ActionIcon, Button } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
 import { BsPlusCircle } from 'react-icons/bs';
 import { useAppDispatch } from '../../hooks/useRedux';

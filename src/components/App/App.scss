@@ -8,8 +8,8 @@
 .app {
   width: 100vw;
   height: 100vh;
-  flex-direction: column;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 .todo {
