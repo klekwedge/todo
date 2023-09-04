@@ -7,8 +7,8 @@ import store from './store/store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
-    <MantineProvider>
-        <App />
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      <App />
     </MantineProvider>
   </Provider>,
 );
