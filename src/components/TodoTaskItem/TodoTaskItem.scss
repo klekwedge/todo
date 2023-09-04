@@ -27,3 +27,23 @@
 body.dark .todo__item:hover {
   background-color: rgb(75, 75, 75);
 }
+
+.todo__priority-none {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.todo__priority-low {
+  border: 1px solid blue;
+  border-radius: 5px;
+}
+
+.todo__priority-medium {
+  border: 1px solid orange;
+  border-radius: 5px;
+}
+
+.todo__priority-high {
+  border: 1px solid red;
+  border-radius: 5px;
+}

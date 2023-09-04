@@ -6,4 +6,5 @@ export interface ITask {
   description: string;
   deadline: Date | null;
   creationDate: string[];
+  priority: string | null;
 }

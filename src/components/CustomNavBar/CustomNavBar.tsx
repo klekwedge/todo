@@ -1,4 +1,4 @@
-import { BsListUl } from 'react-icons/bs';
+import { BsListUl, BsArrowRepeat } from 'react-icons/bs';
 import { createStyles, Navbar, UnstyledButton, rem } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
@@ -50,7 +50,7 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-const links = [{ icon: BsListUl, label: 'Tasks' }];
+const links = [{ icon: BsListUl, label: 'Tasks' },{ icon: BsArrowRepeat, label: 'Habits' }];
 
 
 function CustomNavBar() {
@@ -66,7 +66,7 @@ function CustomNavBar() {
   ));
 
   return (
-    <Navbar height={700} width={{ sm: 300 }} p="md" className={classes.navbar}>
+    <Navbar width={{ sm: 300 }} p="md" className={classes.navbar}>
       <Navbar.Section className={classes.section}>
         <div className={classes.mainLinks}>{mainLinks}</div>
       </Navbar.Section>

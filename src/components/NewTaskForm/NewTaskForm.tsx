@@ -14,6 +14,7 @@ function NewTaskForm() {
   const [taskDescription, setTaskDescription] = useState('');
   const [optionCategory, setOptionCategory] = useState<string | null>(null);
   const [deadline, setDeadline] = useState<Date | null>(null);
+  const [priority, setPriority] = useState<string | null>('none');
 
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -27,12 +28,14 @@ function NewTaskForm() {
         description: taskDescription,
         deadline,
         creationDate: new Date().toLocaleString().split(', '),
+        priority,
       }),
     );
 
     setTaskNameInput('');
     setOptionCategory('');
     setTaskDescription('');
+    setDeadline(null)
     setDeadline(null);
     close();
   }
@@ -81,9 +84,7 @@ function NewTaskForm() {
           <Input.Wrapper w="100%" label="Task category">
             <Select
               placeholder="Select category"
-              onChange={(value) => {
-                setOptionCategory(value);
-              }}
+              onChange={(value) => setOptionCategory(value)}
               value={optionCategory}
               data={[
                 { value: 'personal', label: 'Personal' },
@@ -96,8 +97,20 @@ function NewTaskForm() {
           <Input.Wrapper w="100%" label="Task deadline">
             <DatePickerInput placeholder="Choose deadline" value={deadline} onChange={setDeadline} w="100%" />
           </Input.Wrapper>
-
-          <Button type="submit" size='sm' maw='100px'>
+          <Input.Wrapper w="100%" label="Task priority">
+            <Select
+              placeholder="Select priority"
+              onChange={(value) => setPriority(value)}
+              value={priority}
+              data={[
+                { value: 'none', label: 'None' },
+                { value: 'low', label: 'Low' },
+                { value: 'medium', label: 'Medium' },
+                { value: 'high', label: 'High' },
+              ]}
+            />
+          </Input.Wrapper>
+          <Button type="submit" size="sm" maw="100px">
             Add
           </Button>
         </form>

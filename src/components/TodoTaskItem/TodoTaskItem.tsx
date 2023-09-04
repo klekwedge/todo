@@ -43,7 +43,12 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
     >
       <Flex gap="20px" justify="space-between" mb="5px">
         <Flex gap="10px" align="center">
-          <Checkbox size="sm" title="Done" onChange={(e) => toggle(e, task.id)} />
+          <Checkbox
+            size="sm"
+            title="Done"
+            onChange={(e) => toggle(e, task.id)}
+            className={task.priority ? `todo__priority-${task.priority}` : ''}
+          />
           <h3 className="task__name">{task.taskName}</h3>
         </Flex>
 
