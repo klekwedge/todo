@@ -1,5 +1,4 @@
 import { Flex, Title, Textarea } from '@mantine/core';
-import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import './TaskDetail.scss';
 import { setDescription } from '../../slices/tasksSlice';

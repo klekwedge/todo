@@ -133,11 +133,11 @@ function CustomNavBar() {
         </Group>
         <div className={classes.collections}>
           {collections.map((collection) => (
-            <CollectionItem collection={collection} />
+            <CollectionItem key={collection.id} collection={collection} />
           ))}
         </div>
       </Navbar.Section>
-      <NewCollection opened={opened} close={close} />
+      <NewCollection opened={opened} close={close} title='Create New collection'/>
     </Navbar>
   );
 }

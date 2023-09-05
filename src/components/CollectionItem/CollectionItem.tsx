@@ -1,22 +1,9 @@
-import { BsListUl, BsArrowRepeat, BsPlus, BsFillTrashFill, BsPencilFill, BsThreeDots } from 'react-icons/bs';
+import { BsFillTrashFill, BsPencilFill, BsThreeDots } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
-import {
-  createStyles,
-  Navbar,
-  UnstyledButton,
-  rem,
-  Group,
-  Text,
-  Tooltip,
-  ActionIcon,
-  Avatar,
-  Table,
-  Menu,
-  ScrollArea,
-} from '@mantine/core';
+import { createStyles, rem, ActionIcon, Menu } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import NewCollection from '../NewCollection/NewCollection';
-import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { useAppDispatch } from '../../hooks/useRedux';
 import { ICollection } from '../../types/types';
 import { deleteCollection } from '../../slices/tasksSlice';
 
@@ -58,6 +45,9 @@ interface CollectionItemProps {
 function CollectionItem({ collection }: CollectionItemProps) {
   const { classes } = useStyles();
   const dispatch = useAppDispatch();
+  const [opened, { open, close }] = useDisclosure(false);
+
+  console.log(collection);
 
   return (
     <NavLink to={`/${collection.name}`} key={collection.name} className={classes.collectionLink}>
@@ -71,12 +61,23 @@ function CollectionItem({ collection }: CollectionItemProps) {
           </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown>
-          <Menu.Item icon={<BsPencilFill size="1rem" />}>Edit</Menu.Item>
+          <Menu.Item icon={<BsPencilFill size="1rem" />} onClick={open}>
+            Edit
+          </Menu.Item>
           <Menu.Item icon={<BsFillTrashFill size="1rem" />} onClick={() => dispatch(deleteCollection(collection.id))}>
             Delete
           </Menu.Item>
         </Menu.Dropdown>
       </Menu>
+      <NewCollection
+        opened={opened}
+        close={close}
+        title="Edit collection"
+        icon={collection.icon}
+        color={collection.color}
+        name={collection.name}
+        id={collection.id}
+      />
     </NavLink>
   );
 }

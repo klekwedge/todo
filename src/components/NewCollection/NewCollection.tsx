@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { useDisclosure } from '@mantine/hooks';
 import { v4 as uuidv4 } from 'uuid';
 import { BsEmojiSmile, BsArrowRepeat } from 'react-icons/bs';
@@ -6,24 +7,45 @@ import Picker from '@emoji-mart/react';
 import { useState } from 'react';
 import { Modal, Flex, ColorInput, Button, Group, Input, Popover, ActionIcon } from '@mantine/core';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { createNewCollection } from '../../slices/tasksSlice';
+import { createNewCollection, updateCollection } from '../../slices/tasksSlice';
 
 interface NewCollectionProps {
+  title: string;
   opened: boolean;
   close: () => void;
+  id?: string;
+  icon?: string | null;
+  name?: string;
+  color?: undefined | string;
 }
 
-function NewCollection({ opened, close }: NewCollectionProps) {
+function NewCollection({ id, name = '', icon = null, color, title, opened, close }: NewCollectionProps) {
   const dispatch = useAppDispatch();
   const { collections } = useAppSelector((state) => state.tasks);
-  const [collectionIcon, setCollectionIcon] = useState<null | string>(null);
-  const [collectionName, setCollectionName] = useState('');
-  const [collectionColor, setCollectionColor] = useState<undefined | string>();
+  const [collectionIcon, setCollectionIcon] = useState<null | string>(icon);
+  const [collectionName, setCollectionName] = useState(name);
+  const [collectionColor, setCollectionColor] = useState<undefined | string>(color);
 
   const randomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
   function createCollection() {
-    if (collectionName && !collections.find((item) => item.name === collectionName)) {
+    if (collectionName && id) {
+      dispatch(
+        updateCollection({
+          id,
+          value: {
+            icon: collectionIcon,
+            name: collectionName,
+            color: collectionColor,
+          },
+        }),
+      );
+
+      setCollectionIcon(null);
+      setCollectionName('');
+      setCollectionColor(undefined);
+      close();
+    } else if (collectionName && !collections.find((item) => item.name === collectionName)) {
       dispatch(
         createNewCollection({
           icon: collectionIcon,
@@ -36,19 +58,13 @@ function NewCollection({ opened, close }: NewCollectionProps) {
       setCollectionIcon(null);
       setCollectionName('');
       setCollectionColor(undefined);
-
       close();
     }
   }
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    createCollection();
-  };
-
   return (
-    <Modal opened={opened} onClose={close} centered title="Create New collection">
-      <form onSubmit={handleSubmit} style={{ height: '300px' }}>
+    <Modal opened={opened} onClose={close} centered title={title}>
+      <div style={{ height: '300px' }}>
         <Input.Wrapper w="100%" label="Collection name">
           <Flex gap="10px" align="center" mb="20px">
             <Popover width={200} position="bottom" withArrow shadow="md">
@@ -91,10 +107,10 @@ function NewCollection({ opened, close }: NewCollectionProps) {
           }
         />
 
-        <Button type="submit" size="sm" maw="100px">
-          Add
+        <Button onClick={() => createCollection()} type="button" size="sm" maw="100px">
+          {id ? 'Edit' : 'Add'}
         </Button>
-      </form>
+      </div>
     </Modal>
   );
 }

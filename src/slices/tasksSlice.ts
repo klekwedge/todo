@@ -1,6 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import TasksState from './tasksSlice.types';
+import { ICollection, ITask } from '../types/types';
+
+interface TasksState {
+    tasks: ITask[];
+    currentTask: ITask | null;
+    collections: ICollection[]
+}
+
+
 
 const initialState: TasksState = {
     tasks: [],
@@ -38,6 +46,9 @@ const tasksSlice = createSlice({
             const findTask = state.tasks.find(task => task.id === action.payload.id) || null
             state.currentTask = findTask ? { ...findTask, description: action.payload.value } : null;
         },
+        updateCollection: (state, action) => {
+            state.collections = [...state.collections.map((collection) => (collection.id === action.payload.id ? { ...action.payload.value, id: action.payload.id } : { ...collection }))];
+        },
         deleteCollection: (state, action) => {
             state.collections = [...state.collections.filter((collection) => collection.id !== action.payload)];
         }
@@ -46,6 +57,6 @@ const tasksSlice = createSlice({
 
 const { actions, reducer } = tasksSlice;
 
-export const { setTasks, setCollections, deleteCollection, setDescription, createNewTask, toggleTask, removeTask, chooseTask, createNewCollection } = actions;
+export const { setTasks, setCollections, updateCollection, deleteCollection, setDescription, createNewTask, toggleTask, removeTask, chooseTask, createNewCollection } = actions;
 
 export default reducer;
