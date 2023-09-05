@@ -8,3 +8,10 @@ export interface ITask {
   creationDate: string[];
   priority: string | null;
 }
+
+export interface ICollection {
+  icon: string | null,
+  name: string,
+  color: string | undefined,
+  id: string;
+}

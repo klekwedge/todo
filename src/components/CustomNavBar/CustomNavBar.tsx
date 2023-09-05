@@ -2,6 +2,7 @@ import { BsListUl, BsArrowRepeat, BsPlus } from 'react-icons/bs';
 import { createStyles, Navbar, UnstyledButton, rem, Group, Text, Tooltip, ActionIcon } from '@mantine/core';
 import NewCollection from '../NewCollection/NewCollection';
 import { useDisclosure } from '@mantine/hooks';
+import { useAppSelector } from '../../hooks/useRedux';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -85,11 +86,10 @@ const links = [
   { icon: BsArrowRepeat, label: 'Habits' },
 ];
 
-// const collections = [{}];
-
 function CustomNavBar() {
   const { classes } = useStyles();
   const [opened, { open, close }] = useDisclosure(false);
+  const { collections } = useAppSelector((state) => state.tasks);
 
   const mainLinks = links.map((link) => (
     <UnstyledButton key={link.label} className={classes.mainLink}>
@@ -100,14 +100,14 @@ function CustomNavBar() {
     </UnstyledButton>
   ));
 
-  // const collectionLinks = collections.map((collection) => (
-  //   <a href="/" onClick={(event) => event.preventDefault()} key={collection.label} className={classes.collectionLink}>
-  //     <span style={{ marginRight: rem(9), fontSize: rem(16) }}>{collection.emoji}</span> {collection.label}
-  //   </a>
-  // ));
+  const collectionLinks = collections.map((collection) => (
+    <a href="/" onClick={(event) => event.preventDefault()} key={collection.name} className={classes.collectionLink}>
+      <span style={{ marginRight: rem(9), fontSize: rem(16) }}>{collection.icon}</span> {collection.name}
+    </a>
+  ));
 
   return (
-    <Navbar width={{ sm: 300 }} zIndex='0' p="md" className={classes.navbar}>
+    <Navbar width={{ sm: 300 }} zIndex="0" p="md" className={classes.navbar}>
       <Navbar.Section className={classes.section}>
         <div className={classes.mainLinks}>{mainLinks}</div>
       </Navbar.Section>
@@ -122,7 +122,7 @@ function CustomNavBar() {
             </ActionIcon>
           </Tooltip>
         </Group>
-        {/* <div className={classes.collections}>{collectionLinks}</div> */}
+        <div className={classes.collections}>{collectionLinks}</div>
       </Navbar.Section>
       <NewCollection opened={opened} close={close} />
     </Navbar>

@@ -1,9 +1,12 @@
 import { useDisclosure } from '@mantine/hooks';
+import { v4 as uuidv4 } from 'uuid';
 import { BsEmojiSmile } from 'react-icons/bs';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 import { useState } from 'react';
 import { Modal, Flex, ColorInput, Button, Group, Input, Popover, ActionIcon } from '@mantine/core';
+import { useAppDispatch } from '../../hooks/useRedux';
+import { createNewCollection } from '../../slices/tasksSlice';
 
 interface NewCollectionProps {
   opened: boolean;
@@ -11,15 +14,28 @@ interface NewCollectionProps {
 }
 
 function NewCollection({ opened, close }: NewCollectionProps) {
+  const dispatch = useAppDispatch();
   const [collectionIcon, setCollectionIcon] = useState<null | string>(null);
   const [collectionName, setCollectionName] = useState('');
   const [collectionColor, setCollectionColor] = useState<undefined | string>();
 
   function createCollection() {
-    setCollectionIcon(null);
-    setCollectionName('');
-    setCollectionColor(undefined);
-    close();
+    if (collectionName) {
+      dispatch(
+        createNewCollection({
+          icon: collectionIcon,
+          name: collectionName,
+          color: collectionColor,
+          id: uuidv4,
+        }),
+      );
+
+      setCollectionIcon(null);
+      setCollectionName('');
+      setCollectionColor(undefined);
+
+      close();
+    }
   }
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {

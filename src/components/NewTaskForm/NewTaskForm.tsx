@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Select, Input, ActionIcon, Button } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
 import { BsPlusCircle } from 'react-icons/bs';
-import { useAppDispatch } from '../../hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { createNewTask } from '../../slices/tasksSlice';
 import './NewTaskForm.scss';
 
 function NewTaskForm() {
+  const { collections } = useAppSelector((state) => state.tasks);
   const dispatch = useAppDispatch();
+
+  const categoryData = collections.map((collection) => ({
+    value: collection.name,
+    label: collection.name
+  }));
 
   const [taskNameInput, setTaskNameInput] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
@@ -21,7 +28,7 @@ function NewTaskForm() {
   function createTask() {
     dispatch(
       createNewTask({
-        id: Math.random().toString(36).substring(2, 9),
+        id: uuidv4(),
         taskName: taskNameInput,
         complete: false,
         category: optionCategory,
@@ -35,7 +42,7 @@ function NewTaskForm() {
     setTaskNameInput('');
     setOptionCategory('');
     setTaskDescription('');
-    setDeadline(null)
+    setDeadline(null);
     setDeadline(null);
     close();
   }
@@ -84,12 +91,7 @@ function NewTaskForm() {
               placeholder="Select category"
               onChange={(value) => setOptionCategory(value)}
               value={optionCategory}
-              data={[
-                { value: 'personal', label: 'Personal' },
-                { value: 'work', label: 'Work' },
-                { value: 'study', label: 'Study' },
-                { value: 'other', label: 'Other' },
-              ]}
+              data={[{ value: 'all', label: 'All' }, ...categoryData]}
             />
           </Input.Wrapper>
           <Input.Wrapper w="100%" label="Task deadline">

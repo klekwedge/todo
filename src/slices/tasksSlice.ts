@@ -4,7 +4,8 @@ import TasksState from './tasksSlice.types';
 
 const initialState: TasksState = {
     tasks: [],
-    currentTask: null
+    currentTask: null,
+    collections: []
 };
 
 const tasksSlice = createSlice({
@@ -26,11 +27,14 @@ const tasksSlice = createSlice({
         chooseTask: (state, action) => {
             state.currentTask = state.tasks.find(task => task.id === action.payload) || null
         },
+        createNewCollection: (state, action) => {
+            state.collections.push(action.payload);
+        },
     },
 });
 
 const { actions, reducer } = tasksSlice;
 
-export const { setTasks, createNewTask, toggleTask, removeTask, chooseTask } = actions;
+export const { setTasks, createNewTask, toggleTask, removeTask, chooseTask, createNewCollection } = actions;
 
 export default reducer;
