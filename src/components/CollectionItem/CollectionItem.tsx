@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { BsFillTrashFill, BsPencilFill, BsThreeDots } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { createStyles, rem, ActionIcon, Menu } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import NewCollection from '../NewCollection/NewCollection';
@@ -44,21 +45,26 @@ interface CollectionItemProps {
 
 function CollectionItem({ collection }: CollectionItemProps) {
   const { classes } = useStyles();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [opened, { open, close }] = useDisclosure(false);
 
+  const onClickCollection = () => {
+    navigate(`/${collection.name}`);
+  };
+
   return (
-    <NavLink to={`/${collection.name}`} key={collection.name} className={classes.collectionLink}>
+    <div className={classes.collectionLink} onClick={() => onClickCollection(collection.name)}>
       <span style={{ marginRight: rem(9), fontSize: rem(16) }}>
         {collection.icon} {collection.name}
       </span>
       <Menu transitionProps={{ transition: 'pop' }} withArrow position="bottom-end" withinPortal>
         <Menu.Target>
-          <ActionIcon>
+          <ActionIcon onClick={(e) => e.stopPropagation()}>
             <BsThreeDots size="1rem" />
           </ActionIcon>
         </Menu.Target>
-        <Menu.Dropdown>
+        <Menu.Dropdown onClick={(e) => e.stopPropagation()}>
           <Menu.Item icon={<BsPencilFill size="1rem" />} onClick={open}>
             Edit
           </Menu.Item>
@@ -76,7 +82,7 @@ function CollectionItem({ collection }: CollectionItemProps) {
         name={collection.name}
         id={collection.id}
       />
-    </NavLink>
+    </div>
   );
 }
 

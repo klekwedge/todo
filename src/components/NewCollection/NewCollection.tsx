@@ -101,13 +101,26 @@ function NewCollection({ id, name = '', icon = null, color, title, opened, close
           onChange={setCollectionColor}
           mb="20px"
           rightSection={
-            <ActionIcon onClick={() => setCollectionColor(randomColor())}>
+            <ActionIcon
+              onClick={(e) => {
+                e.stopPropagation();
+                setCollectionColor(randomColor());
+              }}
+            >
               <BsArrowRepeat size="1rem" />
             </ActionIcon>
           }
         />
 
-        <Button onClick={() => createCollection()} type="button" size="sm" maw="100px">
+        <Button
+          onClick={(e) => {
+            e.stopPropagation();
+            createCollection();
+          }}
+          type="button"
+          size="sm"
+          maw="100px"
+        >
           {id ? 'Edit' : 'Add'}
         </Button>
       </div>

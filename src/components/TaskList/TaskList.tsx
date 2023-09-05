@@ -68,7 +68,7 @@ function TodoMain() {
   document.addEventListener('mouseup', stopStretch);
   document.addEventListener('mousemove', moveBlock);
 
-  const filteredTasks = params.collection ? tasks.filter((task) => task.collection === params.collection) : tasks;
+  const filteredTasks = params.collection ? tasks.filter((task) => task.collectionId === params.collectionId) : tasks;
 
   // const todoListScrollWrapper = useRef(null);
   // const hasScroll = tasks.length > 6;
