@@ -2,7 +2,8 @@ export interface ITask {
   id: string;
   taskName: string;
   complete: boolean;
-  category: string;
+  collection: string;
+  color: string;
   description: string;
   deadline: Date | null;
   creationDate: string[];

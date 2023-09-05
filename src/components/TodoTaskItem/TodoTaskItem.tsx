@@ -33,13 +33,14 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
     }
   };
 
-  const categoryTask = useCategoryTask(task.category);
+  const taskCollection = useCategoryTask(task.collection);
 
   return (
     <li
       key={task.id}
       className={task.complete ? 'todo__item task todo__item_complete' : 'todo__item task'}
       onClick={(e) => choose(e, task.id)}
+      style={{ color: `${task.color ? task.color : ''}` }}
     >
       <Flex gap="20px" justify="space-between" mb="5px">
         <Flex gap="10px" align="center">
@@ -53,7 +54,7 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
         </Flex>
 
         <Flex align="center" gap="5px">
-          {categoryTask}
+          {taskCollection}
           <Menu>
             <Menu.Target>
               <ActionIcon>

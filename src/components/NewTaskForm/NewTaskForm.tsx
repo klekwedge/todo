@@ -14,24 +14,27 @@ function NewTaskForm() {
 
   const categoryData = collections.map((collection) => ({
     value: collection.name,
-    label: collection.name
+    label: collection.name,
   }));
 
   const [taskNameInput, setTaskNameInput] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
-  const [optionCategory, setOptionCategory] = useState<string | null>(null);
+  const [taskCollection, setTaskCollection] = useState<string | null>('all');
   const [deadline, setDeadline] = useState<Date | null>(null);
   const [priority, setPriority] = useState<string | null>('none');
 
   const [opened, { open, close }] = useDisclosure(false);
 
   function createTask() {
+    const currentCollection = collections.find((collection) => collection.name === taskCollection);
+
     dispatch(
       createNewTask({
         id: uuidv4(),
         taskName: taskNameInput,
         complete: false,
-        category: optionCategory,
+        collection: taskCollection,
+        color: currentCollection?.color || '',
         description: taskDescription,
         deadline,
         creationDate: new Date().toLocaleString().split(', '),
@@ -40,7 +43,7 @@ function NewTaskForm() {
     );
 
     setTaskNameInput('');
-    setOptionCategory('');
+    setTaskCollection('');
     setTaskDescription('');
     setDeadline(null);
     setDeadline(null);
@@ -89,8 +92,8 @@ function NewTaskForm() {
           <Input.Wrapper w="100%" label="Task category">
             <Select
               placeholder="Select category"
-              onChange={(value) => setOptionCategory(value)}
-              value={optionCategory}
+              onChange={(value) => setTaskCollection(value)}
+              value={taskCollection}
               data={[{ value: 'all', label: 'All' }, ...categoryData]}
             />
           </Input.Wrapper>

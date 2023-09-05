@@ -5,7 +5,7 @@ import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 import { useState } from 'react';
 import { Modal, Flex, ColorInput, Button, Group, Input, Popover, ActionIcon } from '@mantine/core';
-import { useAppDispatch } from '../../hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { createNewCollection } from '../../slices/tasksSlice';
 
 interface NewCollectionProps {
@@ -15,12 +15,13 @@ interface NewCollectionProps {
 
 function NewCollection({ opened, close }: NewCollectionProps) {
   const dispatch = useAppDispatch();
+  const {collections} =useAppSelector(state => state.tasks)
   const [collectionIcon, setCollectionIcon] = useState<null | string>(null);
   const [collectionName, setCollectionName] = useState('');
   const [collectionColor, setCollectionColor] = useState<undefined | string>();
 
   function createCollection() {
-    if (collectionName) {
+    if (collectionName && !collections.find(item => item.name === collectionName)) {
       dispatch(
         createNewCollection({
           icon: collectionIcon,
