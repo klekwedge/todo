@@ -45,11 +45,11 @@ function NewTaskForm() {
     createTask();
   };
 
-  const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-    if (e.key === 'Enter') {
-      createTask();
-    }
-  };
+  // const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+  //   if (e.key === 'Enter') {
+  //     createTask();
+  //   }
+  // };
 
   return (
     <>
@@ -67,7 +67,6 @@ function NewTaskForm() {
               data-autofocus
               placeholder="Enter the name of your task"
               onChange={(e) => setTaskNameInput(e.target.value)}
-              onKeyDown={handleKeyPress}
             />
           </Input.Wrapper>
 
@@ -77,7 +76,6 @@ function NewTaskForm() {
               value={taskDescription}
               placeholder="Enter the description of your task"
               onChange={(e) => setTaskDescription(e.target.value)}
-              onKeyDown={handleKeyPress}
             />
           </Input.Wrapper>
 

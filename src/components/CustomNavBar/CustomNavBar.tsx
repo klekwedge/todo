@@ -1,5 +1,6 @@
 import { BsListUl, BsArrowRepeat, BsPlus } from 'react-icons/bs';
 import { createStyles, Navbar, UnstyledButton, rem, Group, Text, Tooltip, ActionIcon } from '@mantine/core';
+import NewCollection from '../NewCollection/NewCollection';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -121,6 +122,7 @@ function CustomNavBar() {
         </Group>
         <div className={classes.collections}>{collectionLinks}</div>
       </Navbar.Section>
+      <NewCollection />
     </Navbar>
   );
 }
