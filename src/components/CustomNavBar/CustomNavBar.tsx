@@ -1,7 +1,8 @@
 import { BsListUl, BsArrowRepeat, BsPlus } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
 import { createStyles, Navbar, UnstyledButton, rem, Group, Text, Tooltip, ActionIcon } from '@mantine/core';
-import NewCollection from '../NewCollection/NewCollection';
 import { useDisclosure } from '@mantine/hooks';
+import NewCollection from '../NewCollection/NewCollection';
 import { useAppSelector } from '../../hooks/useRedux';
 
 const useStyles = createStyles((theme) => ({
@@ -101,9 +102,13 @@ function CustomNavBar() {
   ));
 
   const collectionLinks = collections.map((collection) => (
-    <a href="/" onClick={(event) => event.preventDefault()} key={collection.name} className={classes.collectionLink}>
+    <NavLink
+      to={`/${collection.name}`}
+      key={collection.name}
+      className={classes.collectionLink}
+    >
       <span style={{ marginRight: rem(9), fontSize: rem(16) }}>{collection.icon}</span> {collection.name}
-    </a>
+    </NavLink>
   ));
 
   return (

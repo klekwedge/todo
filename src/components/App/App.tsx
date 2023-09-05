@@ -22,6 +22,7 @@ function App() {
               <Header/>
               <Routes>
                 <Route path="/" element={<MainPage />} />
+                <Route path="/:collection" element={<MainPage />} />
                 {/* <Route path="/habits" element={<HabitsPage />} /> */}
               </Routes>
             </Flex>

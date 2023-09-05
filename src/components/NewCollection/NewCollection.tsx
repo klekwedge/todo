@@ -1,6 +1,6 @@
 import { useDisclosure } from '@mantine/hooks';
 import { v4 as uuidv4 } from 'uuid';
-import { BsEmojiSmile } from 'react-icons/bs';
+import { BsEmojiSmile, BsArrowRepeat } from 'react-icons/bs';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 import { useState } from 'react';
@@ -15,19 +15,21 @@ interface NewCollectionProps {
 
 function NewCollection({ opened, close }: NewCollectionProps) {
   const dispatch = useAppDispatch();
-  const {collections} =useAppSelector(state => state.tasks)
+  const { collections } = useAppSelector((state) => state.tasks);
   const [collectionIcon, setCollectionIcon] = useState<null | string>(null);
   const [collectionName, setCollectionName] = useState('');
   const [collectionColor, setCollectionColor] = useState<undefined | string>();
 
+  const randomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+
   function createCollection() {
-    if (collectionName && !collections.find(item => item.name === collectionName)) {
+    if (collectionName && !collections.find((item) => item.name === collectionName)) {
       dispatch(
         createNewCollection({
           icon: collectionIcon,
           name: collectionName,
           color: collectionColor,
-          id: uuidv4,
+          id: uuidv4(),
         }),
       );
 
@@ -77,7 +79,17 @@ function NewCollection({ opened, close }: NewCollectionProps) {
           </Flex>
         </Input.Wrapper>
 
-        <ColorInput label="Collection color" value={collectionColor} onChange={setCollectionColor} mb="20px" />
+        <ColorInput
+          label="Collection color"
+          value={collectionColor}
+          onChange={setCollectionColor}
+          mb="20px"
+          rightSection={
+            <ActionIcon onClick={() => setCollectionColor(randomColor())}>
+              <BsArrowRepeat size="1rem" />
+            </ActionIcon>
+          }
+        />
 
         <Button type="submit" size="sm" maw="100px">
           Add

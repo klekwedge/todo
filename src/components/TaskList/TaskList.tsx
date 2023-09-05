@@ -1,28 +1,37 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import { useEffect, useRef } from 'react';
 import { Flex, Title } from '@mantine/core';
-import useScrollbar from '../../hooks/useScrollbar';
+import { useParams } from 'react-router-dom';
 import './TaskList.scss';
 import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { setTasks } from '../../slices/tasksSlice';
+import { setCollections, setTasks } from '../../slices/tasksSlice';
 
 function TodoMain() {
-  const { tasks } = useAppSelector((state) => state.tasks);
+  const params = useParams();
+
+  const { tasks, collections} = useAppSelector((state) => state.tasks);
   const dispatch = useAppDispatch();
   const taskListRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const localTasks = JSON.parse(localStorage.getItem('tasks') || '{}');
+    const localCollections = JSON.parse(localStorage.getItem('collections') || '{}');
 
     if (Array.isArray(localTasks)) {
       dispatch(setTasks(localTasks));
+      dispatch(setCollections(localCollections));
     }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem('collections', JSON.stringify(collections));
+  }, [collections]);
 
   let downed: boolean;
   let x: number;
@@ -59,6 +68,8 @@ function TodoMain() {
   document.addEventListener('mouseup', stopStretch);
   document.addEventListener('mousemove', moveBlock);
 
+  const filteredTasks = params.collection ? tasks.filter((task) => task.collection === params.collection) : tasks;
+
   // const todoListScrollWrapper = useRef(null);
   // const hasScroll = tasks.length > 6;
 
@@ -73,13 +84,13 @@ function TodoMain() {
 
         <Flex align="flex-end" gap="10px" fw="400">
           <Title order={3} size="sm" fw="400">
-            All: {tasks.length}
+            All: {filteredTasks.length}
           </Title>
           <Title order={3} size="sm" fw="400">
-            Done: {tasks.filter((task) => task.complete === true).length}
+            Done: {filteredTasks.filter((task) => task.complete === true).length}
           </Title>
           <Title order={3} size="sm" fw="400">
-            Active: {tasks.filter((task) => task.complete !== true).length}
+            Active: {filteredTasks.filter((task) => task.complete !== true).length}
           </Title>
         </Flex>
       </Flex>
@@ -91,9 +102,10 @@ function TodoMain() {
       // }}
       // ref={todoListScrollWrapper}
       >
+        {/* params.collection */}
         <ul className="todo__task-list">
           {tasks.length > 0 ? (
-            tasks
+            filteredTasks
               .map((task) => <TodoTaskItem task={task} key={task.id} />)
               .sort((el) => (el.props.task.complete ? 1 : -1))
           ) : (

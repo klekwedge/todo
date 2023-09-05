@@ -14,7 +14,7 @@ function NewTaskForm() {
 
   const categoryData = collections.map((collection) => ({
     value: collection.name,
-    label: collection.name,
+    label: `${collection.icon || ''} ${collection.name}`,
   }));
 
   const [taskNameInput, setTaskNameInput] = useState('');
