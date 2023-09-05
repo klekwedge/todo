@@ -12,8 +12,6 @@ function TaskDetail() {
     return null;
   }
 
-  console.log(currentTask);
-
   return (
     <section className="task-detail">
       <Title order={3} fw="400" fz="28px" p="0px 0px 10px 0px" lh="24px" mb="10px">

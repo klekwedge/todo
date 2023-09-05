@@ -1,9 +1,23 @@
-import { BsListUl, BsArrowRepeat, BsPlus } from 'react-icons/bs';
+import { BsListUl, BsArrowRepeat, BsPlus, BsFillTrashFill, BsPencilFill, BsThreeDots } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
-import { createStyles, Navbar, UnstyledButton, rem, Group, Text, Tooltip, ActionIcon } from '@mantine/core';
+import {
+  createStyles,
+  Navbar,
+  UnstyledButton,
+  rem,
+  Group,
+  Text,
+  Tooltip,
+  ActionIcon,
+  Avatar,
+  Table,
+  Menu,
+  ScrollArea,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import NewCollection from '../NewCollection/NewCollection';
 import { useAppSelector } from '../../hooks/useRedux';
+import CollectionItem from '../CollectionItem/CollectionItem';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -101,16 +115,6 @@ function CustomNavBar() {
     </UnstyledButton>
   ));
 
-  const collectionLinks = collections.map((collection) => (
-    <NavLink
-      to={`/${collection.name}`}
-      key={collection.name}
-      className={classes.collectionLink}
-    >
-      <span style={{ marginRight: rem(9), fontSize: rem(16) }}>{collection.icon}</span> {collection.name}
-    </NavLink>
-  ));
-
   return (
     <Navbar width={{ sm: 300 }} zIndex="0" p="md" className={classes.navbar}>
       <Navbar.Section className={classes.section}>
@@ -118,7 +122,7 @@ function CustomNavBar() {
       </Navbar.Section>
       <Navbar.Section className={classes.section}>
         <Group className={classes.collectionsHeader} position="apart">
-          <Text size="sm" weight={500} color="dimmed">
+          <Text size='md' weight={500} color="dimmed">
             Collections
           </Text>
           <Tooltip label="Create collection" withArrow position="left">
@@ -127,7 +131,11 @@ function CustomNavBar() {
             </ActionIcon>
           </Tooltip>
         </Group>
-        <div className={classes.collections}>{collectionLinks}</div>
+        <div className={classes.collections}>
+          {collections.map((collection) => (
+            <CollectionItem collection={collection} />
+          ))}
+        </div>
       </Navbar.Section>
       <NewCollection opened={opened} close={close} />
     </Navbar>
