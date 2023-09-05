@@ -33,11 +33,16 @@ const tasksSlice = createSlice({
         createNewCollection: (state, action) => {
             state.collections.push(action.payload);
         },
+        setDescription: (state, action) => {
+            state.tasks = [...state.tasks.map((task) => (task.id === action.payload.id ? { ...task, description: action.payload.value } : { ...task }))];
+            const findTask = state.tasks.find(task => task.id === action.payload.id) || null
+            state.currentTask = findTask ? { ...findTask, description: action.payload.value } : null;
+        }
     },
 });
 
 const { actions, reducer } = tasksSlice;
 
-export const { setTasks, setCollections, createNewTask, toggleTask, removeTask, chooseTask, createNewCollection } = actions;
+export const { setTasks, setCollections, setDescription, createNewTask, toggleTask, removeTask, chooseTask, createNewCollection } = actions;
 
 export default reducer;
