@@ -47,8 +47,6 @@ function CollectionItem({ collection }: CollectionItemProps) {
   const dispatch = useAppDispatch();
   const [opened, { open, close }] = useDisclosure(false);
 
-  console.log(collection);
-
   return (
     <NavLink to={`/${collection.name}`} key={collection.name} className={classes.collectionLink}>
       <span style={{ marginRight: rem(9), fontSize: rem(16) }}>

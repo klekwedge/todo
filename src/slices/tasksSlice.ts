@@ -48,6 +48,7 @@ const tasksSlice = createSlice({
         },
         updateCollection: (state, action) => {
             state.collections = [...state.collections.map((collection) => (collection.id === action.payload.id ? { ...action.payload.value, id: action.payload.id } : { ...collection }))];
+            state.tasks = [...state.tasks.map((task) => (task.collection === action.payload.value.name ? { ...task, color: action.payload.value.color } : { ...task }))];
         },
         deleteCollection: (state, action) => {
             state.collections = [...state.collections.filter((collection) => collection.id !== action.payload)];
