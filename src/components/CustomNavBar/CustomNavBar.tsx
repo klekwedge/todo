@@ -1,6 +1,7 @@
 import { BsListUl, BsArrowRepeat, BsPlus } from 'react-icons/bs';
 import { createStyles, Navbar, UnstyledButton, rem, Group, Text, Tooltip, ActionIcon } from '@mantine/core';
 import NewCollection from '../NewCollection/NewCollection';
+import { useDisclosure } from '@mantine/hooks';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -84,10 +85,11 @@ const links = [
   { icon: BsArrowRepeat, label: 'Habits' },
 ];
 
-const collections = [];
+// const collections = [{}];
 
 function CustomNavBar() {
   const { classes } = useStyles();
+  const [opened, { open, close }] = useDisclosure(false);
 
   const mainLinks = links.map((link) => (
     <UnstyledButton key={link.label} className={classes.mainLink}>
@@ -98,14 +100,14 @@ function CustomNavBar() {
     </UnstyledButton>
   ));
 
-  const collectionLinks = collections.map((collection) => (
-    <a href="/" onClick={(event) => event.preventDefault()} key={collection.label} className={classes.collectionLink}>
-      <span style={{ marginRight: rem(9), fontSize: rem(16) }}>{collection.emoji}</span> {collection.label}
-    </a>
-  ));
+  // const collectionLinks = collections.map((collection) => (
+  //   <a href="/" onClick={(event) => event.preventDefault()} key={collection.label} className={classes.collectionLink}>
+  //     <span style={{ marginRight: rem(9), fontSize: rem(16) }}>{collection.emoji}</span> {collection.label}
+  //   </a>
+  // ));
 
   return (
-    <Navbar width={{ sm: 300 }} p="md" className={classes.navbar}>
+    <Navbar width={{ sm: 300 }} zIndex='0' p="md" className={classes.navbar}>
       <Navbar.Section className={classes.section}>
         <div className={classes.mainLinks}>{mainLinks}</div>
       </Navbar.Section>
@@ -114,15 +116,15 @@ function CustomNavBar() {
           <Text size="sm" weight={500} color="dimmed">
             Collections
           </Text>
-          <Tooltip label="Create collection" withArrow position="right">
-            <ActionIcon variant="default" size={22} onClick={() => {}}>
+          <Tooltip label="Create collection" withArrow position="left">
+            <ActionIcon variant="default" size={22} onClick={open}>
               <BsPlus />
             </ActionIcon>
           </Tooltip>
         </Group>
-        <div className={classes.collections}>{collectionLinks}</div>
+        {/* <div className={classes.collections}>{collectionLinks}</div> */}
       </Navbar.Section>
-      <NewCollection />
+      <NewCollection opened={opened} close={close} />
     </Navbar>
   );
 }
