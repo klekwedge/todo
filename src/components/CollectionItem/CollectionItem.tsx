@@ -16,8 +16,9 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import NewCollection from '../NewCollection/NewCollection';
-import { useAppSelector } from '../../hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { ICollection } from '../../types/types';
+import { deleteCollection } from '../../slices/tasksSlice';
 
 const useStyles = createStyles((theme) => ({
   collections: {
@@ -56,6 +57,7 @@ interface CollectionItemProps {
 
 function CollectionItem({ collection }: CollectionItemProps) {
   const { classes } = useStyles();
+  const dispatch = useAppDispatch();
 
   return (
     <NavLink to={`/${collection.name}`} key={collection.name} className={classes.collectionLink}>
@@ -70,7 +72,9 @@ function CollectionItem({ collection }: CollectionItemProps) {
         </Menu.Target>
         <Menu.Dropdown>
           <Menu.Item icon={<BsPencilFill size="1rem" />}>Edit</Menu.Item>
-          <Menu.Item icon={<BsFillTrashFill size="1rem" />}>Delete</Menu.Item>
+          <Menu.Item icon={<BsFillTrashFill size="1rem" />} onClick={() => dispatch(deleteCollection(collection.id))}>
+            Delete
+          </Menu.Item>
         </Menu.Dropdown>
       </Menu>
     </NavLink>
