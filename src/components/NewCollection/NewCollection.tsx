@@ -74,7 +74,7 @@ function NewCollection({ id, name = '', icon = null, color, title, opened, close
               </Popover.Target>
               <Popover.Dropdown>
                 <Picker
-                  onEmojiSelect={(e) => setCollectionIcon(e.native)}
+                  onEmojiSelect={(e: any) => setCollectionIcon(e.native)}
                   data={data}
                   style={{ height: '200px' }}
                   previewPosition="none"

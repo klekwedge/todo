@@ -1,5 +1,5 @@
-import TaskList from '../TaskList/TaskList';
-import TaskDetail from '../TaskDetail/TaskDetail';
+import TaskList from '../components/TaskList/TaskList';
+import TaskDetail from '../components/TaskDetail/TaskDetail';
 
 
 function MainPage() {

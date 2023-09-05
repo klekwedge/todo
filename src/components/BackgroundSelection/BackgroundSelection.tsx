@@ -1,184 +1,117 @@
-import { useState } from "react";
-// import {
-//   IconButton,
-//   Button,
-//   useDisclosure,
-//   Flex,
-//   UnorderedList,
-//   ListItem,
-//   Image,
-//   Modal,
-//   ModalOverlay,
-//   ModalContent,
-//   ModalHeader,
-//   ModalFooter,
-//   ModalBody,
-//   ModalCloseButton,
-// } from "@chakra-ui/react";
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { ActionIcon, Box, Flex, Image, Modal, Title } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { BsArrowRepeat } from 'react-icons/bs';
 
-// import { RepeatIcon } from "@chakra-ui/icons";
+import BackgroundCubes from '../BackgroundOptions/BackgroundCubes/BackgroundCubes';
+import BackgroundDiagonals from '../BackgroundOptions/BackgroundDiagonals/BackgroundDiagonals';
+import BackgroundSquareCircles from '../BackgroundOptions/BackgroundSquareCircles/BackgroundSquareCircles';
+import BackgroundGradientSquares from '../BackgroundOptions/BackgroundGradientSquares/BackgroundGradientSquares';
+import BackgroundPS from '../BackgroundOptions/BackgroundPS/BackgroundPS';
+import BackgroundGrid from '../BackgroundOptions/BackgroundGrid/BackgroundGrid';
+import BackgroundLines from '../BackgroundOptions/BackgroundLines/BackgroundLines';
+import BackgroundBubles from '../BackgroundOptions/BackgroundBubles/BackgroundBubles';
 
-import BackgroundCubes from "../BackgroundOptions/BackgroundCubes/BackgroundCubes";
-import BackgroundDiagonals from "../BackgroundOptions/BackgroundDiagonals/BackgroundDiagonals";
-import BackgroundSquareCircles from "../BackgroundOptions/BackgroundSquareCircles/BackgroundSquareCircles";
-import BackgroundGradientSquares from "../BackgroundOptions/BackgroundGradientSquares/BackgroundGradientSquares";
-import BackgroundPS from "../BackgroundOptions/BackgroundPS/BackgroundPS";
-import BackgroundGrid from "../BackgroundOptions/BackgroundGrid/BackgroundGrid";
-import BackgroundLines from "../BackgroundOptions/BackgroundLines/BackgroundLines";
-import BackgroundBubles from "../BackgroundOptions/BackgroundBubles/BackgroundBubles";
-
-import "./BackgroundSelection.scss";
+import './BackgroundSelection.scss';
 
 function BackgroundSelection() {
-  const [currentBackground, setCurrentBackground] = useState("cubes");
-  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const [currentBackground, setCurrentBackground] = useState('');
+  const [opened, { open, close }] = useDisclosure(false);
 
   const backgroundNames = [
-    "Cubes",
-    "Diagonals",
-    "Square and circles",
-    "Gradient Squares",
-    "PS",
-    "Grid",
-    "Lines",
-    "Bubles",
+    'Cubes',
+    'Diagonals',
+    'Square and circles',
+    'Gradient Squares',
+    'PS',
+    'Grid',
+    'Lines',
+    'Bubles',
   ];
 
-  const backgroundValue = [
-    "cubes",
-    "diagonals",
-    "squareCircles",
-    "gradientSquares",
-    "ps",
-    "grid",
-    "lines",
-    "bubles",
-  ];
+  const backgroundValue = ['cubes', 'diagonals', 'squareCircles', 'gradientSquares', 'ps', 'grid', 'lines', 'bubles'];
   const pathBackgrounds = [
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
-    "https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg",
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
+    'https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg',
   ];
 
-  const backgroundList = Array.from(Array(backgroundNames.length)).map(
-    (item, i) => i
-  );
+  const backgroundList = Array.from(Array(backgroundNames.length)).map((item, i) => i);
 
   const chooseBackground = () => {
     switch (currentBackground) {
-      case "cubes":
+      case 'cubes':
         return <BackgroundCubes />;
-      case "diagonals":
+      case 'diagonals':
         return <BackgroundDiagonals />;
-      case "squareCircles":
+      case 'squareCircles':
         return <BackgroundSquareCircles />;
-      case "gradientSquares":
+      case 'gradientSquares':
         return <BackgroundGradientSquares />;
-      case "ps":
+      case 'ps':
         return <BackgroundPS />;
-      case "grid":
+      case 'grid':
         return <BackgroundGrid />;
-      case "lines":
+      case 'lines':
         return <BackgroundLines />;
-      case "bubles":
+      case 'bubles':
         return <BackgroundBubles />;
       default:
-        return <BackgroundCubes />;
+        return null;
     }
   };
 
-  return null;
+  return (
+    <>
+      <ActionIcon w="40px" h="40px" radius="50%" onClick={open}>
+        <BsArrowRepeat />
+      </ActionIcon>
+      <Modal opened={opened} onClose={close} title="Select Background">
+        <Flex direction="column" gap="5px">
+          <Box w="180px" mb="20px" onClick={() => setCurrentBackground('')}>
+            <Image
+              radius="10px"
+              w="180px"
+              mb="10px"
+              src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
+            />
+            <Title order={4} size="sm" align="center">
+              Default
+            </Title>
+          </Box>
 
-  // return (
-  //   <>
-  //     {/* <IconButton
-  //       width="40px"
-  //       height="40px"
-  //       borderRadius="50%"
-  //       icon={<RepeatIcon />}
-  //       onClick={onOpen}
-  //       aria-label=""
-  //     />
+          <Title order={3} size="md" fw="500">
+            Animated background:
+          </Title>
 
-  //     <Modal isOpen={isOpen} onClose={onClose}>
-  //       <ModalOverlay />
-  //       <ModalContent background="#2D3748" color="white" maxWidth="600px">
-  //         <ModalHeader>Select Background</ModalHeader>
-  //         <ModalCloseButton />
-  //         <ModalBody>
-  //           <Flex flexDirection="column" gap="5px">
-  //             {/* <Box
-  //               cursor="pointer"
-  //               width="180px"
-  //               mb="20px"
-  //               onClick={() => setCurrentBackground("cubes")}
-  //             >
-  //               <Image
-  //                 borderRadius="10px"
-  //                 width="180px"
-  //                 mb="10px"
-  //                 src="https://images.wallpaperscraft.ru/image/single/minimalizm_kub_yarkiy_fon_81333_1920x1080.jpg"
-  //               ></Image>
-  //               <Heading as="h4" size="sm" textAlign="center">
-  //                 Default
-  //               </Heading>
-  //             </Box>
-
-  //             <Heading as="h3" size="md" fontWeight="500">
-  //               Animated background:
-  //             </Heading> */}
-
-  //             <UnorderedList
-  //               display="flex"
-  //               alignItems="baseline"
-  //               flexWrap="wrap"
-  //               gap="20px"
-  //               styleType="none"
-  //               margin="10px 0px 20px 0px"
-  //             >
-  //               {backgroundList.map((item, i) => (
-  //                 <ListItem
-  //                   flex="1 1 20%"
-  //                   key={Math.random().toString(36).substring(2, 9)}
-  //                   className={
-  //                     backgroundValue[i] === currentBackground ? "active" : ""
-  //                   }
-  //                   display="flex"
-  //                   flexDirection="column"
-  //                   alignItems="center"
-  //                   cursor="pointer"
-  //                   textAlign="center"
-  //                   gap="10px"
-  //                   onClick={() => setCurrentBackground(backgroundValue[i])}
-  //                 >
-  //                   <Image
-  //                     className="background__item-image"
-  //                     borderRadius="10px"
-  //                     width="100%"
-  //                     src={pathBackgrounds[i]}
-  //                   />
-  //                   <h3>{backgroundNames[i]}</h3>
-  //                 </ListItem>
-  //               ))}
-  //             </UnorderedList>
-  //           </Flex>
-  //         </ModalBody>
-
-  //         <ModalFooter>
-  //           <Button colorScheme="blue" mr={3} onClick={onClose}>
-  //             Save
-  //           </Button>
-  //         </ModalFooter>
-  //       </ModalContent>
-  //     </Modal>
-  //     {chooseBackground()} */}
-  //   </>
-  // );
+          <Flex wrap="wrap" gap="20px" m="10px 0px 20px 0px">
+            {backgroundList.map((item, i) => (
+              <Flex
+                style={{ flex: '1 1 45%' }}
+                key={uuidv4()}
+                className={backgroundValue[i] === currentBackground ? 'active' : ''}
+                display="flex"
+                direction="column"
+                align="center"
+                gap="10px"
+                onClick={() => setCurrentBackground(backgroundValue[i])}
+              >
+                <Image className="background__item-image" radius="10px" w="100%" src={pathBackgrounds[i]} />
+                <h3>{backgroundNames[i]}</h3>
+              </Flex>
+            ))}
+          </Flex>
+        </Flex>
+      </Modal>
+      {chooseBackground()}
+    </>
+  );
 }
 
 export default BackgroundSelection;

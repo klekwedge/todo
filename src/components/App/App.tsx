@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from '../Header/Header';
 import './App.scss';
 import CustomNavBar from '../CustomNavBar/CustomNavBar';
-import MainPage from '../pages/MainPage';
+import MainPage from '../../pages/MainPage';
 
 function App() {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');

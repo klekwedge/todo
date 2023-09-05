@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { BsFillTrashFill, BsPencilFill, BsThreeDots } from 'react-icons/bs';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { createStyles, rem, ActionIcon, Menu } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import NewCollection from '../NewCollection/NewCollection';

@@ -44,6 +44,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     width: '100%',
+    textDecoration: 'none',
     fontSize: theme.fontSizes.lg,
     padding: `${rem(8)} ${theme.spacing.xs}`,
     borderRadius: theme.radius.sm,
@@ -107,12 +108,12 @@ function CustomNavBar() {
   const { collections } = useAppSelector((state) => state.tasks);
 
   const mainLinks = links.map((link) => (
-    <UnstyledButton key={link.label} className={classes.mainLink}>
+    <NavLink to='/' key={link.label} className={classes.mainLink}>
       <div className={classes.mainLinkInner}>
         <link.icon size={25} className={classes.mainLinkIcon} />
         <span>{link.label}</span>
       </div>
-    </UnstyledButton>
+    </NavLink>
   ));
 
   return (
