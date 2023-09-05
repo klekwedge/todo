@@ -1,19 +1,20 @@
-import { useState } from 'react';
-import { ActionIcon } from '@mantine/core';
+import { ActionIcon, useMantineColorScheme } from '@mantine/core';
 import { BsSunFill, BsMoonFill } from 'react-icons/bs';
+
 import './ToggleTheme.scss';
 
 function ToggleTheme() {
-  const [isLightTheme, seIsLightTheme] = useState(true);
-
-  function changeTheme() {
-    // seIsLightTheme((currentValue) => !currentValue);
-    // document.body.classList.toggle('dark');
-  }
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
-    <ActionIcon  size="2.5rem" radius="50%" onClick={() => changeTheme()}>
-      {isLightTheme ? <BsSunFill size='20px'/> : <BsMoonFill  size='20px'/>}
+    <ActionIcon
+      variant='transparent'
+      onClick={() => toggleColorScheme()}
+      title="Toggle color scheme"
+      w="35px"
+      h="35px"
+    >
+      {colorScheme === 'dark' ? <BsSunFill size="65%" /> : <BsMoonFill size="65%" />}
     </ActionIcon>
   );
 }

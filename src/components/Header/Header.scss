@@ -1,19 +1,5 @@
 .header {
   width: 100%;
-  background: white;
-  color: black;
   padding: 10px 50px 10px 50px;
   border-bottom: 1px solid gray;
-}
-
-body.dark .header {
-  background: black;
-}
-
-body.dark .header button {
-  background-color: white;
-}
-
-body.dark .header button svg path {
-  fill: black;
 }

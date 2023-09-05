@@ -1,16 +1,17 @@
 import { ReactNode } from 'react';
 import { Flex } from '@mantine/core';
+import ToggleTheme from '../ToggleTheme/ToggleTheme';
+import NewTaskForm from '../NewTaskForm/NewTaskForm';
 import './Header.scss';
 
-interface HeaderProps {
-  children: ReactNode;
-}
+function Header() {
 
-function Header({ children }: HeaderProps) {
+
   return (
     <header className="header">
       <Flex gap="10px" justify='flex-end'>
-        {children}
+        <NewTaskForm />
+                <ToggleTheme />
       </Flex>
     </header>
   );
