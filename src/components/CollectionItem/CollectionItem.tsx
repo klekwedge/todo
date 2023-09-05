@@ -50,11 +50,11 @@ function CollectionItem({ collection }: CollectionItemProps) {
   const [opened, { open, close }] = useDisclosure(false);
 
   const onClickCollection = () => {
-    navigate(`/${collection.name}`);
+    navigate(`/${collection.id}`);
   };
 
   return (
-    <div className={classes.collectionLink} onClick={() => onClickCollection(collection.name)}>
+    <div className={classes.collectionLink} onClick={() => onClickCollection()}>
       <span style={{ marginRight: rem(9), fontSize: rem(16) }}>
         {collection.icon} {collection.name}
       </span>

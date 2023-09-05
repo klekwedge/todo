@@ -11,7 +11,7 @@ import { setCollections, setTasks } from '../../slices/tasksSlice';
 function TodoMain() {
   const params = useParams();
 
-  const { tasks, collections} = useAppSelector((state) => state.tasks);
+  const { tasks, collections } = useAppSelector((state) => state.tasks);
   const dispatch = useAppDispatch();
   const taskListRef = useRef<HTMLElement>(null);
 
@@ -68,7 +68,7 @@ function TodoMain() {
   document.addEventListener('mouseup', stopStretch);
   document.addEventListener('mousemove', moveBlock);
 
-  const filteredTasks = params.collection ? tasks.filter((task) => task.collectionId === params.collectionId) : tasks;
+  const filteredTasks = params.collectionId ? tasks.filter((task) => task.collectionId === params.collectionId) : tasks;
 
   // const todoListScrollWrapper = useRef(null);
   // const hasScroll = tasks.length > 6;

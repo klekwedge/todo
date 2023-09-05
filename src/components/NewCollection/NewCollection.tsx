@@ -1,5 +1,4 @@
 /* eslint-disable react/require-default-props */
-import { useDisclosure } from '@mantine/hooks';
 import { v4 as uuidv4 } from 'uuid';
 import { BsEmojiSmile, BsArrowRepeat } from 'react-icons/bs';
 import data from '@emoji-mart/data';
