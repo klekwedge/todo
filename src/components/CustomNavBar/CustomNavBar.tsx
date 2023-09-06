@@ -1,18 +1,13 @@
-import { BsListUl, BsArrowRepeat, BsPlus, BsFillTrashFill, BsPencilFill, BsThreeDots } from 'react-icons/bs';
+import { BsListUl, BsArchive, BsPlus } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import {
   createStyles,
   Navbar,
-  UnstyledButton,
   rem,
   Group,
   Text,
   Tooltip,
   ActionIcon,
-  Avatar,
-  Table,
-  Menu,
-  ScrollArea,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import NewCollection from '../NewCollection/NewCollection';
@@ -98,8 +93,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const links = [
-  { icon: BsListUl, label: 'Tasks' },
-  { icon: BsArrowRepeat, label: 'Habits' },
+  { icon: BsListUl, label: 'Tasks', path: '/' },
+  { icon: BsArchive, label: 'Archive', path: '/archive' },
 ];
 
 function CustomNavBar() {
@@ -108,7 +103,7 @@ function CustomNavBar() {
   const { collections } = useAppSelector((state) => state.tasks);
 
   const mainLinks = links.map((link) => (
-    <NavLink to='/' key={link.label} className={classes.mainLink}>
+    <NavLink to={link.path} key={link.label} className={classes.mainLink}>
       <div className={classes.mainLinkInner}>
         <link.icon size={25} className={classes.mainLinkIcon} />
         <span>{link.label}</span>

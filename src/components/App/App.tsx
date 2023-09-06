@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import './App.scss';
 import CustomNavBar from '../CustomNavBar/CustomNavBar';
 import MainPage from '../../pages/MainPage';
+import ArchivePage from '../../pages/ArchivePage';
 
 function App() {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
@@ -23,7 +24,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/:collectionId" element={<MainPage />} />
-                {/* <Route path="/habits" element={<HabitsPage />} /> */}
+                <Route path="/archive" element={<ArchivePage />} />
               </Routes>
             </Flex>
           </Flex>

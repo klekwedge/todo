@@ -4,6 +4,7 @@ import { ICollection, ITask } from '../types/types';
 
 interface TasksState {
     tasks: ITask[];
+    archiveTasks: ITask[];
     currentTask: ITask | null;
     collections: ICollection[]
 }
@@ -12,6 +13,7 @@ interface TasksState {
 
 const initialState: TasksState = {
     tasks: [],
+    archiveTasks: [],
     currentTask: null,
     collections: []
 };
@@ -53,12 +55,16 @@ const tasksSlice = createSlice({
         deleteCollection: (state, action) => {
             state.collections = [...state.collections.filter((collection) => collection.id !== action.payload)];
             state.tasks = [...state.tasks.filter((task) => (task.collectionId !== action.payload))];
+        },
+        addTaskArchive: (state, action) => {
+            state.tasks = [...state.tasks.filter((task) => (task.id !== action.payload.id))];
+            state.archiveTasks.push(action.payload);
         }
     },
 });
 
 const { actions, reducer } = tasksSlice;
 
-export const { setTasks, setCollections, updateCollection, deleteCollection, setDescription, createNewTask, toggleTask, removeTask, chooseTask, createNewCollection } = actions;
+export const { setTasks, setCollections, updateCollection, deleteCollection, setDescription, createNewTask, toggleTask, removeTask, chooseTask, createNewCollection, addTaskArchive } = actions;
 
 export default reducer;
