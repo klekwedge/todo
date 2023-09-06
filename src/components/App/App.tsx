@@ -6,6 +6,7 @@ import './App.scss';
 import CustomNavBar from '../CustomNavBar/CustomNavBar';
 import MainPage from '../../pages/MainPage';
 import ArchivePage from '../../pages/ArchivePage';
+import TaskDetail from '../TaskDetail/TaskDetail';
 
 function App() {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
@@ -20,12 +21,15 @@ function App() {
           <Flex className="app">
             <CustomNavBar />
             <Flex direction="column" w="100%">
-              <Header/>
-              <Routes>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/:collectionId" element={<MainPage />} />
-                <Route path="/archive" element={<ArchivePage />} />
-              </Routes>
+              <Header />
+              <main className="todo">
+                <Routes>
+                  <Route path="/" element={<MainPage />} />
+                  <Route path="/:collectionId" element={<MainPage />} />
+                  <Route path="/archive" element={<ArchivePage />} />
+                </Routes>
+                <TaskDetail />
+              </main>
             </Flex>
           </Flex>
         </Router>

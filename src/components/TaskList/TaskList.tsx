@@ -70,11 +70,6 @@ function TodoMain() {
 
   const filteredTasks = params.collectionId ? tasks.filter((task) => task.collectionId === params.collectionId) : tasks;
 
-  // const todoListScrollWrapper = useRef(null);
-  // const hasScroll = tasks.length > 6;
-
-  // useScrollbar(todoListScrollWrapper, hasScroll);
-
   return (
     <section className="task-list" ref={taskListRef}>
       <Flex pb="10px" justify="space-between" mb="20px">
@@ -95,24 +90,15 @@ function TodoMain() {
         </Flex>
       </Flex>
 
-      <div
-      // style={{
-      //   height: hasScroll ? '475px' : 'auto',
-      //   minHeight: '475px',
-      // }}
-      // ref={todoListScrollWrapper}
-      >
-        {/* params.collection */}
-        <ul className="todo__task-list">
-          {tasks.length > 0 ? (
-            filteredTasks
-              .map((task) => <TodoTaskItem isArchive={false} task={task} key={task.id} />)
-              .sort((el) => (el.props.task.complete ? 1 : -1))
-          ) : (
-            <h2>You do not have any tasks</h2>
-          )}
-        </ul>
-      </div>
+      <ul className="todo__task-list">
+        {tasks.length > 0 ? (
+          filteredTasks
+            .map((task) => <TodoTaskItem isArchive={false} task={task} key={task.id} />)
+            .sort((el) => (el.props.task.complete ? 1 : -1))
+        ) : (
+          <h2>You do not have any tasks</h2>
+        )}
+      </ul>
       <div id="resize" onMouseDown={saveX} />
     </section>
   );
