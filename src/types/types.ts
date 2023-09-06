@@ -6,7 +6,7 @@ export interface ITask {
   collectionColor: string;
   description: string;
   deadline: Date | null;
-  creationDate: string[];
+  creationDate: Date;
   priority: string | null;
 }
 

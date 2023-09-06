@@ -22,14 +22,11 @@ function TodoTaskItem({ isArchive, task }: TodoTaskItemProps) {
 
   const remove = (e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log(isArchive);
 
-    if(isArchive) {
+    if (isArchive) {
       dispatch(deleteArchiveTask(task.id));
-    }
-    else{
-    dispatch(removeTask(task.id));
-
+    } else {
+      dispatch(removeTask(task.id));
     }
   };
 

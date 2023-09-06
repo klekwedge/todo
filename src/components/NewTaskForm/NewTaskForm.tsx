@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Select, Input, ActionIcon, Button } from '@mantine/core';
-import { DatePickerInput } from '@mantine/dates';
+import { DateInput  } from '@mantine/dates';
 import { BsPlusCircle } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { createNewTask } from '../../slices/tasksSlice';
@@ -37,7 +37,7 @@ function NewTaskForm() {
         collectionColor: currentCollection?.color || '',
         description: taskDescription,
         deadline,
-        creationDate: new Date().toLocaleString().split(', '),
+        creationDate: new Date(),
         priority,
       }),
     );
@@ -97,8 +97,13 @@ function NewTaskForm() {
               data={[{ value: 'all', label: 'All' }, ...categoryData]}
             />
           </Input.Wrapper>
-          <Input.Wrapper w="100%" label="Task deadline">
-            <DatePickerInput placeholder="Choose deadline" value={deadline} onChange={setDeadline} w="100%" />
+          <Input.Wrapper label="Task deadline">
+            <DateInput 
+              valueFormat="DD/MM/YYYY HH:mm:ss"
+              placeholder="Choose deadline"
+              value={deadline}
+              onChange={setDeadline}
+            />
           </Input.Wrapper>
           <Input.Wrapper w="100%" label="Task priority">
             <Select
