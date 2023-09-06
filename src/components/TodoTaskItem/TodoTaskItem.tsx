@@ -3,7 +3,7 @@ import { Flex, Checkbox, Menu, ActionIcon } from '@mantine/core';
 import { BsPencilSquare, BsTrashFill, BsThreeDots, BsArchive } from 'react-icons/bs';
 import { ITask } from '../../types/types';
 import { useAppDispatch } from '../../hooks/useRedux';
-import { addTaskArchive, chooseTask, removeTask, toggleTask } from '../../slices/tasksSlice';
+import { addArchiveTask, chooseTask, deleteArchiveTask, removeTask, toggleTask } from '../../slices/tasksSlice';
 import './TodoTaskItem.scss';
 
 interface TodoTaskItemProps {
@@ -22,18 +22,20 @@ function TodoTaskItem({ isArchive, task }: TodoTaskItemProps) {
 
   const remove = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // if(isArchive) {
-    //   console.log(!);
-    // }
-    // else{
+    console.log(isArchive);
+
+    if(isArchive) {
+      dispatch(deleteArchiveTask(task.id));
+    }
+    else{
     dispatch(removeTask(task.id));
 
-    // }
+    }
   };
 
   const archive = (e: React.MouseEvent) => {
     e.stopPropagation();
-    dispatch(addTaskArchive(task));
+    dispatch(addArchiveTask(task));
   };
 
   const choose = (e: React.MouseEvent) => {

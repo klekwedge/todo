@@ -56,15 +56,18 @@ const tasksSlice = createSlice({
             state.collections = [...state.collections.filter((collection) => collection.id !== action.payload)];
             state.tasks = [...state.tasks.filter((task) => (task.collectionId !== action.payload))];
         },
-        addTaskArchive: (state, action) => {
+        addArchiveTask: (state, action) => {
             state.tasks = [...state.tasks.filter((task) => (task.id !== action.payload.id))];
             state.archiveTasks.push(action.payload);
+        },
+        deleteArchiveTask: (state, action) => {
+            state.archiveTasks = [...state.archiveTasks.filter((task) => (task.id !== action.payload))];
         }
     },
 });
 
 const { actions, reducer } = tasksSlice;
 
-export const { setTasks, setCollections, updateCollection, deleteCollection, setDescription, createNewTask, toggleTask, removeTask, chooseTask, createNewCollection, addTaskArchive } = actions;
+export const { setTasks, setCollections, updateCollection, deleteCollection, setDescription, createNewTask, toggleTask, removeTask, chooseTask, createNewCollection, addArchiveTask, deleteArchiveTask } = actions;
 
 export default reducer;
