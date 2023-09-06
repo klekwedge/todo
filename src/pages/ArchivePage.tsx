@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+import { ScrollArea } from '@mantine/core';
 import { useRef } from 'react';
 import TodoTaskItem from '../components/TodoTaskItem/TodoTaskItem';
 import { useAppSelector } from '../hooks/useRedux';
@@ -45,15 +46,18 @@ function ArchivePage() {
   return (
     <section className="task-list" ref={taskListRef}>
       <div>
-        <ul className="todo__task-list">
-          {archiveTasks.length > 0 ? (
-            archiveTasks
-              .map((task) => <TodoTaskItem isArchive task={task} key={task.id} />)
-              .sort((el) => (el.props.task.complete ? 1 : -1))
-          ) : (
-            <h2>You do not have archive tasks</h2>
-          )}
-        </ul>
+        <ScrollArea type="auto" h="100%" offsetScrollbars>
+          {' '}
+          <ul className="todo__task-list">
+            {archiveTasks.length > 0 ? (
+              archiveTasks
+                .map((task) => <TodoTaskItem isArchive task={task} key={task.id} />)
+                .sort((el) => (el.props.task.complete ? 1 : -1))
+            ) : (
+              <h2>You do not have archive tasks</h2>
+            )}
+          </ul>
+        </ScrollArea>
       </div>
       <div id="resize" onMouseDown={saveX} />
     </section>

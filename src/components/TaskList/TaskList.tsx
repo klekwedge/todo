@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import { useEffect, useRef } from 'react';
-import { Flex, Title } from '@mantine/core';
+import { Flex, ScrollArea, Title } from '@mantine/core';
 import { useParams } from 'react-router-dom';
 import './TaskList.scss';
 import TodoTaskItem from '../TodoTaskItem/TodoTaskItem';
@@ -90,15 +90,17 @@ function TodoMain() {
         </Flex>
       </Flex>
 
-      <ul className="todo__task-list">
-        {tasks.length > 0 ? (
-          filteredTasks
-            .map((task) => <TodoTaskItem isArchive={false} task={task} key={task.id} />)
-            .sort((el) => (el.props.task.complete ? 1 : -1))
-        ) : (
-          <h2>You do not have any tasks</h2>
-        )}
-      </ul>
+      <ScrollArea type="auto" h='100%' offsetScrollbars>
+        <ul className="todo__task-list">
+          {tasks.length > 0 ? (
+            filteredTasks
+              .map((task) => <TodoTaskItem isArchive={false} task={task} key={task.id} />)
+              .sort((el) => (el.props.task.complete ? 1 : -1))
+          ) : (
+            <h2>You do not have any tasks</h2>
+          )}
+        </ul>{' '}
+      </ScrollArea>
       <div id="resize" onMouseDown={saveX} />
     </section>
   );

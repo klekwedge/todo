@@ -9,8 +9,6 @@ interface TasksState {
     collections: ICollection[]
 }
 
-
-
 const initialState: TasksState = {
     tasks: [],
     archiveTasks: [],
