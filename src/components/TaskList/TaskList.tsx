@@ -106,7 +106,7 @@ function TodoMain() {
         <ul className="todo__task-list">
           {tasks.length > 0 ? (
             filteredTasks
-              .map((task) => <TodoTaskItem task={task} key={task.id} />)
+              .map((task) => <TodoTaskItem isArchive={false} task={task} key={task.id} />)
               .sort((el) => (el.props.task.complete ? 1 : -1))
           ) : (
             <h2>You do not have any tasks</h2>

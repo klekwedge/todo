@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { Flex, Checkbox, Menu, ActionIcon } from '@mantine/core';
-import { BsPencilSquare, BsTrashFill, BsThreeDots } from 'react-icons/bs';
+import { BsPencilSquare, BsTrashFill, BsThreeDots, BsArchive } from 'react-icons/bs';
 import { ITask } from '../../types/types';
 import { useAppDispatch } from '../../hooks/useRedux';
 import { addTaskArchive, chooseTask, removeTask, toggleTask } from '../../slices/tasksSlice';
@@ -8,9 +8,10 @@ import './TodoTaskItem.scss';
 
 interface TodoTaskItemProps {
   task: ITask;
+  isArchive: boolean;
 }
 
-function TodoTaskItem({ task }: TodoTaskItemProps) {
+function TodoTaskItem({ isArchive, task }: TodoTaskItemProps) {
   const dispatch = useAppDispatch();
 
   const edit = (taskId: string) => {};
@@ -21,14 +22,19 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
 
   const remove = (e: React.MouseEvent) => {
     e.stopPropagation();
+    // if(isArchive) {
+    //   console.log(!);
+    // }
+    // else{
     dispatch(removeTask(task.id));
+
+    // }
   };
 
   const archive = (e: React.MouseEvent) => {
     e.stopPropagation();
     dispatch(addTaskArchive(task));
   };
-
 
   const choose = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -37,7 +43,6 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
       dispatch(chooseTask(task.id));
     }
   };
-
 
   return (
     <li
@@ -71,9 +76,13 @@ function TodoTaskItem({ task }: TodoTaskItemProps) {
               <Menu.Item icon={<BsTrashFill />} onClick={(e) => remove(e)}>
                 Delete task
               </Menu.Item>
-              <Menu.Item icon={<BsTrashFill />} onClick={(e) => archive(e)}>
-                Archive task
-              </Menu.Item>
+              {!isArchive ? (
+                <Menu.Item icon={<BsArchive />} onClick={(e) => archive(e)}>
+                  Archive task
+                </Menu.Item>
+              ) : (
+                ''
+              )}
             </Menu.Dropdown>
           </Menu>
         </Flex>
