@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-
-import { useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
+import SimpleMDE from 'react-simplemde-editor';
+import "easymde/dist/easymde.min.css";
+import { useEffect, useMemo, useRef } from 'react';
 import { Flex, ScrollArea, Title } from '@mantine/core';
 import { useParams } from 'react-router-dom';
 import './TaskList.scss';
@@ -14,6 +16,21 @@ function TodoMain() {
   const { tasks, collections } = useAppSelector((state) => state.tasks);
   const dispatch = useAppDispatch();
   const taskListRef = useRef<HTMLElement>(null);
+
+  const options = useMemo(
+    () => ({
+      spellChecker: false,
+      maxHeight: '400px',
+      autofocus: true,
+      placeholder: 'Введите текст...',
+      status: false,
+      autosave: {
+        enabled: true,
+        delay: 1000,
+      },
+    }),
+    [],
+  );
 
   useEffect(() => {
     const localTasks = JSON.parse(localStorage.getItem('tasks') || '{}');
@@ -70,6 +87,8 @@ function TodoMain() {
 
   const filteredTasks = params.collectionId ? tasks.filter((task) => task.collectionId === params.collectionId) : tasks;
 
+  const data = '##### 111';
+
   return (
     <section className="task-list" ref={taskListRef}>
       <Flex pb="10px" justify="space-between" mb="20px">
@@ -89,8 +108,10 @@ function TodoMain() {
           </Title>
         </Flex>
       </Flex>
+      <ReactMarkdown>{data}</ReactMarkdown>
+      <SimpleMDE />
 
-      <ScrollArea type="auto" h='100%' offsetScrollbars>
+      <ScrollArea type="auto" h="100%" offsetScrollbars>
         <ul className="todo__task-list">
           {tasks.length > 0 ? (
             filteredTasks
@@ -99,7 +120,7 @@ function TodoMain() {
           ) : (
             <h2>You do not have any tasks</h2>
           )}
-        </ul>{' '}
+        </ul>
       </ScrollArea>
       <div id="resize" onMouseDown={saveX} />
     </section>

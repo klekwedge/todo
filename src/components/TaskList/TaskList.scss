@@ -16,3 +16,20 @@
   gap: 10px;
   padding-right: 15px;
 }
+
+.dark .CodeMirror-scroll,
+.dark .CodeMirror,
+.dark .editor-preview {
+  background: black;
+  color: white;
+}
+
+.dark .editor-toolbar button {
+  &:hover {
+    color: black;
+  }
+}
+
+.dark .editor-toolbar button.active {
+  color: black;
+}
