@@ -1,15 +1,20 @@
-import { Flex, Title, Textarea } from '@mantine/core';
-import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { Flex, Title } from '@mantine/core';
+import { BsFillCursorFill } from 'react-icons/bs';
+import { useAppSelector } from '../../hooks/useRedux';
 import './TaskDetail.scss';
-import { setDescription } from '../../slices/tasksSlice';
 import TextEditor from '../TextEditor/TextEditor';
 
 function TaskDetail() {
   const { currentTask } = useAppSelector((state) => state.tasks);
-  const dispatch = useAppDispatch();
 
   if (!currentTask) {
-    return null;
+    return (
+      <section className="task-detail">
+        <Flex w="100%" h="100%" align="center" justify="center" fz='20px'>
+          <BsFillCursorFill size='22' style={{marginRight: '5px'}}/> Click on a task to view its details.
+        </Flex>
+      </section>
+    );
   }
 
   return (
@@ -35,7 +40,7 @@ function TaskDetail() {
         <Title order={4} mb="5px" fw="400" fz="18px">
           <span className="_highlight">Description:</span>
         </Title>
-        <TextEditor  value={currentTask.description} id={currentTask.id}/>
+        <TextEditor value={currentTask.description} id={currentTask.id} />
       </Flex>
     </section>
   );

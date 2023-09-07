@@ -18,7 +18,6 @@ function NewTaskForm() {
   }));
 
   const [taskNameInput, setTaskNameInput] = useState('');
-  const [taskDescription, setTaskDescription] = useState('');
   const [taskCollection, setTaskCollection] = useState<string | null>('all');
   const [deadline, setDeadline] = useState<Date | null>(null);
   const [priority, setPriority] = useState<string | null>('none');
@@ -35,7 +34,7 @@ function NewTaskForm() {
         complete: false,
         collectionId: currentCollection?.id || '',
         collectionColor: currentCollection?.color || '',
-        description: taskDescription,
+        description: '',
         deadline,
         creationDate: new Date(),
         priority,
@@ -44,7 +43,6 @@ function NewTaskForm() {
 
     setTaskNameInput('');
     setTaskCollection('');
-    setTaskDescription('');
     setDeadline(null);
     setDeadline(null);
     close();
@@ -80,15 +78,6 @@ function NewTaskForm() {
             />
           </Input.Wrapper>
 
-          <Input.Wrapper w="100%" id="task-description" label="Task description">
-            <Input
-              id="task-description"
-              value={taskDescription}
-              placeholder="Enter the description of your task"
-              onChange={(e) => setTaskDescription(e.target.value)}
-            />
-          </Input.Wrapper>
-
           <Input.Wrapper w="100%" label="Task category">
             <Select
               placeholder="Select category"
@@ -98,7 +87,7 @@ function NewTaskForm() {
             />
           </Input.Wrapper>
           <Input.Wrapper label="Task deadline">
-            <DateInput 
+            <DateInput
               valueFormat="DD/MM/YYYY HH:mm:ss"
               placeholder="Choose deadline"
               value={deadline}

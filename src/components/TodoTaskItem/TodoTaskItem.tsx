@@ -69,12 +69,6 @@ function TodoTaskItem({ isArchive, task }: TodoTaskItemProps) {
               </ActionIcon>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item icon={<BsPencilSquare />} onClick={() => edit(task.id)}>
-                Edit task
-              </Menu.Item>
-              <Menu.Item icon={<BsTrashFill />} onClick={(e) => remove(e)}>
-                Delete task
-              </Menu.Item>
               {!isArchive ? (
                 <Menu.Item icon={<BsArchive />} onClick={(e) => archive(e)}>
                   Archive task
@@ -82,6 +76,9 @@ function TodoTaskItem({ isArchive, task }: TodoTaskItemProps) {
               ) : (
                 ''
               )}
+              <Menu.Item icon={<BsTrashFill />} onClick={(e) => remove(e)}>
+                Delete task
+              </Menu.Item>
             </Menu.Dropdown>
           </Menu>
         </Flex>
