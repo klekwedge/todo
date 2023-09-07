@@ -1,14 +1,15 @@
 import { RichTextEditor, Link } from '@mantine/tiptap';
-import { useState } from 'react';
 import { useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { setDescription } from '../../slices/tasksSlice';
+import { useAppDispatch } from '../../hooks/useRedux';
 
-function TextEditor() {
-  const [data, setData] = useState('');
+function TextEditor({ value, id }: { value: string, id: string }) {
+  const dispatch = useAppDispatch();
 
   const editor = useEditor({
     extensions: [StarterKit, Link],
-    content: data,
+    content: value,
   });
 
   return (
@@ -43,10 +44,10 @@ function TextEditor() {
         </RichTextEditor.ControlsGroup>
       </RichTextEditor.Toolbar>
 
-      <RichTextEditor.Content  
+      <RichTextEditor.Content
         onInput={(e) => {
           const target = e.target as HTMLElement;
-          setData(target.innerHTML);
+          dispatch(setDescription({ value: target.innerHTML, id }));
         }}
       />
     </RichTextEditor>

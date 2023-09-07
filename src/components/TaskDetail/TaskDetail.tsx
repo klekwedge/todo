@@ -35,12 +35,7 @@ function TaskDetail() {
         <Title order={4} mb="5px" fw="400" fz="18px">
           <span className="_highlight">Description:</span>
         </Title>
-        <TextEditor />
-        <Textarea
-          value={currentTask.description}
-          onChange={(e) => dispatch(setDescription({ value: e.target.value, id: currentTask.id }))}
-          w="100%"
-        />
+        <TextEditor  value={currentTask.description} id={currentTask.id}/>
       </Flex>
     </section>
   );
