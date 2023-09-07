@@ -2,6 +2,7 @@ import { Flex, Title, Textarea } from '@mantine/core';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import './TaskDetail.scss';
 import { setDescription } from '../../slices/tasksSlice';
+import TextEditor from '../TextEditor/TextEditor';
 
 function TaskDetail() {
   const { currentTask } = useAppSelector((state) => state.tasks);
@@ -10,8 +11,6 @@ function TaskDetail() {
   if (!currentTask) {
     return null;
   }
-
-  console.log(currentTask.deadline);
 
   return (
     <section className="task-detail">
@@ -36,8 +35,8 @@ function TaskDetail() {
         <Title order={4} mb="5px" fw="400" fz="18px">
           <span className="_highlight">Description:</span>
         </Title>
+        <TextEditor />
         <Textarea
-          placeholder="Your description"
           value={currentTask.description}
           onChange={(e) => dispatch(setDescription({ value: e.target.value, id: currentTask.id }))}
           w="100%"

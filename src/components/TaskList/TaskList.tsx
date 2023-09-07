@@ -1,7 +1,4 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import ReactMarkdown from 'react-markdown';
-import SimpleMDE from 'react-simplemde-editor';
-import "easymde/dist/easymde.min.css";
 import { useEffect, useMemo, useRef } from 'react';
 import { Flex, ScrollArea, Title } from '@mantine/core';
 import { useParams } from 'react-router-dom';
@@ -108,8 +105,6 @@ function TodoMain() {
           </Title>
         </Flex>
       </Flex>
-      <ReactMarkdown>{data}</ReactMarkdown>
-      <SimpleMDE />
 
       <ScrollArea type="auto" h="100%" offsetScrollbars>
         <ul className="todo__task-list">
